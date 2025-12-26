@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="matchaPU" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>model.Account</class>
+        <class>model.Customer</class>
+        <class>model.Product</class>
+        <class>model.Drink</class>
+        <class>model.Ingredient</class>
+        <class>model.Matcha</class>
+        <class>model.Milk</class>
+        <class>model.Cart</class>
+        <class>model.ProductLine</class>
+        <class>model.Order</class>
+        <class>model.Payment</class>
+        <class>model.Review</class>
+        <class>model.Address</class>
+
+        <properties>
+            <!-- JDBC -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://dpg-d57bh45actks73c2g5jg-a.singapore-postgres.render.com:5432/matchdb_tpgj?sslmode=require"/>
+            <property name="jakarta.persistence.jdbc.user" value="admin"/>
+            <property name="jakarta.persistence.jdbc.password" value="sX6XmR48RI9mSSsH8RDFiYhoE0QELGHl"/>
+
+            <!-- Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>
