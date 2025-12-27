@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
-/**
- *
- * @author ADMIN
- */
-public class MilkDAO {
-    
+import model.Milk;
+
+public class MilkDAO extends GenericDAO<Milk, Long> {
+
+    public MilkDAO() {
+        super(Milk.class);
+    }
 }

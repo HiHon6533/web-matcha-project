@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
-/**
- *
- * @author ADMIN
- */
-public class MatchaDAO {
-    
+import model.Matcha;
+
+public class MatchaDAO extends GenericDAO<Matcha, Long> {
+
+    public MatchaDAO() {
+        super(Matcha.class);
+    }
 }
