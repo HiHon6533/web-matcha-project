@@ -66,5 +66,4 @@ public class ProductLine implements Serializable{
         this.quantity = quantity;
     }
     
-    
 }
