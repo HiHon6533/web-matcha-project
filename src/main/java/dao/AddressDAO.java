@@ -1,10 +1,10 @@
 package dao;
 
-import model.Cart;
+import model.Address;
 
-public class AddressDAO extends GenericDAO<Cart, Long> {
+public class AddressDAO extends GenericDAO<Address, Long> {
 
     public AddressDAO() {
-        super(Cart.class);
+        super(Address.class);
     }
 }
