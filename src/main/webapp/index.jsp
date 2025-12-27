@@ -1,9 +1,11 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HINATFU Matcha - Tinh hoa tr� Nh?t</title>
+    <title>HINATFU Matcha - Tinh hoa trà Nhật</title>
     <script src="https://kit.fontawesome.com/41b883a0ca.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
@@ -13,16 +15,16 @@
     <header class="navbar">
         <nav class="nav-left">
             <a href="#trangchu" class="logo">
-                <h1>HINATFU<span>????</span></h1>
+                <h1>HINATFU<span>まっちゃ</span></h1>
             </a>
         </nav>
 
         <nav class="nav-center">
-            <a href="#gioi-thieu">Gi?i thi?u</a>
-            <a href="#noi-bat">N?i b?t</a>
-            <a href="#san-pham">S?n ph?m</a>
-            <a href="#nguyen-lieu">Nguy�n li?u</a>
-            <a href="#lien-he">Li�n h?</a>
+            <a href="#gioi-thieu">Giới thiệu</a>
+            <a href="#noi-bat">Nổi bật</a>
+            <a href="#san-pham">Sản phẩm</a>
+            <a href="#nguyen-lieu">Nguyên liệu</a>
+            <a href="#lien-he">Liên hệ</a>
         </nav>
 
         <nav class="nav-right">
@@ -35,27 +37,38 @@
         <div class="background-container">
             <img src="./br.png" alt="Matcha Background" />
             <div class="hero-text">
-                <h2>T?nh l?ng trong t?ng ng?m tr�</h2>
-                <p>Tr?i nghi?m h??ng v? Uji truy?n th?ng gi?a l�ng th�nh ph?.</p>
+                <h2>Tĩnh lặng trong từng ngụm trà</h2>
+                <p>Trải nghiệm hương vị Uji truyền thống giữa lòng thành phố.</p>
             </div>
         </div>
     </section>
 <!-- ----------------------------------------About-------------------------------------------- -->
     <section id="gioi-thieu" class="section-container about">
         <div class="section-title">
-            <span>Gi?i thi?u</span>
-            <h2>V? ch�ng t�i</h2>
+            <span>Giới thiệu</span>
+            <h2>Về chúng tôi</h2>
         </div>
         <div class="about-content">
-            <p>Ch�ng t�i mang ??n d�ng Matcha th??ng h?ng t? v�ng Uji, Kyoto - n?i c� l?ch s? tr� ??o l�u ??i nh?t Nh?t B?n.</p>
-            <p>M?i ch�n tr� l� m?t s? k?t h?p gi?a ngh? thu?t pha ch? v� s? t?nh l?ng c?a t�m h?n.</p>
+            <p>HINATFU ra đời không chỉ để mang đến một tách trà, mà là một khoảng lặng bình yên giữa nhịp sống hối hả.
+
+                Chúng tôi tin rằng, thưởng thức Matcha là một nghi thức nhỏ giúp tâm hồn bạn tìm lại sự cân bằng quý giá.
+
+                Hành trình của chúng tôi bắt đầu từ vùng đồi Uji, Kyoto - cái nôi thiêng liêng của trà đạo Nhật Bản.          
+
+                Những búp trà non được che nắng cẩn thận suốt 20 ngày để gìn giữ trọn vẹn vị ngọt Umami thanh khiết nhất.
+
+                Qua cối đá Granite nghiền chậm thủ công, từng hạt bột trà giữ nguyên màu xanh ngọc bích và hương thơm cỏ non tươi mới.
+
+                Với triết lý "Nhất Kỳ Nhất Hội", chúng tôi trân trọng từng cơ hội được gửi trao sản phẩm đến tay bạn.
+
+                Hãy để vị trà dẫn lối bạn về với sự an yên, hạnh phúc trong từng phút giây hiện tại.</p>
         </div>
     </section>
 <!-- ----------------------------------------San pham noi bat -------------------------------------------- -->
     <section id="noi-bat" class="section-container menu">
         <div class="section-title">
-            <span>G?i �</span>
-            <h2>S?n ph?m n?i b?t</h2>
+            <span>Gợi ý</span>
+            <h2>Sản phẩm nổi bật</h2>
         </div>
 
         <div class="product-grid">
@@ -63,14 +76,14 @@
             data-product-id="drink_matcha_dai_meiji"
             data-price="65000">
                 <div class="product-img">
-                    <img src="./SanPhamImage/MatchaDaiSuaTuoi.png" alt="Matcha ?�i" />
+                    <img src="./SanPhamImage/MatchaDaiSuaTuoi.png" alt="Matcha ?ài" />
                 </div>
                 <div class="product-info">
-                    <h3>Matcha ?�i s?a Meiji</h3>
-                    <p>Matcha thanh khi?t, s?a Meiji m??t m�, h?u v? d?u �m.</p>
+                    <h3>Matcha ?ài s?a Meiji</h3>
+                    <p>Matcha thanh khi?t, s?a Meiji m??t mà, h?u v? d?u êm.</p>
                     <div class="price-add">
                         <span>65.000?</span>
-                        <button class="add-btn">Th�m +</button>
+                        <button class="add-btn">Thêm +</button>
                     </div>
                 </div>
             </div>
@@ -82,10 +95,10 @@
                 </div>
                 <div class="product-info">
                     <h3>Matcha Haru s?a h?t Oatside</h3>
-                    <p>Tr� xu�n Haru thanh tao, y?n m?ch b�i b�o, thu?n khi?t.</p>
+                    <p>Trà xuân Haru thanh tao, y?n m?ch bùi béo, thu?n khi?t.</p>
                     <div class="price-add">
                         <span>85.000?</span>
-                        <button class="add-btn">Th�m +</button>
+                        <button class="add-btn">Thêm +</button>
                     </div>
                 </div>
             </div>
@@ -97,10 +110,10 @@
                 </div>
                 <div class="product-info">
                     <h3>Matcha Fuji Mk4 s?a h?t Oatside</h3>
-                    <p>V? tr� rang m?c m?c, ??m ?�, quy?n c�ng s?a h?t s�nh m?n.</p>
+                    <p>V? trà rang m?c m?c, ??m ?à, quy?n cùng s?a h?t sánh m?n.</p>
                     <div class="price-add">
                         <span>60.000?</span>
-                        <button class="add-btn">Th�m +</button>
+                        <button class="add-btn">Thêm +</button>
                     </div>
                 </div>
             </div>
@@ -110,8 +123,8 @@
  <!-- ----------------------------------------Tuy chinh san pham-------------------------------------------- -->  
     <section id="san-pham" class="section-container custom-selection">
         <div class="section-title">
-            <span>S�ng t?o</span>
-            <h2>T�y ch?nh Matcha c?a b?n</h2>
+            <span>Sáng t?o</span>
+            <h2>Tùy ch?nh Matcha c?a b?n</h2>
         </div>
         
         <div class="selection-container">
@@ -119,17 +132,17 @@
                 <h3><i class="fas fa-leaf"></i> 1. Ch?n lo?i Matcha</h3>
                 <div class="option-list">
                     <div class="option-item" data-value="matcha_taiwan">
-                        <img src="./matchaImage/Dai.png" alt="Matcha ?�i">
+                        <img src="./matchaImage/Dai.png" alt="Matcha ?ài">
                         <div class="option-text">
-                            <h4>Matcha ?�i Loan</h4>
-                            <p>V? tr� thanh m�t, nh? nh�ng.</p>
+                            <h4>Matcha ?ài Loan</h4>
+                            <p>V? trà thanh mát, nh? nhàng.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="matcha_uji">
                         <img src="./matchaImage/Uji.png" alt="Matcha Uji">
                         <div class="option-text">
                             <h4>Matcha Uji Cao C?p</h4>
-                            <p>Tinh hoa Kyoto ??m ?� Umami.</p>
+                            <p>Tinh hoa Kyoto ??m ?à Umami.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="matcha_haru">
@@ -143,21 +156,21 @@
                         <img src="./matchaImage/Fuji03.png" alt="Matcha Fuji 03">
                         <div class="option-text">
                             <h4>Matcha Fuji No.03</h4>
-                            <p>M�u xanh th?m, v? m?nh m?.</p>
+                            <p>Màu xanh th?m, v? m?nh m?.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="matcha_fuji_Mk4">
                         <img src="./matchaImage/FujiMk4.png" alt="Matcha Fuji Mk4">
                         <div class="option-text">
                             <h4>Matcha Fuji Mk4</h4>
-                            <p>S? c�n b?ng ho�n h?o gi?a v? ch�t nh? v� h??ng tr� rang ??c tr?ng.</p>
+                            <p>S? cân b?ng hoàn h?o gi?a v? chát nh? và h??ng trà rang ??c tr?ng.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="matcha_Houjicha">
                         <img src="./matchaImage/Houjicha.png" alt="Matcha Houjicha">
                         <div class="option-text">
                             <h4>Matcha Houjicha</h4>
-                            <p>Tr� rang th?m l?ng m�i kh�i, �t cafein, th�ch h?p cho bu?i t?i.</p>
+                            <p>Trà rang th?m l?ng mùi khói, ít cafein, thích h?p cho bu?i t?i.</p>
                         </div>
                     </div>
                 </div>
@@ -169,29 +182,29 @@
                     <div class="option-item" data-value="milk_fresh">
                         <img src="./milkImage/SuaTuoi.png" alt="S?a T??i">
                         <div class="option-text">
-                            <h4>S?a T??i Thanh Tr�ng</h4>
-                            <p>V? kem b�o t? nhi�n.</p>
+                            <h4>S?a T??i Thanh Trùng</h4>
+                            <p>V? kem béo t? nhiên.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="milk_oatside">
                         <img src="./milkImage/SuaHatOatside.png" alt="S?a Oatside">
                         <div class="option-text">
                             <h4>S?a Y?n M?ch Oatside</h4>
-                            <p>L?a ch?n thu?n chay ho�n h?o.</p>
+                            <p>L?a ch?n thu?n chay hoàn h?o.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="milk_gau">
                         <img src="./milkImage/SuaGau.png" alt="S?a G?u">
                         <div class="option-text">
                             <h4>S?a T??i G?u</h4>
-                            <p>??m ??c, �t b�o, mang l?i c?m gi�c ho�i ni?m v� thanh tao.</p>
+                            <p>??m ??c, ít béo, mang l?i c?m giác hoài ni?m và thanh tao.</p>
                         </div>
                     </div>
                     <div class="option-item" data-value="milk_meiji">
                         <img src="./milkImage/SuaMeiji.png" alt="S?a Meiji">
                         <div class="option-text">
                             <h4>S?a T??i Meiji</h4>
-                            <p>Ti�u chu?n Nh?t B?n m?n m�ng.</p>
+                            <p>Tiêu chu?n Nh?t B?n m?n màng.</p>
                         </div>
                     </div>
                 </div>
@@ -214,7 +227,7 @@
 
         <div style="text-align: center; margin-top: 40px;">
             <button id="confirm-custom" class="add-btn" style="padding: 15px 40px; font-size: 18px;">
-                Th�m v�o gi? h�ng ngay <i class="fas fa-arrow-right"></i>
+                Thêm vào gi? hàng ngay <i class="fas fa-arrow-right"></i>
             </button>
         </div>
     </section>
@@ -223,22 +236,22 @@
     <section id="nguyen-lieu" class="section-container ingredients">
 
     <div class="section-title">
-        <span>Nguy�n li?u</span>
+        <span>Nguyên li?u</span>
         <h2>B?t Matcha Nh?t B?n</h2>
     </div>
 
     <div class="matcha-two-columns">
 
-        <!-- MATCHA ?�I -->
+        <!-- MATCHA ?ÀI -->
         <div class="ingredient-card"
         data-product-id="matcha_taiwan"
         data-price-per-gram="600">
-        <img src="./matchaImage/Dai.png" alt="Matcha ?�i">
+        <img src="./matchaImage/Dai.png" alt="Matcha ?ài">
         <div class="ingredient-content">
-            <h4>Matcha ?�i Loan</h4>
-            <p>V? tr� nh?, thanh m�t, d? u?ng cho ng??i m?i.</p>
+            <h4>Matcha ?ài Loan</h4>
+            <p>V? trà nh?, thanh mát, d? u?ng cho ng??i m?i.</p>
 
-            <!-- GI� -->
+            <!-- GIÁ -->
             <div class="price-info">
             <span class="price-per-gram">600? / g</span>
             <span class="total-price">T?ng: 30.000?</span>
@@ -253,12 +266,12 @@
             <div class="stats">
             <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:1"></div></div>
-            <div class="stat"><span>M�u s?c</span><div class="bar" style="--value:3"></div></div>
+            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:3"></div></div>
             <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>Cafeine</span><div class="bar" style="--value:2"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -269,9 +282,9 @@
         <img src="./matchaImage/Uji.png" alt="Matcha Uji">
         <div class="ingredient-content">
             <h4>Matcha Uji Cao C?p</h4>
-            <p>Tinh hoa Kyoto, v? umami ??m ?�, h?u ng?t s�u.</p>
+            <p>Tinh hoa Kyoto, v? umami ??m ?à, h?u ng?t sâu.</p>
             
-            <!-- GI� -->
+            <!-- GIÁ -->
             <div class="price-info">
             <span class="price-per-gram">1.200? / g</span>
             <span class="total-price">T?ng: 60.000?</span>
@@ -286,12 +299,12 @@
             <div class="stats">
             <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>M�u s?c</span><div class="bar" style="--value:5"></div></div>
+            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:5"></div></div>
             <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:5"></div></div>
             <div class="stat"><span>Cafeine</span><div class="bar" style="--value:4"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -304,7 +317,7 @@
             <h4>Matcha Haru</h4>
             <p>H??ng c? non t??i m?i, v? d?u nh?.</p>
 
-            <!-- GI� -->
+            <!-- GIÁ -->
             <div class="price-info">
             <span class="price-per-gram">900? / g</span>
             <span class="total-price">T?ng: 45.000?</span>
@@ -319,12 +332,12 @@
             <div class="stats">
             <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:3"></div></div>
             <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>M�u s?c</span><div class="bar" style="--value:4"></div></div>
+            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>Cafeine</span><div class="bar" style="--value:3"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -335,9 +348,9 @@
         <img src="./matchaImage/Fuji03.png" alt="Matcha Fuji 03">
         <div class="ingredient-content">
             <h4>Matcha Fuji No.03</h4>
-            <p>M�u xanh ??m, v? m?nh m?, h?u tr� r�.</p>
+            <p>Màu xanh ??m, v? m?nh m?, h?u trà rõ.</p>
 
-            <!-- GI� -->
+            <!-- GIÁ -->
             <div class="price-info">
             <span class="price-per-gram">1.100? / g</span>
             <span class="total-price">T?ng: 55.000?</span>
@@ -352,12 +365,12 @@
             <div class="stats">
             <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>M�u s?c</span><div class="bar" style="--value:4"></div></div>
+            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:3"></div></div>
             <div class="stat"><span>Cafeine</span><div class="bar" style="--value:4"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -368,9 +381,9 @@
         <img src="./matchaImage/FujiMk4.png" alt="Matcha Fuji Mk4">
         <div class="ingredient-content">
             <h4>Matcha Fuji Mk4</h4>
-            <p>D�ng cao c?p, v? tr� ??m s�u, gi�u n?ng l??ng.</p>
+            <p>Dòng cao c?p, v? trà ??m sâu, giàu n?ng l??ng.</p>
 
-            <!-- GI� -->
+            <!-- GIÁ -->
             <div class="price-info">
             <span class="price-per-gram">1.500? / g</span>
             <span class="total-price">T?ng: 75.000?</span>
@@ -385,12 +398,12 @@
             <div class="stats">
             <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:5"></div></div>
             <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>M�u s?c</span><div class="bar" style="--value:5"></div></div>
+            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:5"></div></div>
             <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>Cafeine</span><div class="bar" style="--value:5"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -401,9 +414,9 @@
         <img src="./matchaImage/Houjicha.png" alt="Houjicha">
         <div class="ingredient-content">
             <h4>Houjicha</h4>
-            <p>Tr� rang th?m m�i kh�i, r?t �t cafeine.</p>
+            <p>Trà rang th?m mùi khói, r?t ít cafeine.</p>
 
-            <!-- GI� -->
+            <!-- GIÁ -->
             <div class="price-info">
             <span class="price-per-gram">700? / g</span>
             <span class="total-price">T?ng: 35.000?</span>
@@ -418,12 +431,12 @@
             <div class="stats">
             <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:1"></div></div>
-            <div class="stat"><span>M�u s?c</span><div class="bar" style="--value:2"></div></div>
+            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:5"></div></div>
             <div class="stat"><span>Cafeine</span><div class="bar" style="--value:1"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -435,7 +448,7 @@
     <section class="section-container ingredients">
 
     <div class="section-title">
-        <span>Nguy�n li?u</span>
+        <span>Nguyên li?u</span>
         <h2>S?a & Milk Base</h2>
     </div>
 
@@ -448,7 +461,7 @@
         <img src="./milkImage/SuaTuoi.png" alt="S?a t??i">
         <div class="ingredient-content">
             <h4>S?a t??i</h4>
-            <p>V? s?a t? nhi�n, nh?, l�m n?n cho matcha.</p>
+            <p>V? s?a t? nhiên, nh?, làm n?n cho matcha.</p>
 
             <div class="price-info">
             <span class="price-per-gram">150? / ml</span>
@@ -461,13 +474,13 @@
             </div>
 
             <div class="stats">
-            <div class="stat"><span>?? b�o</span><div class="bar" style="--value:2"></div></div>
+            <div class="stat"><span>?? béo</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>?? s�nh</span><div class="bar" style="--value:2"></div></div>
+            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:2"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -478,7 +491,7 @@
         <img src="./milkImage/SuaMeiji.png" alt="S?a Meiji">
         <div class="ingredient-content">
             <h4>S?a Meiji</h4>
-            <p>S?a Nh?t b�o nh?, h?u ng?t d?u.</p>
+            <p>S?a Nh?t béo nh?, h?u ng?t d?u.</p>
 
             <div class="price-info">
             <span class="price-per-gram">180? / ml</span>
@@ -491,13 +504,13 @@
             </div>
 
             <div class="stats">
-            <div class="stat"><span>?? b�o</span><div class="bar" style="--value:3"></div></div>
+            <div class="stat"><span>?? béo</span><div class="bar" style="--value:3"></div></div>
             <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:3"></div></div>
             <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>?? s�nh</span><div class="bar" style="--value:3"></div></div>
+            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:3"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -508,7 +521,7 @@
         <img src="./milkImage/SuaGau.png" alt="S?a G?u">
         <div class="ingredient-content">
             <h4>S?a G?u</h4>
-            <p>B�o ??m, ng?t r�, h?p matcha m?nh.</p>
+            <p>Béo ??m, ng?t rõ, h?p matcha m?nh.</p>
 
             <div class="price-info">
             <span class="price-per-gram">200? / ml</span>
@@ -521,13 +534,13 @@
             </div>
 
             <div class="stats">
-            <div class="stat"><span>?? b�o</span><div class="bar" style="--value:5"></div></div>
+            <div class="stat"><span>?? béo</span><div class="bar" style="--value:5"></div></div>
             <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:4"></div></div>
             <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>?? s�nh</span><div class="bar" style="--value:4"></div></div>
+            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:4"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -538,7 +551,7 @@
         <img src="./milkImage/SuaHatOatside.png" alt="S?a Oatside">
         <div class="ingredient-content">
             <h4>S?a h?t Oatside</h4>
-            <p>�t ng?t, b�o m?n, h??ng y?n m?ch.</p>
+            <p>Ít ng?t, béo m?n, h??ng y?n m?ch.</p>
 
             <div class="price-info">
             <span class="price-per-gram">220? / ml</span>
@@ -551,13 +564,13 @@
             </div>
 
             <div class="stats">
-            <div class="stat"><span>?? b�o</span><div class="bar" style="--value:3"></div></div>
+            <div class="stat"><span>?? béo</span><div class="bar" style="--value:3"></div></div>
             <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:2"></div></div>
             <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>?? s�nh</span><div class="bar" style="--value:4"></div></div>
+            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:4"></div></div>
             </div>
 
-            <button class="add-btn">Th�m v�o gi?</button>
+            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -569,10 +582,10 @@
     <footer id="lien-he" class="contact section-container">
         <div class="section-title">
             <span>K?t n?i</span>
-            <h2>Li�n h? v?i ch�ng t�i</h2>
+            <h2>Liên h? v?i chúng tôi</h2>
         </div>
         <div class="contact-info">
-            <p><i class="fas fa-map-marker-alt"></i> 123 ???ng Uji, Qu?n 1, TP. H? Ch� Minh</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 ???ng Uji, Qu?n 1, TP. H? Chí Minh</p>
         </div>
     </footer>
     <script src="index.js"></script>
@@ -616,7 +629,7 @@
 
         document.getElementById('confirm-custom').addEventListener('click', function () {
             if (!userOrder.matcha_id || !userOrder.milk_id || !userOrder.size_id) {
-                alert("Vui l�ng ch?n ??y ?? Matcha ? S?a ? Size");
+                alert("Vui lòng ch?n ??y ?? Matcha ? S?a ? Size");
                 return;
             }
 
@@ -627,13 +640,13 @@
             };
 
             console.log("G?I BACKEND (CUSTOM MATCHA):", payload);
-            alert("Custom matcha ?� ???c ghi nh?n (xem Console)");
+            alert("Custom matcha ?ã ???c ghi nh?n (xem Console)");
         });
 
 
         /* ===============================
-        2. NGUY�N LI?U L? (MATCHA / S?A)
-        ?? Y�U C?U HTML C�:
+        2. NGUYÊN LI?U L? (MATCHA / S?A)
+        ?? YÊU C?U HTML CÓ:
         data-product-id
         data-price-per-gram (ho?c ml)
         =============================== */
@@ -671,8 +684,8 @@
                     total_price: qty * pricePerUnit
                 };
 
-                console.log("G?I BACKEND (NGUY�N LI?U):", orderItem);
-                alert("?� th�m v�o gi?: " + name);
+                console.log("G?I BACKEND (NGUYÊN LI?U):", orderItem);
+                alert("?ã thêm vào gi?: " + name);
             });
         });
 
@@ -696,7 +709,7 @@
             };
 
             console.log("G?I BACKEND (S?N PH?M N?I B?T):", orderItem);
-            alert("?� th�m v�o gi?: " + orderItem.product_name);
+            alert("?ã thêm vào gi?: " + orderItem.product_name);
         });
     });
 

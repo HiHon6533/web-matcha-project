@@ -1,9 +1,11 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gi? h�ng - HINATFU</title>
+    <title>Giỏ hàng - HINATFU</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -16,14 +18,14 @@
         <div class="brand-header">
             <a href="index.html" class="logo-link">
                 <h1>HINATFU</h1>
-                <span class="subtitle">????</span>
+                <span class="subtitle">まっちゃ</span>
             </a>
         </div>
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Ti?p t?c mua s?m</a>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
     </header>
 
     <div class="cart-wrapper">
-        <h2 class="page-title">Gi? h�ng c?a b?n</h2>
+        <h2 class="page-title">Giỏ hàng của bạn</h2>
 
         <div class="cart-container">
             <div class="cart-items">
@@ -31,22 +33,22 @@
 
             <div class="cart-summary">
                 <div class="summary-card">
-                    <h3>C?ng gi? h�ng</h3>
+                    <h3>Cộng giỏ hàng</h3>
                     <div class="summary-row">
-                        <span>T?m t�nh</span>
-                        <span id="subtotal">0?</span>
+                        <span>Tạm tính</span>
+                        <span id="subtotal">0đ</span>
                     </div>
                     <div class="summary-row">
-                        <span>Ph� v?n chuy?n</span>
-                        <span>Mi?n ph�</span>
+                        <span>Phí vận chuyển</span>
+                        <span>Miễn phí</span>
                     </div>
                     <div class="divider"></div>
                     <div class="summary-row total">
-                        <span>T?ng c?ng</span>
-                        <span id="total-price">0?</span>
+                        <span>Tổng cộng</span>
+                        <span id="total-price">0đ</span>
                     </div>
-                    <button class="btn-checkout">Thanh to�n ngay</button>
-                    <p class="secure-note"><i class="fas fa-shield-alt"></i> B?o m?t thanh to�n 100%</p>
+                    <button class="btn-checkout">Thanh toán ngay</button>
+                    <p class="secure-note"><i class="fas fa-shield-alt"></i> Bảo mật thanh toán 100%</p>
                 </div>
             </div>
         </div>
