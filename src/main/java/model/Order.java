@@ -31,9 +31,6 @@ public class Order implements Serializable{
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Review> reviews;
-
     public Customer getCustomer() {
         return customer;
     }
@@ -56,14 +53,6 @@ public class Order implements Serializable{
 
     public void setPayment(Payment payment) {
         this.payment = payment;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
     }
 
     public Long getOrderID() {

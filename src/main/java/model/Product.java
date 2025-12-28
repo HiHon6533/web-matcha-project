@@ -13,7 +13,6 @@ public abstract class Product implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long productID;
-    
     private String productName;
 
     public Long getProductID() {

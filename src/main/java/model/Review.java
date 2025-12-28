@@ -16,18 +16,17 @@ public class Review implements Serializable{
     
     private LocalDateTime time;
     private int rating;
-    private String comment;
     
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    public Order getOrder() {
-        return order;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Long getReviewID() {
@@ -52,15 +51,5 @@ public class Review implements Serializable{
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-    
-    
+    } 
 }
