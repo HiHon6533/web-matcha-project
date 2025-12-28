@@ -1,26 +1,27 @@
 package service;
 
+import model.*;
 
 public class CustomerService {
     
     //UPDATE PROFILE
-    public void updateProfile(Long userID, UpdateProfileDTO dto){
+    public void updateProfile(){
     
     }
     //ADD ADDRESS
-    public void updateProfile(Long userID, UpdateProfileDTO dto){
+    public void addProfile(){
     
     }
     //DELETE ADDRESS
-    public void addAddress(Long userID, AddressDTO dto){
+    public void addAddress(){
     
     }
     //SET DAFAULT ADDRESS
-    public void setDefaultAddress(Long userID, Long addressID){
+    public void setDefaultAddress(){
         
     }
     //GET CUSTOMER BY USERID
-    public Customer getCustomerByUserID(Long userID){
+    public void getCustomerByUserID(){
         
     }
 }

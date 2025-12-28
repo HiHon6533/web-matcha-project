@@ -4,11 +4,11 @@ package service;
 public class MailService {
     
     //SEND ORDER CONFIRM
-    public void sendOrderConfirmation(String email, Order order) {
+    public void sendOrderConfirmation() {
         
     }
     //SEND VERIFY EMAIL
-    public void sendVerifyEmail(String email, Order order) {
+    public void sendVerifyEmail(String email) {
         
     }
 }

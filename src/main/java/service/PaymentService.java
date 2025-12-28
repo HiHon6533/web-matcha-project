@@ -4,7 +4,7 @@ package service;
 public class PaymentService {
     
     //CREATE PAYMENT
-    public void createPayment(Long orderID, PaymentDTO dto){
+    public void createPayment(){
         
     }
     //UPDATE PAYMENT STATUS

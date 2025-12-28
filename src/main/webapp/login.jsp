@@ -15,7 +15,7 @@
     <div class="container" id="container">
         
         <div class="form-container sign-up-container">
-            <form action="#" id="signUpForm">
+            <form action="${pageContext.request.contextPath}/login" method="post" id="signUpForm">
                 
                 <div class="form-content">
                     <div class="brand-header">
@@ -23,11 +23,11 @@
                         <span class="subtitle">????</span>
                     </div>
                     <h2 class="form-title">T?o tài kho?n</h2>
-                    <span class="instruction">?i?n thông tin cá nhân c?a b?n</span>
+                    <span class="instruction">?i?n thông tin các nhân c?a b?n</span>
                     
-                    <input type="text" placeholder="H? và tên" required />
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="M?t kh?u" required />
+                    <input type="text" name="fullname" placeholder="H? và tên" required />
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="password" name="password" placeholder="M?t kh?u" required />
                     <button type="submit" class="btn-primary">??ng ký</button>
                 </div>
 
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-container sign-in-container">
-            <form action="#" id="signInForm">
+            <form action="${pageContext.request.contextPath}/login" method="post" id="signInForm">
                 
                 <div class="form-content">
                     <div class="brand-header">
@@ -54,8 +54,8 @@
                     <h2 class="form-title">??ng nh?p</h2>
                     <span class="instruction">Chào m?ng b?n quay tr? l?i</span>
 
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="M?t kh?u" required />
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="password" name="password" placeholder="M?t kh?u" required />
                     <!-- <a href="#" class="forgot-pass">Quên m?t kh?u?</a> -->
                     <button type="submit" class="btn-primary">??ng nh?p</button>
                 </div>

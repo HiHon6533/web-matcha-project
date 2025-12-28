@@ -1,10 +1,11 @@
 package service;
 
+import model.*;
 
 public class CartService {
     
     //GET CART
-    public Cart getCartByUserID(Long userID){
+    public void getCartByUserID(Long userID){
         
     }
     //ADD TO CART

@@ -4,22 +4,22 @@ package service;
 public class AdminService {
     
     //ADD PRODUCT
-    public void addProduct(ProductDTO dto) {
+    public void addProduct() {
         
     }
     
     //UPDATE PRODUCT
-    public void updateProduct(Long productID, ProductDTO dto) {
+    public void updateProduct(Long productID) {
         
     }
 
     //GET REVENUE (FILTER)
-    public BigDecimal getRevenue(LocalDate from, LocalDate to) {
+    public void getRevenue() {
         
     }
 
     //GET REVENUE BY PRODUCT (FILTER)
-    public BigDecimal getRevenueByProduct(LocalDate from, LocalDate to) {
+    public void getRevenueByProduct() {
         
     }
 }

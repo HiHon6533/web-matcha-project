@@ -4,7 +4,7 @@ package service;
 public class ReviewService {
     
     //ADD REVIEW
-    public void addReview(Long userID, Long orderID, ReviewDTO dto) {
+    public void addReview(Long userID, Long orderID) {
         
     }
     

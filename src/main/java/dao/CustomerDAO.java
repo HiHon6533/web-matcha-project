@@ -1,5 +1,11 @@
 package dao;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+
+import util.JPAUtil;
+import model.Account;
 import model.Customer;
 
 public class CustomerDAO extends GenericDAO<Customer, Long> {
@@ -8,11 +14,7 @@ public class CustomerDAO extends GenericDAO<Customer, Long> {
         super(Customer.class);
     }
 
-    public Customer findByEmail(String email) {
-        return em.createQuery(
-                "SELECT c FROM Customer c WHERE c.account.email = :email",
-                Customer.class)
-                .setParameter("email", email)
-                .getSingleResult();
+    public void findByEmail(String email) {
+
     }
 }
