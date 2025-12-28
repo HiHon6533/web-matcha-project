@@ -12,8 +12,12 @@ public class Address implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     private Long addressID;
-    
-    private String addressDetail;
+    private Boolean is_default;
+    private String province;
+    private String ward;
+    private String hamlet;
+    private String house_number;
+    private String note;
     
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -35,12 +39,52 @@ public class Address implements Serializable{
         this.addressID = addressID;
     }
 
-    public String getAddressDetail() {
-        return addressDetail;
+    public Boolean getIs_default() {
+        return is_default;
     }
 
-    public void setAddressDetail(String addressDetail) {
-        this.addressDetail = addressDetail;
+    public void setIs_default(Boolean is_default) {
+        this.is_default = is_default;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getWard() {
+        return ward;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
+    }
+
+    public String getHamlet() {
+        return hamlet;
+    }
+
+    public void setHamlet(String hamlet) {
+        this.hamlet = hamlet;
+    }
+
+    public String getHouse_number() {
+        return house_number;
+    }
+
+    public void setHouse_number(String house_number) {
+        this.house_number = house_number;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
     
 }

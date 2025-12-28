@@ -8,11 +8,12 @@ import jakarta.persistence.*;
 @Table(name = "accounts")
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @Column(length = 100)
     private String email;
-
+    private String token;
+    private Boolean actived;
     private String password;
     private LocalDateTime createdAt;
     
@@ -34,6 +35,22 @@ public class Account implements Serializable {
         this.email = email;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Boolean getActived() {
+        return actived;
+    }
+
+    public void setActived(Boolean actived) {
+        this.actived = actived;
+    }
+    
     public String getPassword() {
         return password;
     }
