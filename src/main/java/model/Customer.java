@@ -18,7 +18,7 @@ public class Customer implements Serializable{
     private String phoneNumber;
 
     @OneToOne
-    @JoinColumn(name = "email", nullable = false)
+    @JoinColumn(name = "email")
     private Account account;
     
     @OneToMany(mappedBy = "customer")
