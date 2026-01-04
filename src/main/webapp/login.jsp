@@ -15,7 +15,7 @@
     <div class="container" id="container">
         
         <div class="form-container sign-up-container">
-            <form action="${pageContext.request.contextPath}/login" method="post" id="signUpForm">
+            <form action="${pageContext.request.contextPath}/register" method="post" id="signUpForm">
                 
                 <div class="form-content">
                     <div class="brand-header">
@@ -26,6 +26,7 @@
                     <span class="instruction">?i?n thông tin các nhân c?a b?n</span>
                     
                     <input type="text" name="fullname" placeholder="H? và tên" required />
+                    <input type="tel" name="phonenumber" placeholder="S? ?i?n tho?i" required />
                     <input type="email" name="email" placeholder="Email" required />
                     <input type="password" name="password" placeholder="M?t kh?u" required />
                     <button type="submit" class="btn-primary">??ng ký</button>

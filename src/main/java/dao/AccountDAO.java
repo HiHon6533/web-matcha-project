@@ -3,8 +3,10 @@ package dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.EntityTransaction;
 
 import model.Account;
+import model.Customer;
 import util.JPAUtil;
 
 public class AccountDAO {
@@ -27,6 +29,49 @@ public class AccountDAO {
         } finally {
             em.close();
         }
+    }   
+    
+public boolean checkEmail(String email) 
+{
+    EntityManager em = JPAUtil.getEntityManager();
+    try
+    {
+        Long count = em.createQuery("SELECT COUNT(a) FROM Account a WHERE a.email = :email", Long.class)
+                       .setParameter("email", email)
+                       .getSingleResult();
+        return count > 0;
+    } 
+    finally 
+    {
+        em.close();
     }
+}
+    public boolean register(Account account, Customer customer) 
+    {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction trans = em.getTransaction();
 
+        try 
+        {
+            trans.begin();
+            customer.setAccount(account);
+            em.persist(account);
+            em.persist(customer);
+            trans.commit();
+            return true;
+        } 
+        catch (Exception e) 
+        {
+            if (trans.isActive()) 
+            {
+                trans.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } 
+        finally 
+        {
+            em.close();
+        }
+    }
 }

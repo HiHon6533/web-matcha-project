@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
-
+import jakarta.json.bind.annotation.JsonbTransient;
 @Entity
 @Table(name = "accounts")
 public class Account implements Serializable {
@@ -17,7 +17,8 @@ public class Account implements Serializable {
     private String password;
     private LocalDateTime createdAt;
     
-    @OneToOne(mappedBy = "account")
+    @JsonbTransient
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
     private Customer customer;
 
     public Customer getCustomer() {
