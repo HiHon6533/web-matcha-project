@@ -45,9 +45,13 @@
                     <div class="divider"></div>
                     <div class="summary-row total">
                         <span>Tổng cộng</span>
-                        <span id="total-price">0đ</span>
+                        <span id="total-price">10000đ</span>
                     </div>
-                    <button class="btn-checkout">Thanh toán ngay</button>
+                    <form action="payment" method="POST" id="checkoutForm">
+                        <input type="hidden" name="amount" id="vnpay-amount" value="10000">
+                        <input type="hidden" name="orderInfo" value="Thanh toan don hang Matcha HINATFU">
+                        <button type="submit" class="btn-checkout">Thanh toán ngay</button>
+                    </form>
                     <p class="secure-note"><i class="fas fa-shield-alt"></i> Bảo mật thanh toán 100%</p>
                 </div>
             </div>
