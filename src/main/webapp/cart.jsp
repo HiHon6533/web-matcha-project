@@ -1,5 +1,7 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -21,39 +23,128 @@
                 <span class="subtitle">まっちゃ</span>
             </a>
         </div>
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
+        <a href="index.jsp" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
     </header>
 
     <div class="cart-wrapper">
         <h2 class="page-title">Giỏ hàng của bạn</h2>
 
-        <div class="cart-container">
-            <div class="cart-items">
-                </div>
+        <div class="cart-container">  
+            <c:choose>
+                <%-- Giỏ hàng trống --%>
+                <c:when test="${empty cart.products}">
+                    <div class="cart-items" style="justify-content: center; align-items: center; text-align: center;">
+                        <p>Giỏ hàng trống!</p>
+                    </div>
+                </c:when>
+                
+                <%-- Có sản phẩm --%>
+                <c:otherwise>
+                    <div class="cart-items">
+                        <c:set var="grandTotal" value="0" />
 
-            <div class="cart-summary">
-                <div class="summary-card">
-                    <h3>Cộng giỏ hàng</h3>
-                    <div class="summary-row">
-                        <span>Tạm tính</span>
-                        <span id="subtotal">0đ</span>
+                        <c:forEach items="${cart.products}" var="line">
+
+                            <%-- Tính tổng tiền --%>
+                            <c:set var="price" value="${line.product.price}" />
+                            <c:set var="lineTotal" value="${price * line.quantity}" />
+                            <c:set var="grandTotal" value="${grandTotal + lineTotal}" />
+
+                            <div class="item-card"> 
+                                <div class="item-image">
+                                    <c:choose>
+                                        <%-- Drink dùng ảnh Drink.png --%>
+                                        <c:when test="${line.product.productID >= 11}">
+                                            <img src="./productImage/Drink.png" 
+                                                 alt="${line.product.productName}" 
+                                                 onerror="this.src='./matchaImage/Dai.png'">
+                                        </c:when>
+
+                                        <%-- Nguyên liệu dùng ảnh tương ứng --%>
+                                        <c:otherwise>
+                                            <img src="./productImage/${line.product.productID}.png" 
+                                                 alt="${line.product.productName}" 
+                                                 onerror="this.src='./matchaImage/Dai.png'">
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+
+                                <div class="item-info">
+                                    <h3 class="item-name">${line.product.productName}</h3>
+
+                                    <p class="item-desc">
+                                        <c:if test="${line.product.productID >= 10 && line.product.productID <= 20}">
+                                            Size: ${line.product.size} <br>
+                                        </c:if>
+                                    </p>
+
+                                    <div class="item-price">
+                                        <fmt:formatNumber value="${price}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                    </div>
+                                </div>
+
+                                <div class="item-actions">
+                                    <div class="quantity-control">
+                                        <form action="${pageContext.request.contextPath}/updateCart" method="post" class="qty-form">
+                                            <input type="hidden" name="action" value="decrease">
+                                            <input type="hidden" name="lineId" value="${line.id}">
+                                            <button type="submit" class="btn-qty minus"><i class="fas fa-minus"></i></button>
+                                        </form>
+
+                                        <input type="text" value="${line.quantity}" readonly style="width: 30px; text-align: center; border: none; background: transparent;">
+
+                                        <form action="${pageContext.request.contextPath}/updateCart" method="post" class="qty-form">
+                                            <input type="hidden" name="action" value="increase">
+                                            <input type="hidden" name="lineId" value="${line.id}">
+                                            <button type="submit" class="btn-qty plus"><i class="fas fa-plus"></i></button>
+                                        </form>
+                                    </div>
+
+                                    <form action="${pageContext.request.contextPath}/updateCart" method="post" style="display:inline;">
+                                        <input type="hidden" name="action" value="remove">
+                                        <input type="hidden" name="lineId" value="${line.id}">
+                                        <button type="submit" class="btn-remove" onclick="return confirm('Sensei có chắc muốn xóa món này không?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div> 
+                            </div> 
+                        </c:forEach>
                     </div>
-                    <div class="summary-row">
-                        <span>Phí vận chuyển</span>
-                        <span>Miễn phí</span>
+
+                    <div class="cart-summary">
+                        <div class="summary-card">
+                            <h3>Tổng giỏ hàng</h3>
+                            <div class="summary-row">
+                                <span>Tạm tính</span>
+                                <span id="subtotal">
+                                    <fmt:formatNumber value="${grandTotal}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                </span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Phí vận chuyển</span>
+                                <span>Miễn phí</span>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="summary-row total">
+                                <span>Tổng cộng</span>
+                                <span id="total-price">
+                                    <fmt:formatNumber value="${grandTotal}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                </span>
+                            </div>
+
+                            <a href="checkout.jsp" class="btn-checkout" style="display:block; text-align:center; text-decoration:none;">
+                                Thanh toán ngay
+                            </a>
+
+                            <p class="secure-note"><i class="fas fa-shield-alt"></i> Bảo mật thanh toán 100%</p>
+                        </div>
                     </div>
-                    <div class="divider"></div>
-                    <div class="summary-row total">
-                        <span>Tổng cộng</span>
-                        <span id="total-price">0đ</span>
-                    </div>
-                    <button class="btn-checkout">Thanh toán ngay</button>
-                    <p class="secure-note"><i class="fas fa-shield-alt"></i> Bảo mật thanh toán 100%</p>
-                </div>
-            </div>
+                </c:otherwise>
+            </c:choose>
+            
         </div>
     </div>
 
-    <script src="cart.js"></script>
-</body>
+    </body>
 </html>

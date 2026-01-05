@@ -34,11 +34,7 @@ signUpButton.addEventListener('click', () => {
 });
 
 // Khi bấm nút "Đăng nhập" (ở panel Overlay)
-signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-    // FIX: Reset lại form đăng nhập luôn cho đồng bộ
-    resetFormUI(signInForm);
-});
+
 
 // --- XỬ LÝ SUBMIT FORM (LOGIC GIẢ LẬP) ---
 
@@ -69,21 +65,3 @@ if (btnSwitchToSignIn) {
     });
 }
 
-// 2. Xử lý ĐĂNG NHẬP
-signInForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const formContent = signInForm.querySelector('.form-content');
-    const successMsg = signInForm.querySelector('.success-message');
-    const btnLogin = formContent.querySelector('button');
-    const originalText = btnLogin.innerText;
-
-    // Giả lập loading
-    btnLogin.innerText = "Đang xử lý...";
-    
-    setTimeout(() => {
-        formContent.style.display = 'none';
-        successMsg.style.display = 'flex';
-        btnLogin.innerText = originalText;
-    }, 800);
-});

@@ -17,10 +17,11 @@ public class AccountService {
         Account account = accountDAO.findByEmail(email);
 
         if (account == null) {
-            throw new RuntimeException("Email không tồn tại");
+            throw new RuntimeException("Email chưa đăng ký");
         }
 
-        if (!PasswordUtil.verify(password, account.getPassword())) {
+        boolean match = PasswordUtil.verify(password, account.getPassword());
+        if (!match) {
             throw new RuntimeException("Mật khẩu không đúng");
         }
 

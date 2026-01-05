@@ -9,10 +9,11 @@
     <script src="https://kit.fontawesome.com/41b883a0ca.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    
 </head>
 <body>
     <!-- ----------------------------- Header ------------------------------------ -->
-    <header class="navbar">
+    <header class="navbar"> 
         <nav class="nav-left">
             <a href="#trangchu" class="logo">
                 <h1>HINATFU<span>まっちゃ</span></h1>
@@ -28,7 +29,7 @@
         </nav>
 
         <nav class="nav-right">
-            <a href="./cart.jsp" class="icon-btn"><i class="fas fa-shopping-basket"></i></a>
+            <a href="cart" class="icon-btn"><i class="fas fa-shopping-basket"></i></a>
             <a href="login.jsp" class="icon-btn"><i class="fa-solid fa-user-ninja"></i></a>
         </nav>
     </header>
@@ -64,7 +65,7 @@
                 Hãy để vị trà dẫn lối bạn về với sự an yên, hạnh phúc trong từng phút giây hiện tại.</p>
         </div>
     </section>
-<!-- ----------------------------------------San pham noi bat -------------------------------------------- -->
+<!-- ----------------------------------------SẢN PHẨM NỘI BẬT -------------------------------------------- -->
     <section id="noi-bat" class="section-container menu">
         <div class="section-title">
             <span>Gợi ý</span>
@@ -72,183 +73,244 @@
         </div>
 
         <div class="product-grid">
-            <div class="product-card" 
-            data-product-id="drink_matcha_dai_meiji"
-            data-price="65000">
+            <!-- PRODUCT 1 -->
+            <div class="product-card">
                 <div class="product-img">
-                    <img src="./SanPhamImage/MatchaDaiSuaTuoi.png" alt="Matcha ?ài" />
+                    <img src="./SanPhamImage/MatchaDaiSuaTuoi.png"
+                         alt="Matcha Đài sữa Meiji" />
                 </div>
+
                 <div class="product-info">
-                    <h3>Matcha ?ài s?a Meiji</h3>
-                    <p>Matcha thanh khi?t, s?a Meiji m??t mà, h?u v? d?u êm.</p>
+                    <h3>Matcha Đài sữa Meiji</h3>
+                    <p>Matcha thanh khiết, sữa Meiji mượt mà, hậu vị dịu êm.</p>
+
                     <div class="price-add">
-                        <span>65.000?</span>
-                        <button class="add-btn">Thêm +</button>
+                        <span>50.000đ</span>
+
+                        <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                            <input type="hidden" name="type" value="standard">
+                            <input type="hidden" name="productId" value="62" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-btn">
+                                Thêm +
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="product-card"
-            data-product-id="drink_matcha_uji_gau"
-            data-price="75000">
+                              
+            <!-- PRODUCT 2 -->
+            <div class="product-card">
                 <div class="product-img">
-                    <img src="./SanPhamImage/MatchaHaruSuaOatside.png" alt="Matcha Haru" />
+                    <img src="./SanPhamImage/MatchaHaruSuaOatside.png"
+                         alt="Matcha Haru sữa hạt Oatside" />
                 </div>
+
                 <div class="product-info">
-                    <h3>Matcha Haru s?a h?t Oatside</h3>
-                    <p>Trà xuân Haru thanh tao, y?n m?ch bùi béo, thu?n khi?t.</p>
+                    <h3>Matcha Haru sữa hạt Oatside</h3>
+                    <p>Trà xuân Haru thanh tao, yến mạch bùi béo, thuần khiết.</p>
+
                     <div class="price-add">
-                        <span>85.000?</span>
-                        <button class="add-btn">Thêm +</button>
+                        <span>55.000đ</span>
+
+                        <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                            <input type="hidden" name="type" value="standard">
+                            <input type="hidden" name="productId" value="68" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-btn">
+                                Thêm +
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="product-card"
-            data-product-id="drink_matcha_fuji_mk4_oatside"
-            data-price="60000">
+
+            <!-- PRODUCT 3 -->
+            <div class="product-card">
                 <div class="product-img">
-                    <img src="./SanPhamImage/MatchaFujiMk4SuaOatSide.png" alt="Matcha Fuji Mk4" />
+                    <img src="./SanPhamImage/MatchaFujiMk4SuaOatSide.png"
+                         alt="Matcha Fuji Mk4 sữa hạt Oatside" />
                 </div>
+
                 <div class="product-info">
-                    <h3>Matcha Fuji Mk4 s?a h?t Oatside</h3>
-                    <p>V? trà rang m?c m?c, ??m ?à, quy?n cùng s?a h?t sánh m?n.</p>
+                    <h3>Matcha Fuji Mk4 sữa hạt Oatside</h3>
+                    <p>Vị trà rang mộc mạc, đậm đà, quyện cùng sữa hạt sánh mịn.</p>
+
                     <div class="price-add">
-                        <span>60.000?</span>
-                        <button class="add-btn">Thêm +</button>
+                        <span>55.000đ</span>
+
+                        <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                            <input type="hidden" name="type" value="standard">
+                            <input type="hidden" name="productId" value="76" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-btn">
+                                Thêm +
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
             
         </div>  
     </section>
+
+                              
  <!-- ----------------------------------------Tuy chinh san pham-------------------------------------------- -->  
+
     <section id="san-pham" class="section-container custom-selection">
         <div class="section-title">
-            <span>Sáng t?o</span>
-            <h2>Tùy ch?nh Matcha c?a b?n</h2>
+            <span>Sáng tạo</span>
+            <h2>Tùy chỉnh Matcha của bạn</h2>
         </div>
-        
-        <div class="selection-container">
-            <div class="selection-frame" data-category="matcha">
-                <h3><i class="fas fa-leaf"></i> 1. Ch?n lo?i Matcha</h3>
-                <div class="option-list">
-                    <div class="option-item" data-value="matcha_taiwan">
-                        <img src="./matchaImage/Dai.png" alt="Matcha ?ài">
-                        <div class="option-text">
-                            <h4>Matcha ?ài Loan</h4>
-                            <p>V? trà thanh mát, nh? nhàng.</p>
+        <form action="${pageContext.request.contextPath}/addToCart"
+            method="post"
+            id="customDrinkForm">
+            <div class="selection-container">
+                <div class="selection-frame" data-category="matcha">
+                    <h3><i class="fas fa-leaf"></i> 1. Chọn loại Matcha</h3>
+                    <div class="option-list">
+                        <span id="error-matcha" style="color: red; display: none; margin-top: 10px;">
+                            <i class="fas fa-exclamation-circle"></i> Vui lòng chọn loại Matcha
+                        </span>
+                        <div class="option-item" data-value="1">
+                            <img src="./matchaImage/Dai.png" alt="Matcha ?ài">
+                            <div class="option-text">
+                                <h4>Matcha Đài Loan</h4>
+                                <p>Vị trà thanh mát, nhẹ nhàng.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="2">
+                            <img src="./matchaImage/Uji.png" alt="Matcha Uji">
+                            <div class="option-text">
+                                <h4>Matcha Uji Cao Cấp</h4>
+                                <p>Tinh hoa Kyoto ??m ?à Umami.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="3">
+                            <img src="./matchaImage/Haru.png" alt="Matcha Haru">
+                            <div class="option-text">
+                                <h4>Matcha Haru</h4>
+                                <p>H??ng c? non t??i m?i.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="4">
+                            <img src="./matchaImage/Fuji03.png" alt="Matcha Fuji 03">
+                            <div class="option-text">
+                                <h4>Matcha Fuji No.03</h4>
+                                <p>Màu xanh th?m, v? m?nh m?.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="5">
+                            <img src="./matchaImage/FujiMk4.png" alt="Matcha Fuji Mk4">
+                            <div class="option-text">
+                                <h4>Matcha Fuji Mk4</h4>
+                                <p>S? cân b?ng hoàn h?o gi?a v? chát nh? và h??ng trà rang ??c tr?ng.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="6">
+                            <img src="./matchaImage/Houjicha.png" alt="Matcha Houjicha">
+                            <div class="option-text">
+                                <h4>Matcha Houjicha</h4>
+                                <p>Trà rang th?m l?ng mùi khói, ít cafein, thích h?p cho bu?i t?i.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="option-item" data-value="matcha_uji">
-                        <img src="./matchaImage/Uji.png" alt="Matcha Uji">
-                        <div class="option-text">
-                            <h4>Matcha Uji Cao C?p</h4>
-                            <p>Tinh hoa Kyoto ??m ?à Umami.</p>
+                </div>
+
+                <div class="selection-frame" data-category="milk">
+                    <h3><i class="fas fa-water"></i> 2. Ch?n lo?i S?a</h3>
+                    <div class="option-list">
+                        <span id="error-milk" style="color: red; display: none; margin-top: 10px;">
+                            <i class="fas fa-exclamation-circle"></i> Vui lòng chọn loại Sữa
+                        </span>
+                        <div class="option-item" data-value="7">
+                            <img src="./milkImage/SuaTuoi.png" alt="Sữa Tươi">
+                            <div class="option-text">
+                                <h4>Sữa Tươi Thanh Trùng</h4>
+                                <p>Vị kem béo tự nhiên.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="8">
+                            <img src="./milkImage/SuaHatOatside.png" alt="Sữa Oatside">
+                            <div class="option-text">
+                                <h4>S?a Y?n M?ch Oatside</h4>
+                                <p>L?a ch?n thu?n chay hoàn h?o.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="9">
+                            <img src="./milkImage/SuaGau.png" alt="Sữa Gấu">
+                            <div class="option-text">
+                                <h4>S?a T??i G?u</h4>
+                                <p>??m ??c, ít béo, mang l?i c?m giác hoài ni?m và thanh tao.</p>
+                            </div>
+                        </div>
+                        <div class="option-item" data-value="10">
+                            <img src="./milkImage/SuaMeiji.png" alt="Sữa Meiji">
+                            <div class="option-text">
+                                <h4>S?a T??i Meiji</h4>
+                                <p>Tiêu chu?n Nh?t B?n m?n màng.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="option-item" data-value="matcha_haru">
-                        <img src="./matchaImage/Haru.png" alt="Matcha Haru">
-                        <div class="option-text">
-                            <h4>Matcha Haru</h4>
-                            <p>H??ng c? non t??i m?i.</p>
+                </div>
+
+                <div class="selection-frame" data-category="size">
+                    <h3><i class="fas fa-expand-alt"></i> 3. Chọn Size</h3>
+                    <div class="size-list">
+                        <div class="size-item" data-value="M">
+                            <i class="fa-solid fa-mug-hot"></i>
+                            <span>Size M (180ml)</span>
                         </div>
-                    </div>
-                    <div class="option-item" data-value="matcha_fuji_03">
-                        <img src="./matchaImage/Fuji03.png" alt="Matcha Fuji 03">
-                        <div class="option-text">
-                            <h4>Matcha Fuji No.03</h4>
-                            <p>Màu xanh th?m, v? m?nh m?.</p>
+                        <div class="size-item active" data-value="S">
+                            <i class="fa-solid fa-mug-hot" style="font-size: 1.4em;"></i>
+                            <span>Size S (350ml)</span>
                         </div>
-                    </div>
-                    <div class="option-item" data-value="matcha_fuji_Mk4">
-                        <img src="./matchaImage/FujiMk4.png" alt="Matcha Fuji Mk4">
-                        <div class="option-text">
-                            <h4>Matcha Fuji Mk4</h4>
-                            <p>S? cân b?ng hoàn h?o gi?a v? chát nh? và h??ng trà rang ??c tr?ng.</p>
-                        </div>
-                    </div>
-                    <div class="option-item" data-value="matcha_Houjicha">
-                        <img src="./matchaImage/Houjicha.png" alt="Matcha Houjicha">
-                        <div class="option-text">
-                            <h4>Matcha Houjicha</h4>
-                            <p>Trà rang th?m l?ng mùi khói, ít cafein, thích h?p cho bu?i t?i.</p>
+                        <div class="size-item" data-value="XL">
+                            <i class="fa-solid fa-mug-hot"></i>
+                            <span>Size XL (500ml)</span>
                         </div>
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="type" value="custom">
+            <input type="hidden" name="matchaId" id="matchaId">
+            <input type="hidden" name="milkId" id="milkId">
+            <input type="hidden" name="size" id="size" value="S">
+            <input type="hidden" name="quantity" value="1">
 
-            <div class="selection-frame" data-category="milk">
-                <h3><i class="fas fa-water"></i> 2. Ch?n lo?i S?a</h3>
-                <div class="option-list">
-                    <div class="option-item" data-value="milk_fresh">
-                        <img src="./milkImage/SuaTuoi.png" alt="S?a T??i">
-                        <div class="option-text">
-                            <h4>S?a T??i Thanh Trùng</h4>
-                            <p>V? kem béo t? nhiên.</p>
-                        </div>
-                    </div>
-                    <div class="option-item" data-value="milk_oatside">
-                        <img src="./milkImage/SuaHatOatside.png" alt="S?a Oatside">
-                        <div class="option-text">
-                            <h4>S?a Y?n M?ch Oatside</h4>
-                            <p>L?a ch?n thu?n chay hoàn h?o.</p>
-                        </div>
-                    </div>
-                    <div class="option-item" data-value="milk_gau">
-                        <img src="./milkImage/SuaGau.png" alt="S?a G?u">
-                        <div class="option-text">
-                            <h4>S?a T??i G?u</h4>
-                            <p>??m ??c, ít béo, mang l?i c?m giác hoài ni?m và thanh tao.</p>
-                        </div>
-                    </div>
-                    <div class="option-item" data-value="milk_meiji">
-                        <img src="./milkImage/SuaMeiji.png" alt="S?a Meiji">
-                        <div class="option-text">
-                            <h4>S?a T??i Meiji</h4>
-                            <p>Tiêu chu?n Nh?t B?n m?n màng.</p>
-                        </div>
-                    </div>
-                </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button type="submit"
+                        id="confirm-custom"
+                        class="add-btn"
+                        style="padding: 15px 40px; font-size: 18px;">
+                    Thêm vào giỏ hàng ngay <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
+        </form>
 
-            <div class="selection-frame" data-category="size">
-                <h3><i class="fas fa-expand-alt"></i> 3. Ch?n Size</h3>
-                <div class="size-list">
-                    <div class="size-item" data-value="size_s">
-                        <i class="fa-solid fa-mug-hot"></i>
-                        <span>Size S (180ml)</span>
-                    </div>
-                    <div class="size-item active" data-value="size_l">
-                        <i class="fa-solid fa-mug-hot" style="font-size: 1.4em;"></i>
-                        <span>Size L (350ml)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <button id="confirm-custom" class="add-btn" style="padding: 15px 40px; font-size: 18px;">
-                Thêm vào gi? hàng ngay <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
     </section>
+    
 
-<!-- ----------------------------------------Nguyen lieu matcha-------------------------------------------- -->
+<!-- ----------------------------------------NGUYÊN LIỆU MATCHA-------------------------------------------- -->
     <section id="nguyen-lieu" class="section-container ingredients">
 
     <div class="section-title">
-        <span>Nguyên li?u</span>
-        <h2>B?t Matcha Nh?t B?n</h2>
+        <span>Nguyên liệu</span>
+        <h2>Bột Matcha Nhật Bản</h2>
     </div>
 
     <div class="matcha-two-columns">
 
-        <!-- MATCHA ?ÀI -->
+        <!-- MATCHA ĐÀI -->
         <div class="ingredient-card"
         data-product-id="matcha_taiwan"
         data-price-per-gram="600">
-        <img src="./matchaImage/Dai.png" alt="Matcha ?ài">
+        <img src="./matchaImage/Dai.png" alt="Matcha Đài">
         <div class="ingredient-content">
-            <h4>Matcha ?ài Loan</h4>
+            <h4>Matcha Đài Loan</h4>
             <p>V? trà nh?, thanh mát, d? u?ng cho ng??i m?i.</p>
 
             <!-- GIÁ -->
@@ -256,22 +318,30 @@
             <span class="price-per-gram">600? / g</span>
             <span class="total-price">T?ng: 30.000?</span>
             </div>
+            
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="1" />
+                <!-- CHỌN GRAM -->
+                <div class="quantity-box">
+                <label>Số lượng (g)</label>
+                <input type="number" name="quantity" min="10" step="10" value="50">
+                </div>
 
-            <!-- CH?N GRAM -->
-            <div class="quantity-box">
-            <label>S? l??ng (g)</label>
-            <input type="number" min="10" step="10" value="50">
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:1"></div></div>
+                <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>Cafeine</span><div class="bar" style="--value:2"></div></div>
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:1"></div></div>
-            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>Cafeine</span><div class="bar" style="--value:2"></div></div>
-            </div>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
 
-            <button class="add-btn">Thêm vào gi?</button>
         </div>
         </div>
 
@@ -281,7 +351,7 @@
         data-price-per-gram="1200">
         <img src="./matchaImage/Uji.png" alt="Matcha Uji">
         <div class="ingredient-content">
-            <h4>Matcha Uji Cao C?p</h4>
+            <h4>Matcha Uji Cao Cấp</h4>
             <p>Tinh hoa Kyoto, v? umami ??m ?à, h?u ng?t sâu.</p>
             
             <!-- GIÁ -->
@@ -289,22 +359,28 @@
             <span class="price-per-gram">1.200? / g</span>
             <span class="total-price">T?ng: 60.000?</span>
             </div>
+            
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="2" />
+                <!-- CHỌN GRAM -->
+                <div class="quantity-box">
+                <label>Số lượng (g)</label>
+                <input type="number" name="quantity" min="10" step="10" value="50">
+                </div>
 
-            <!-- CH?N GRAM -->
-            <div class="quantity-box">
-            <label>S? l??ng (g)</label>
-            <input type="number" min="10" step="10" value="50">
-            </div>
-
-            <div class="stats">
-            <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>Cafeine</span><div class="bar" style="--value:4"></div></div>
-            </div>
-
-            <button class="add-btn">Thêm vào gi?</button>
+                <div class="stats">
+                <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>Cafeine</span><div class="bar" style="--value:4"></div></div>
+                </div>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
@@ -323,21 +399,27 @@
             <span class="total-price">T?ng: 45.000?</span>
             </div>
 
-            <!-- CH?N GRAM -->
-            <div class="quantity-box">
-            <label>S? l??ng (g)</label>
-            <input type="number" min="10" step="10" value="50">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="3" />
+                <!-- CHỌN GRAM -->
+                <div class="quantity-box">
+                <label>Số lượng (g)</label>
+                <input type="number" min="10" step="10" value="50">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>Cafeine</span><div class="bar" style="--value:3"></div></div>
-            </div>
-
-            <button class="add-btn">Thêm vào gi?</button>
+                <div class="stats">
+                <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>Cafeine</span><div class="bar" style="--value:3"></div></div>
+                </div>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
@@ -356,21 +438,28 @@
             <span class="total-price">T?ng: 55.000?</span>
             </div>
 
-            <!-- CH?N GRAM -->
-            <div class="quantity-box">
-            <label>S? l??ng (g)</label>
-            <input type="number" min="10" step="10" value="50">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="4" />
+                <!-- CHỌN GRAM -->
+                <div class="quantity-box">
+                <label>Số lượng (g)</label>
+                <input type="number" name="quantity" min="10" step="10" value="50">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>Cafeine</span><div class="bar" style="--value:4"></div></div>
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>Cafeine</span><div class="bar" style="--value:4"></div></div>
+                </div>
 
-            <button class="add-btn">Thêm vào gi?</button>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
@@ -389,21 +478,28 @@
             <span class="total-price">T?ng: 75.000?</span>
             </div>
 
-            <!-- CH?N GRAM -->
-            <div class="quantity-box">
-            <label>S? l??ng (g)</label>
-            <input type="number" min="10" step="10" value="50">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="5" />
+                <!-- CHỌN GRAM -->
+                <div class="quantity-box">
+                <label>Số lượng (g)</label>
+                <input type="number" name="quantity" min="10" step="10" value="50">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>Cafeine</span><div class="bar" style="--value:5"></div></div>
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>Cafeine</span><div class="bar" style="--value:5"></div></div>
+                </div>
 
-            <button class="add-btn">Thêm vào gi?</button>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
@@ -422,21 +518,28 @@
             <span class="total-price">T?ng: 35.000?</span>
             </div>
 
-            <!-- CH?N GRAM -->
-            <div class="quantity-box">
-            <label>S? l??ng (g)</label>
-            <input type="number" min="10" step="10" value="50">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="6" />
+                <!-- CHỌN GRAM -->
+                <div class="quantity-box">
+                <label>Số lượng (g)</label>
+                <input type="number" name="quantity" min="10" step="10" value="50">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:1"></div></div>
-            <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>Cafeine</span><div class="bar" style="--value:1"></div></div>
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? m?nh</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>?? ??ng</span><div class="bar" style="--value:1"></div></div>
+                <div class="stat"><span>Màu s?c</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>H??ng th?m</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>Cafeine</span><div class="bar" style="--value:1"></div></div>
+                </div>
 
-            <button class="add-btn">Thêm vào gi?</button>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
@@ -444,23 +547,23 @@
     </section>
 
 
-<!-- ----------------------------------------Nguyen lieu sua-------------------------------------------- -->
+<!-- ----------------------------------------Nguyên liệu sữa-------------------------------------------- -->
     <section class="section-container ingredients">
 
     <div class="section-title">
-        <span>Nguyên li?u</span>
-        <h2>S?a & Milk Base</h2>
+        <span>Nguyên liệu</span>
+        <h2>Sữa & Milk Base</h2>
     </div>
 
     <div class="matcha-two-columns">
 
-        <!-- S?A T??I -->
+        <!-- Sữa tươi -->
         <div class="ingredient-card"
         data-product-id="milk_fresh"
         data-price-per-gram="150">
         <img src="./milkImage/SuaTuoi.png" alt="S?a t??i">
         <div class="ingredient-content">
-            <h4>S?a t??i</h4>
+            <h4>Sữa tươi</h4>
             <p>V? s?a t? nhiên, nh?, làm n?n cho matcha.</p>
 
             <div class="price-info">
@@ -468,29 +571,36 @@
             <span class="total-price">T?ng: 1.500?</span>
             </div>
 
-            <div class="quantity-box">
-            <label>S? l??ng (ml)</label>
-            <input type="number" min="50" step="50" value="100">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="7" />
+                <div class="quantity-box">
+                <label>Số lượng (ml)</label>
+                <input type="number" name="quantity" min="50" step="50" value="100">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? béo</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:2"></div></div>
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? béo</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>?? sánh</span><div class="bar" style="--value:2"></div></div>
+                </div>
 
-            <button class="add-btn">Thêm vào gi?</button>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
-        <!-- S?A MEIJI -->
+        <!-- SỮA MEIJI -->
         <div class="ingredient-card"
         data-product-id="milk_meiji"
         data-price-per-gram="180">
         <img src="./milkImage/SuaMeiji.png" alt="S?a Meiji">
         <div class="ingredient-content">
-            <h4>S?a Meiji</h4>
+            <h4>Sữa Meiji</h4>
             <p>S?a Nh?t béo nh?, h?u ng?t d?u.</p>
 
             <div class="price-info">
@@ -498,29 +608,35 @@
             <span class="total-price">T?ng: 1.800?</span>
             </div>
 
-            <div class="quantity-box">
-            <label>S? l??ng (ml)</label>
-            <input type="number" min="50" step="50" value="100">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="10" />
+                <div class="quantity-box">
+                <label>Số lượng (ml)</label>
+                <input type="number" name="quantity" min="50" step="50" value="100">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? béo</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:3"></div></div>
-            </div>
-
-            <button class="add-btn">Thêm vào gi?</button>
+                <div class="stats">
+                <div class="stat"><span>Độ béo</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>?? sánh</span><div class="bar" style="--value:3"></div></div>
+                </div>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
-        <!-- S?A G?U -->
+        <!-- SỮA GẤU -->
         <div class="ingredient-card"
         data-product-id="milk_gau"
         data-price-per-gram="200">
         <img src="./milkImage/SuaGau.png" alt="S?a G?u">
         <div class="ingredient-content">
-            <h4>S?a G?u</h4>
+            <h4>Sữa Gấu</h4>
             <p>Béo ??m, ng?t rõ, h?p matcha m?nh.</p>
 
             <div class="price-info">
@@ -528,29 +644,36 @@
             <span class="total-price">T?ng: 2.000?</span>
             </div>
 
-            <div class="quantity-box">
-            <label>S? l??ng (ml)</label>
-            <input type="number" min="50" step="50" value="100">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                  method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="9" />
+                <div class="quantity-box">
+                <label>Số lượng (ml)</label>
+                <input type="number" name="quantity" min="50" step="50" value="100">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? béo</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:4"></div></div>
-            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:4"></div></div>
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? béo</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:4"></div></div>
+                <div class="stat"><span>?? sánh</span><div class="bar" style="--value:4"></div></div>
+                </div>
 
-            <button class="add-btn">Thêm vào gi?</button>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
-        <!-- S?A H?T OATSIDE -->
+        <!-- SỮA HẠT OATSIDE -->
         <div class="ingredient-card"
         data-product-id="milk_oatside"
         data-price-per-gram="220">
         <img src="./milkImage/SuaHatOatside.png" alt="S?a Oatside">
         <div class="ingredient-content">
-            <h4>S?a h?t Oatside</h4>
+            <h4>Sữa hạt Oatside</h4>
             <p>Ít ng?t, béo m?n, h??ng y?n m?ch.</p>
 
             <div class="price-info">
@@ -558,25 +681,31 @@
             <span class="total-price">T?ng: 2.200?</span>
             </div>
 
-            <div class="quantity-box">
-            <label>S? l??ng (ml)</label>
-            <input type="number" min="50" step="50" value="100">
-            </div>
+            <form action="${pageContext.request.contextPath}/addToCart"
+                              method="post">
+                <input type="hidden" name="type" value="standard">
+                <input type="hidden" name="productId" value="8" />
+                <div class="quantity-box">
+                <label>Số lượng (ml)</label>
+                <input type="number" name="quantity" min="50" step="50" value="100">
+                </div>
 
-            <div class="stats">
-            <div class="stat"><span>?? béo</span><div class="bar" style="--value:3"></div></div>
-            <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:2"></div></div>
-            <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:5"></div></div>
-            <div class="stat"><span>?? sánh</span><div class="bar" style="--value:4"></div></div>
-            </div>
+                <div class="stats">
+                <div class="stat"><span>?? béo</span><div class="bar" style="--value:3"></div></div>
+                <div class="stat"><span>V? ng?t</span><div class="bar" style="--value:2"></div></div>
+                <div class="stat"><span>H??ng v?</span><div class="bar" style="--value:5"></div></div>
+                <div class="stat"><span>?? sánh</span><div class="bar" style="--value:4"></div></div>
+                </div>
 
-            <button class="add-btn">Thêm vào gi?</button>
+                <button type="submit" class="add-btn">
+                    Thêm vào giỏ
+                </button>
+            </form>
         </div>
         </div>
 
     </div>
     </section>
-
 
 
     <footer id="lien-he" class="contact section-container">
@@ -589,131 +718,6 @@
         </div>
     </footer>
     <script src="index.js"></script>
-
-    <!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        /* ===============================
-        1. CUSTOM MATCHA (PHA S?N)
-        =============================== */
-
-        const userOrder = {
-            matcha_id: null,
-            milk_id: null,
-            size_id: "size_l" // m?c ??nh
-        };
-
-        function setupSelection(selector) {
-            document.querySelectorAll(selector).forEach(item => {
-                item.addEventListener('click', function () {
-                    const frame = this.closest('.selection-frame');
-                    const category = frame.dataset.category;
-                    const value = this.dataset.value;
-
-                    // UI
-                    frame.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // DATA
-                    if (category === 'matcha') userOrder.matcha_id = value;
-                    if (category === 'milk') userOrder.milk_id = value;
-                    if (category === 'size') userOrder.size_id = value;
-
-                    console.log("STATE CUSTOM MATCHA:", userOrder);
-                });
-            });
-        }
-
-        setupSelection('.option-item');
-        setupSelection('.size-item');
-
-        document.getElementById('confirm-custom').addEventListener('click', function () {
-            if (!userOrder.matcha_id || !userOrder.milk_id || !userOrder.size_id) {
-                alert("Vui lòng ch?n ??y ?? Matcha ? S?a ? Size");
-                return;
-            }
-
-            const payload = {
-                product_type: "custom_matcha",
-                ...userOrder,
-                quantity: 1
-            };
-
-            console.log("G?I BACKEND (CUSTOM MATCHA):", payload);
-            alert("Custom matcha ?ã ???c ghi nh?n (xem Console)");
-        });
-
-
-        /* ===============================
-        2. NGUYÊN LI?U L? (MATCHA / S?A)
-        ?? YÊU C?U HTML CÓ:
-        data-product-id
-        data-price-per-gram (ho?c ml)
-        =============================== */
-
-        document.querySelectorAll('.ingredient-card').forEach(card => {
-
-            const productId = card.dataset.productId;
-            const pricePerUnit = parseInt(card.dataset.pricePerGram);
-
-            if (!productId || isNaN(pricePerUnit)) return;
-
-            const input = card.querySelector('input[type="number"]');
-            const totalPriceEl = card.querySelector('.total-price');
-            const addBtn = card.querySelector('.add-btn');
-            const name = card.querySelector('h4').innerText;
-
-            function updatePrice() {
-                const qty = parseInt(input.value);
-                const total = qty * pricePerUnit;
-                totalPriceEl.textContent = "T?ng: " + total.toLocaleString() + "?";
-            }
-
-            input.addEventListener('input', updatePrice);
-            updatePrice();
-
-            addBtn.addEventListener('click', () => {
-                const qty = parseInt(input.value);
-
-                const orderItem = {
-                    product_type: "ingredient",
-                    product_id: productId,
-                    product_name: name,
-                    quantity: qty,
-                    unit_price: pricePerUnit,
-                    total_price: qty * pricePerUnit
-                };
-
-                console.log("G?I BACKEND (NGUYÊN LI?U):", orderItem);
-                alert("?ã thêm vào gi?: " + name);
-            });
-        });
-
-    });
-    /* ===============================
-   3. S?N PH?M N?I B?T (PHA S?N)
-    =============================== */
-
-    document.querySelectorAll('.product-card .add-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-
-            const card = this.closest('.product-card');
-
-            const orderItem = {
-                product_type: "drink",
-                product_id: card.dataset.productId,
-                product_name: card.querySelector('h3').innerText,
-                unit_price: parseInt(card.dataset.price),
-                quantity: 1,
-                total_price: parseInt(card.dataset.price)
-            };
-
-            console.log("G?I BACKEND (S?N PH?M N?I B?T):", orderItem);
-            alert("?ã thêm vào gi?: " + orderItem.product_name);
-        });
-    });
-
-    </script> -->
 
     
 </body>

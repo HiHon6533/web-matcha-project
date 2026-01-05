@@ -31,7 +31,7 @@ public class Milk extends Ingredient{
     }
 
     public void setFlavor(String flavor) {
-        this.flavor = flavor;
+        this.flavor = flavor; 
     }
 
     public int getTexture() {

@@ -42,5 +42,11 @@ public class Ingredient extends Product{
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
+    public BigDecimal getPrice(){
+        return this.pricePerUnit;
+    }
+    public void setPrice(BigDecimal price){
+        this.pricePerUnit = price;
+    }
     
 }
