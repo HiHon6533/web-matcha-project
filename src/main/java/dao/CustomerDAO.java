@@ -8,13 +8,22 @@ import util.JPAUtil;
 import model.Account;
 import model.Customer;
 
-public class CustomerDAO extends GenericDAO<Customer, Long> {
+public class CustomerDAO{
 
-    public CustomerDAO() {
-        super(Customer.class);
+    //Tim user bang email
+    public Customer findByAccountEmail(String email) {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+        return em.createQuery(
+            "SELECT c FROM Customer c WHERE c.account.email = :email",
+            Customer.class
+        )
+        .setParameter("email", email)
+        .getSingleResult();
+    } catch (NoResultException e) {
+        return null;
+    } finally {
+        em.close();
     }
-
-    public void findByEmail(String email) {
-
-    }
+}
 }

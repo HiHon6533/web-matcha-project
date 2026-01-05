@@ -1,27 +1,16 @@
 package service;
 
 import model.*;
+import dao.*;
 
 public class CustomerService {
-    
-    //UPDATE PROFILE
-    public void updateProfile(){
-    
-    }
-    //ADD ADDRESS
-    public void addProfile(){
-    
-    }
-    //DELETE ADDRESS
-    public void addAddress(){
-    
-    }
-    //SET DAFAULT ADDRESS
-    public void setDefaultAddress(){
-        
-    }
-    //GET CUSTOMER BY USERID
-    public void getCustomerByUserID(){
-        
+    private CustomerDAO customerDAO = new CustomerDAO();
+    //Tim customer tu email
+    public Customer findCustomerByEmail(String email){
+        Customer customer = customerDAO.findByAccountEmail(email);
+        if (customer == null){
+            throw new RuntimeException("Không tìm thấy customer tương ứng");
+        }
+        return customer;
     }
 }

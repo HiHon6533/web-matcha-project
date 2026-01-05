@@ -1,9 +1,12 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>??ng nh?p & ??ng k� - HINATFU</title>
+    <title>Đăng nhập & Đăng ký - HINATFU</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -22,22 +25,26 @@
                         <h1>HINATFU</h1>
                         <span class="subtitle">????</span>
                     </div>
-                    <h2 class="form-title">T?o t�i kho?n</h2>
-                    <span class="instruction">?i?n th�ng tin c�c nh�n c?a b?n</span>
+                    <h2 class="form-title">Tạo tài khoản</h2>
+                    <span class="instruction">Điền thông tin cá nhân của bạn</span>
                     
-                    <input type="text" name="fullname" placeholder="H? v� t�n" required />
-                    <input type="tel" name="phonenumber" placeholder="S? ?i?n tho?i" required />
+                    <!-- REGISTER ERROR -->
+                    <c:if test="${not empty registerError}">
+                        <p class="error-text">${registerError}</p>
+                    </c:if>
+                    
+                    <input type="text" name="fullname" placeholder="Họ và tên" required />
                     <input type="email" name="email" placeholder="Email" required />
-                    <input type="password" name="password" placeholder="M?t kh?u" required />
-                    <button type="submit" class="btn-primary">??ng k�</button>
+                    <input type="password" name="password" placeholder="Mật khẩu" required />
+                    <button type="submit" class="btn-primary">Đăng ký</button>
                 </div>
 
                 <div class="success-message" style="display: none;">
                     <div class="icon-circle">
                         <i class="fas fa-check"></i>
                     </div>
-                    <h2 class="form-title">Th�nh c�ng!</h2>
-                    <p>T�i kho?n c?a b?n ?� ???c t?o.</p>
+                    <h2 class="form-title">Thành công!</h2>
+                    <p>Tài kho?n c?a b?n ?ã ???c t?o.</p>
                     <button type="button" class="btn-primary" id="btnSwitchToSignIn">??ng nh?p ngay</button>
                 </div>
 
@@ -50,26 +57,21 @@
                 <div class="form-content">
                     <div class="brand-header">
                         <h1>HINATFU</h1>
-                        <span class="subtitle">????</span>
+                        <span class="subtitle">Matcha Store</span>
                     </div>
-                    <h2 class="form-title">??ng nh?p</h2>
-                    <span class="instruction">Ch�o m?ng b?n quay tr? l?i</span>
+                    <h2 class="form-title">Đăng nhập</h2>
+                    <span class="instruction">Chào mừng bạn quay trở lại</span>
+                    
+                    <c:if test="${not empty error}">
+                        <p class="error-text">
+                            <c:out value="${error}" />
+                        </p>
+                    </c:if>
 
                     <input type="email" name="email" placeholder="Email" required />
-                    <input type="password" name="password" placeholder="M?t kh?u" required />
-                    <!-- <a href="#" class="forgot-pass">Qu�n m?t kh?u?</a> -->
-                    <button type="submit" class="btn-primary">??ng nh?p</button>
-                </div>
-
-                <div class="success-message" style="display: none;">
-                    <div class="icon-circle">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <h2 class="form-title">Xin ch�o!</h2>
-                    <p>B?n ?� ??ng nh?p th�nh c�ng.</p>
-                    <a href="index.jsp" class="btn-home">
-                        <button type="button" class="btn-primary">V? trang ch?</button>
-                    </a>
+                    <input type="password" name="password" placeholder="Mật khẩu" required />
+                    <!-- <a href="#" class="forgot-pass">Quên m?t kh?u?</a> -->
+                    <button type="submit" class="btn-primary">Đăng nhập</button>
                 </div>
 
             </form>
@@ -78,14 +80,14 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>?� c� t�i kho?n?</h1>
-                    <p>H�y ??ng nh?p ?? ti?p t?c mua s?m c�c s?n ph?m Matcha y�u th�ch.</p>
-                    <button class="ghost" id="signIn">??ng nh?p</button>
+                    <h1>Đã có tài khoản?</h1>
+                    <p>Hãy đăng nhập để tiếp tục mua sắm Matcha.</p>
+                    <button class="ghost" id="signIn">Đăng nhập</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Kh�ch h�ng m?i?</h1>
-                    <p>??ng k� ngay ?? nh?n nh?ng ?u ?�i ??c bi?t t? HINATFU.</p>
-                    <button class="ghost" id="signUp">??ng k�</button>
+                    <h1>Khách hàng mới?</h1>
+                    <p>Đăng ký ngay để nhận ưu đãi từ HINATFU.</p>
+                    <button class="ghost" id="signUp">Đăng ký</button>
                 </div>
             </div>
         </div>

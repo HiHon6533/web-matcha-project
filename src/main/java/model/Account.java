@@ -12,10 +12,19 @@ public class Account implements Serializable {
     @Id
     @Column(length = 100)
     private String email;
+    private String password;
     private String token;
     private Boolean actived;
-    private String password;
     private LocalDateTime createdAt;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
     
     @JsonbTransient
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)

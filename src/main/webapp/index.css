@@ -391,10 +391,6 @@ section {
     border: 2px solid transparent;
 }
 
-.size-item.active {
-    border-color: var(--matcha-dark);
-    background: white;
-}
 
 /* ===== MATCHA INGREDIENTS (2 CỘT) ===== */
 
