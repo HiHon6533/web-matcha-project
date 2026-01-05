@@ -20,6 +20,8 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.math.BigDecimal;
+
 
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {
@@ -39,7 +41,15 @@ public class PaymentServlet extends HttpServlet {
         String vnp_TmnCode = VNPayConfig.vnp_TmnCode;
 
         String amountParam = request.getParameter("amount");
-        long amount = (amountParam == null || amountParam.isEmpty()) ? 10000000 : Long.parseLong(amountParam) * 100;
+
+        long amount;
+        if (amountParam == null || amountParam.isEmpty()) {
+            amount = 10000000L; // fallback
+        } else {
+            BigDecimal amountBD = new BigDecimal(amountParam);
+            amount = amountBD.multiply(BigDecimal.valueOf(100)).longValue();
+        }
+
 
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
