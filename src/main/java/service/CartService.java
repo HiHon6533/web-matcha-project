@@ -12,20 +12,20 @@ public class CartService {
     private void addProductToCartLogic(Long userId, Product product, int quantity) {
         if (product == null) return;
 
-        // 1. Lấy Cart, nếu chưa có thì tạo mới
+        // Lấy Cart, nếu chưa có thì tạo mới
         Cart cart = cartDAO.findCartByUserId(userId);
         if (cart == null) {
             Customer cus = cartDAO.findCustomerById(userId);
             cart = cartDAO.createCart(cus);
         }
 
-        // 2. Kiểm tra xem sản phẩm đã có trong ProductLine chưa
+        // Kiểm tra xem sản phẩm đã có trong ProductLine chưa
         boolean exists = false;
         List<ProductLine> lines = cart.getProducts();        
         lines = (lines == null) ? new ArrayList<>() : lines;
 
         for (ProductLine line : lines) {
-            // So sánh Product ID
+            //Kiểm tra đã có chưa
             if (line.getProduct().getProductID().equals(product.getProductID())) {
                 // Đã có -> Cộng dồn số lượng
                 line.setQuantity(line.getQuantity() + quantity);
@@ -34,13 +34,12 @@ public class CartService {
                 break;
             }
         }
-        // 3. Nếu chưa có -> Tạo dòng mới
+        // Nếu chưa có -> Tạo productline mới
         if (!exists) {
             ProductLine newLine = new ProductLine();
             newLine.setCart(cart);
             newLine.setProduct(product);
             newLine.setQuantity(quantity);
-            // Quan trọng: Order để null vì đây là Cart
             newLine.setOrder(null); 
             
             cartDAO.saveCartItem(newLine);
@@ -78,5 +77,26 @@ public class CartService {
             throw new RuntimeException("Không tìm thấy cart tương ứng");
         }
         return cart;
+    }
+    
+    //Tăng số lượng
+    public void increaseQuantity(Long lineId){
+        ProductLine line = cartDAO.findLineById(lineId);
+        line.setQuantity(line.getQuantity() + 1);
+        cartDAO.saveCartItem(line);
+    }
+    
+    //Giảm số lượng
+    public void decreaseQuantity(Long lineId){
+        ProductLine line = cartDAO.findLineById(lineId);
+        if (line.getQuantity() <= 1) cartDAO.deleteLine(lineId);
+        else {
+            line.setQuantity(line.getQuantity() - 1 ); 
+            cartDAO.saveCartItem(line);
+        }
+    }
+    //Xóa sản phẩm khỏi giỏ hàng
+    public void removeLine(Long lineId){
+        cartDAO.deleteLine(lineId);
     }
 }

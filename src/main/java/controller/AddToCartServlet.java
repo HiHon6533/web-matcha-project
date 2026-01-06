@@ -55,7 +55,7 @@ public class AddToCartServlet extends HttpServlet {
         // 4. Phản hồi
         if (isSuccess) {
             // Thành công -> Về trang giỏ hàng
-            response.sendRedirect(request.getContextPath() + "/cart.jsp");
+            response.sendRedirect(request.getContextPath() + "/cart");
         } else {
             // Thất bại
             // Lưu thông báo lỗi vào session hoặc request để hiển thị

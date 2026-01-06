@@ -73,7 +73,7 @@
                                     <h3 class="item-name">${line.product.productName}</h3>
 
                                     <p class="item-desc">
-                                        <c:if test="${line.product.productID >= 10 && line.product.productID <= 20}">
+                                        <c:if test="${line.product.productID > 10}">
                                             Size: ${line.product.size} <br>
                                         </c:if>
                                     </p>
@@ -103,7 +103,7 @@
                                     <form action="${pageContext.request.contextPath}/updateCart" method="post" style="display:inline;">
                                         <input type="hidden" name="action" value="remove">
                                         <input type="hidden" name="lineId" value="${line.id}">
-                                        <button type="submit" class="btn-remove" onclick="return confirm('Sensei có chắc muốn xóa món này không?');">
+                                        <button type="submit" class="btn-remove" onclick="return confirm('Bạn có chắc muốn xóa món này không?');">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </form>

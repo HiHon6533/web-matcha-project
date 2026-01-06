@@ -23,7 +23,7 @@ public class CartDAO {
         }
     }
     
-    // Tìm Product cơ bản theo ID (Dùng cho Standard)
+    // Tìm Product theo ID (Dùng cho Standard)
     public Product findProductById(Long id) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
@@ -70,7 +70,7 @@ public class CartDAO {
         }
     }
     
-    // Tạo mới Cart nếu User chưa có (Optional)
+    // Tạo mới Cart nếu User chưa có
     public Cart createCart(Customer customer) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -88,9 +88,45 @@ public class CartDAO {
             em.close();
         }
     }
-    // Hàm phụ tìm Customer để tạo Cart
+    // Hàm tìm Customer để tạo Cart
     public Customer findCustomerById(Long id) {
         EntityManager em = JPAUtil.getEntityManager();
-        try { return em.find(Customer.class, id); } finally { em.close(); }
+        try { 
+            return em.find(Customer.class, id); 
+        } 
+        finally { 
+            em.close(); 
+        }
+    }
+    
+    // Tìm ProductLine theo ID
+    public ProductLine findLineById(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.find(ProductLine.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    // Xóa productline khỏi cart
+    public void deleteLine(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            ProductLine line = em.find(ProductLine.class, id);
+            if (line != null) {
+                Cart cart = line.getCart();
+                if (cart != null) {
+                    cart.getProducts().remove(line);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
     }
 }

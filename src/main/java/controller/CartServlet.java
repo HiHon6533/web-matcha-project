@@ -26,4 +26,9 @@ public class CartServlet extends HttpServlet{
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("/cart.jsp").forward(request, response);
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
