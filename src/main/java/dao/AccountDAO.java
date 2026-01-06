@@ -46,13 +46,15 @@ public boolean checkEmail(String email)
         em.close();
     }
 }
-    public boolean register(Account account, Customer customer) 
+public boolean register(Account account, Customer customer) 
     {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction trans = em.getTransaction();
 
         try 
         {
+            System.out.println("Nap xun db");
+            
             trans.begin();
             customer.setAccount(account);
             em.persist(account);
@@ -62,6 +64,8 @@ public boolean checkEmail(String email)
         } 
         catch (Exception e) 
         {
+             System.out.println("Co loi");
+
             if (trans.isActive()) 
             {
                 trans.rollback();
@@ -72,6 +76,8 @@ public boolean checkEmail(String email)
         finally 
         {
             em.close();
+            System.out.println("dong entity");
+                        
         }
     }
 }

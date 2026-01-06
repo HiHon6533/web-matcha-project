@@ -11,14 +11,15 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet 
 {
-
+    
     private AccountService accountService = new AccountService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        
+        System.out.println("DOPOST CHẠY");
+
         request.setCharacterEncoding("UTF-8");
         
         // Lấy dữ liệu

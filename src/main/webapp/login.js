@@ -30,7 +30,6 @@ function resetFormUI(form) {
 signUpButton.addEventListener('click', () => {
     container.classList.add("right-panel-active");
     // FIX: Reset lại form đăng ký ngay lập tức để tránh bị vỡ giao diện
-    resetFormUI(signUpForm);
 });
 
 // Khi bấm nút "Đăng nhập" (ở panel Overlay)
@@ -42,14 +41,6 @@ signUpButton.addEventListener('click', () => {
 const btnSwitchToSignIn = document.getElementById('btnSwitchToSignIn');
 
 signUpForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const formContent = signUpForm.querySelector('.form-content');
-    const successMsg = signUpForm.querySelector('.success-message');
-
-    // Ẩn form nhập, hiện thông báo
-    formContent.style.display = 'none';
-    successMsg.style.display = 'flex';
 });
 
 // Nút "Đăng nhập ngay" trong thông báo thành công
@@ -64,4 +55,5 @@ if (btnSwitchToSignIn) {
         }, 600);
     });
 }
+
 
