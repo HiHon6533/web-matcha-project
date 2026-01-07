@@ -25,7 +25,7 @@ public class Order implements Serializable{
     @JoinColumn(name = "user_id", nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
     private List<ProductLine> products;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
@@ -38,7 +38,7 @@ public class Order implements Serializable{
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
+    
     public List<ProductLine> getProducts() {
         return products;
     }

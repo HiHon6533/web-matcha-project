@@ -29,6 +29,7 @@
         </nav>
 
         <nav class="nav-right">
+            <a href="history" class="icon-btn">History</a>
             <a href="cart" class="icon-btn"><i class="fas fa-shopping-basket"></i></a>
             <a href="login.jsp" class="icon-btn"><i class="fa-solid fa-user-ninja"></i></a>
         </nav>
@@ -260,13 +261,13 @@
                 <div class="selection-frame" data-category="size">
                     <h3><i class="fas fa-expand-alt"></i> 3. Chọn Size</h3>
                     <div class="size-list">
-                        <div class="size-item" data-value="M">
+                        <div class="size-item" data-value="S">
                             <i class="fa-solid fa-mug-hot"></i>
-                            <span>Size M (180ml)</span>
+                            <span>Size S (180ml)</span>
                         </div>
-                        <div class="size-item active" data-value="S">
+                        <div class="size-item active" data-value="M">
                             <i class="fa-solid fa-mug-hot" style="font-size: 1.4em;"></i>
-                            <span>Size S (350ml)</span>
+                            <span>Size M (350ml)</span>
                         </div>
                         <div class="size-item" data-value="XL">
                             <i class="fa-solid fa-mug-hot"></i>
@@ -406,7 +407,7 @@
                 <!-- CHỌN GRAM -->
                 <div class="quantity-box">
                 <label>Số lượng (g)</label>
-                <input type="number" min="10" step="10" value="50">
+                <input type="number" name="quantity" min="10" step="10" value="50">
                 </div>
 
                 <div class="stats">

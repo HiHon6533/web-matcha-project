@@ -50,6 +50,30 @@ public class Drink extends Product{
         this.price = price;
     }
 
-    
-    
+    public BigDecimal useMilk(){
+        if (this.getSize() == null) return BigDecimal.valueOf(0);
+        switch (this.getSize().toUpperCase()) {
+            case "S": 
+                return BigDecimal.valueOf(100); // 100ml
+            case "M": 
+                return BigDecimal.valueOf(200); // 200ml
+            case "XL": 
+                return BigDecimal.valueOf(400); // 400ml
+            default: 
+                return BigDecimal.valueOf(0);
+        }
+    }
+    public BigDecimal useMatcha(){
+        if (this.getSize() == null) return BigDecimal.valueOf(0);
+        switch (this.getSize().toUpperCase()) {
+            case "S": 
+                return BigDecimal.valueOf(4); // 4g
+            case "M": 
+                return BigDecimal.valueOf(6); // 6g
+            case "XL": 
+                return BigDecimal.valueOf(8); // 8g
+            default: 
+                return BigDecimal.valueOf(0);
+        }
+    }
 }

@@ -24,16 +24,23 @@ public class LoginServlet extends HttpServlet{
         try {
             Account account = accountService.login(email, password);
             Customer user = customerService.findCustomerByEmail(email);
-            HttpSession session = request.getSession();
+            
+            //Xóa session cũ nếu có
+            HttpSession oldSession = request.getSession(false);
+            if (oldSession != null) {
+                oldSession.invalidate();
+            }
+            //Tạo session mới
+            HttpSession session = request.getSession(true);
             session.setAttribute("LOGGED_IN_USER", account);
             session.setAttribute("CURRENT_USER", user);
             
             if (account.getRole().equals("admin"))
             {
-                request.getRequestDispatcher("/admin").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/admin");
             }
             else {
-                request.getRequestDispatcher("/home").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/home");
             }
 
             } catch (RuntimeException e) {

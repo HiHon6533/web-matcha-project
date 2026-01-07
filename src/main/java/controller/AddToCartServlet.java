@@ -18,33 +18,30 @@ public class AddToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // 1. Kiểm tra đăng nhập
-        HttpSession session = request.getSession();
-        Customer currentUser = (Customer) session.getAttribute("CURRENT_USER");
-        
-        if (currentUser == null) {
-            // Chưa đăng nhập -> Chuyển về trang login
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("LOGGED_IN_USER") == null)
+        {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
+        
+        Customer currentUser = (Customer) session.getAttribute("CURRENT_USER");
 
         Long userId = currentUser.getUserID();
 
-        // 2. Lấy loại sản phẩm thêm vào
+        // Lấy loại sản phẩm thêm vào
         String type = request.getParameter("type"); // "standard" hoặc "custom"
         String quantityStr = request.getParameter("quantity");
         int quantity = (quantityStr == null || quantityStr.isEmpty()) ? 1 : Integer.parseInt(quantityStr);
         
         boolean isSuccess = false;
 
-        // 3. Phân luồng xử lý
+        //Phân luồng xử lý
         if ("standard".equals(type)) {
-            // Lấy ID trực tiếp từ hidden field
             Long productId = Long.parseLong(request.getParameter("productId"));
             isSuccess = cartService.addStandardProduct(userId, productId, quantity);
             
         } else if ("custom".equals(type)) {
-            // Lấy Component ID từ hidden field (do JS set vào)
             Long matchaId = Long.parseLong(request.getParameter("matchaId"));
             Long milkId = Long.parseLong(request.getParameter("milkId"));
             String size = request.getParameter("size");
@@ -52,7 +49,7 @@ public class AddToCartServlet extends HttpServlet {
             isSuccess = cartService.addCustomDrink(userId, matchaId, milkId, size, quantity);
         }
 
-        // 4. Phản hồi
+        //Phản hồi
         if (isSuccess) {
             // Thành công -> Về trang giỏ hàng
             response.sendRedirect(request.getContextPath() + "/cart");
