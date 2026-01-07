@@ -34,7 +34,7 @@
                                 </option>
                             </c:forEach>
                         </select>
-                        <a href="${pageContext.request.contextPath}/address-new">Thêm địa chỉ khác</a>
+                        <a href="${pageContext.request.contextPath}/profile">Thêm địa chỉ khác</a>
                     </c:when>
                     <c:otherwise>
                         <p>
