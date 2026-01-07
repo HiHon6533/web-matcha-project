@@ -70,6 +70,10 @@
                 </div>
 
                 <h2 class="form-title">Đăng nhập</h2>
+                <c:if test="${not empty loginError}">
+                    <p class="error-msg">${loginError}</p>
+                </c:if>
+
                 <span class="instruction">Chào mừng bạn quay trở lại</span>
                 <input type="email" name="email" placeholder="Email" required />
                 <input type="password" name="password" placeholder="Mật khẩu" required />

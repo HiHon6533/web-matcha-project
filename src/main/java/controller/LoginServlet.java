@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet{
             }
 
             } catch (RuntimeException e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute("loginError", e.getMessage());
             request.getRequestDispatcher("/login.jsp")
                    .forward(request, response);
         }

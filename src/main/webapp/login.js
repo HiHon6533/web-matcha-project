@@ -30,7 +30,7 @@ function resetFormUI(form) {
 signUpButton.addEventListener('click', () => {
     container.classList.add("right-panel-active");
     // FIX: Reset lại form đăng ký ngay lập tức để tránh bị vỡ giao diện
-});
+});     
 
 // Khi bấm nút "Đăng nhập" (ở panel Overlay)
 signInButton.addEventListener('click', () => {

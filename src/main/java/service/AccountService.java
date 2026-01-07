@@ -72,8 +72,7 @@ public class AccountService {
         return account;
         
     }
-<<<<<<< HEAD
-=======
+
     //CHANGE PASSWORD
     public void changePassword(){
         
@@ -85,5 +84,4 @@ public class AccountService {
         account.setToken(null);
         return accountDAO.update(account);
     }
->>>>>>> feature-atuszz
 }
