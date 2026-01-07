@@ -82,16 +82,21 @@ public class CartService {
     //Tăng số lượng
     public void increaseQuantity(Long lineId){
         ProductLine line = cartDAO.findLineById(lineId);
-        line.setQuantity(line.getQuantity() + 1);
+        if (line.getProduct().getProductID() <= 5) line.setQuantity(line.getQuantity() + 10); //Matcha
+        else if (line.getProduct().getProductID() <= 10) line.setQuantity(line.getQuantity() + 100); //Milk
+        else line.setQuantity(line.getQuantity() + 1);//Drink
         cartDAO.saveCartItem(line);
     }
     
     //Giảm số lượng
     public void decreaseQuantity(Long lineId){
         ProductLine line = cartDAO.findLineById(lineId);
-        if (line.getQuantity() <= 1) cartDAO.deleteLine(lineId);
+        int quantity = 1;//Drink
+        if (line.getProduct().getProductID() <= 5) quantity = 10; //Matcha
+        else if (line.getProduct().getProductID() <= 10) quantity = 100; //Milk
+        if (line.getQuantity() <= quantity) cartDAO.deleteLine(lineId);
         else {
-            line.setQuantity(line.getQuantity() - 1 ); 
+            line.setQuantity(line.getQuantity() - quantity ); 
             cartDAO.saveCartItem(line);
         }
     }
