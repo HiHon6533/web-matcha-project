@@ -162,11 +162,13 @@ section {
 .about {
     text-align: center;
     background-color: white;
+    margin-top:40px;
 }
 
 .about-content p {
     font-size: 18px;
     max-width: 800px;
+    
     margin: 10px auto;
     color: var(--wood-brown);
 }
@@ -619,3 +621,133 @@ section {
 .contact .section-title h2 { color: white; }
 .contact-info p { margin-bottom: 15px; font-size: 16px; }
 .contact-info i { margin-right: 10px; color: var(--matcha-light); }
+
+/* --- Drop menu profile --- */
+
+
+
+
+/* =========================================
+   USER DROPDOWN MENU (Login thành công)
+   ========================================= */
+
+/* 1. Wrapper bao quanh icon và menu */
+/* Cần position: relative để menu con (absolute) neo theo nó */
+.header-user-actions {
+    position: relative;
+    display: inline-block; /* Hoặc flex tùy layout, nhưng inline-block an toàn cho icon */
+}
+
+/* 2. Icon User khi đã đăng nhập */
+.user-profile-icon {
+    cursor: pointer;
+    font-size: 1.1rem; /* Kích thước icon */
+    color: #333;
+    transition: transform 0.3s, color 0.3s;
+    /* Căn chỉnh để icon nằm giữa dòng nếu cần */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile-icon:hover {
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+    color: #2e7d32; /* Màu xanh Matcha */
+}
+
+/* 3. Khung Menu xổ xuống (Mặc định ẩn) */
+.sub-menu-wrap {
+    position: absolute;
+    top: 130%; /* Đẩy xuống dưới icon một chút */
+    right: 0;  /* Căn lề phải thẳng hàng với icon */
+    width: 280px;
+    max-height: 0; /* Ẩn bằng chiều cao 0 */
+    overflow: hidden; /* Che nội dung thừa */
+    transition: max-height 0.5s ease-in-out; /* Hiệu ứng trượt mượt mà */
+    z-index: 1000; /* Đảm bảo menu đè lên các thành phần khác */
+}
+
+/* Class này được JS thêm vào để hiện menu */
+.sub-menu-wrap.open-menu {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;/* Đủ lớn để hiện hết nội dung */
+}
+
+/* 4. Giao diện bên trong menu */
+.sub-menu {
+    background: #fff;
+    padding: 20px;
+    margin: 10px; /* Tạo khoảng hở để thấy bóng đổ */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* Bóng đổ mềm */
+    border: 1px solid #f0f0f0;
+}
+
+/* Tên người dùng */
+.user-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    text-align: center; /* Căn giữa tên cho đẹp */
+}
+
+/* Đường gạch ngang */
+.sub-menu hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #e0e0e0;
+    margin: 15px 0;
+}
+
+/* Các liên kết (Link) trong menu */
+.sub-menu-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+    padding: 5px 0;
+    transition: all 0.3s;
+}
+
+.sub-menu-link p {
+    flex: 1; /* Đẩy chữ chiếm hết khoảng trống */
+    font-size: 14px;
+    margin: 0 15px; /* Khoảng cách giữa icon và chữ */
+    font-weight: 500;
+}
+
+.sub-menu-link i {
+    width: 25px; /* Cố định chiều rộng icon để thẳng hàng */
+    font-size: 18px;
+    background: #e2e2e2; /* Nền tròn xám nhẹ sau icon */
+    color: #555;
+    padding: 8px;
+    border-radius: 50%; /* Bo tròn icon */
+    display: flex;     /* Căn giữa icon trong vòng tròn */
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* Hiệu ứng Hover vào từng dòng */
+.sub-menu-link:hover span {
+    transform: translateX(5px); /* Mũi tên dịch sang phải */
+}
+
+.sub-menu-link:hover p {
+    color: #2e7d32; /* Chữ chuyển màu xanh */
+    font-weight: 600;
+}
+
+/* Riêng nút Đăng xuất (Màu đỏ) */
+.logout-btn:hover i {
+    background: #ffebee;
+    color: #d32f2f;
+}
+.logout-btn:hover p {
+    color: #d32f2f;
+}

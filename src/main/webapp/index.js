@@ -1,3 +1,23 @@
+function toggleUserMenu() {
+    const subMenu = document.getElementById("subMenu");
+    if (subMenu) {
+        subMenu.classList.toggle("open-menu");
+    }
+}
+// Xử lý sự kiện: Bấm ra ngoài thì tự tắt menu
+    window.onclick = function(event) {
+        // Nếu cái được click KHÔNG PHẢI là icon user VÀ KHÔNG PHẢI nằm trong icon
+        if (!event.target.matches('.user-profile-icon') && !event.target.closest('.user-profile-icon')) {
+            
+            let subMenus = document.getElementsByClassName("sub-menu-wrap");
+            for (let i = 0; i < subMenus.length; i++) {
+                let openDropdown = subMenus[i];
+                if (openDropdown.classList.contains('open-menu')) {
+                    openDropdown.classList.remove('open-menu');
+                }
+            }
+        }
+    }
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.option-item').forEach(item => {
         item.addEventListener('click', function () {
@@ -65,5 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
    // Hàm tính tổng tiền cho phần Nguyên liệu
-
+   // Hàm bật/tắt menu
+    
 });

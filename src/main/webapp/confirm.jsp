@@ -39,7 +39,7 @@
                     <c:otherwise>
                         <p>
                             Bạn chưa có địa chỉ giao hàng.
-                            <a href="${pageContext.request.contextPath}/address-new">Thêm địa chỉ ngay</a>
+                            <a href="${pageContext.request.contextPath}/profile">Thêm địa chỉ ngay</a>
                         </p>
                     </c:otherwise>
                 </c:choose>

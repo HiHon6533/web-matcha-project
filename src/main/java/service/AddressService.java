@@ -13,13 +13,21 @@ public class AddressService {
     }
     
     public boolean deleteUserAddress(Long userId, Long addressId) {
-    return addressDAO.deleteAddress(addressId, userId);
+        return addressDAO.deleteAddress(addressId, userId);
     }
 
     public boolean addNewAddress(Customer customer, String province, String ward, 
                                  String hamlet, String houseNumber, String note, boolean isUserChosenDefault) {
         
-        boolean isFirstAddress = (customer.getAddresses() == null || customer.getAddresses().isEmpty());        
+        // --- SỬA LỖI Ở ĐÂY ---
+        // Thay vì dùng customer.getAddresses().isEmpty() (gây lỗi Lazy Load),
+        // ta hỏi DB xem ông khách này đã có địa chỉ nào chưa.
+        boolean hasAnyAddress = addressDAO.checkHasAddress(customer.getUserID());
+        
+        // Nếu chưa có địa chỉ nào -> Đây là địa chỉ đầu tiên
+        boolean isFirstAddress = !hasAnyAddress;        
+        
+        // Logic cũ: Mặc định = (Người dùng chọn) HOẶC (Là cái đầu tiên)
         boolean finalIsDefault = isUserChosenDefault || isFirstAddress;
 
         Address newAddress = new Address();

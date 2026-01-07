@@ -18,12 +18,12 @@
 
     <header class="history-header">
         <div class="brand-header">
-            <a href="index.html" class="logo-link">
+            <a href="home" class="logo-link">
                 <h1>HINATFU</h1>
                 <span class="subtitle">まっちゃ</span>
             </a>
         </div>
-        <a href="index.jsp" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
+        <a href="home" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
     </header>
 
     <div class="history-wrapper">

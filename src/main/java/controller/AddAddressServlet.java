@@ -22,7 +22,7 @@ public class AddAddressServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("customer");
+        Customer customer = (Customer) session.getAttribute("CURRENT_USER");
 
         String province = request.getParameter("province"); 
         String ward = request.getParameter("ward");
@@ -44,7 +44,7 @@ public class AddAddressServlet extends HttpServlet {
         );
 
         if (isSuccess) {
-            response.sendRedirect("user-address-list"); 
+            response.sendRedirect("profile"); 
         } else {            
             request.setAttribute("errorMessage", "Thêm địa chỉ thất bại!");
             request.getRequestDispatcher("add-address-form.jsp").forward(request, response);
