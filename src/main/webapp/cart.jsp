@@ -18,7 +18,7 @@
 
     <header class="cart-header">
         <div class="brand-header">
-            <a href="index.html" class="logo-link">
+            <a href="home" class="logo-link">
                 <h1>HINATFU</h1>
                 <span class="subtitle">まっちゃ</span>
             </a>

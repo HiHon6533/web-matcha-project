@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <header class="navbar"> 
+<header class="navbar"> 
         <nav class="nav-left">
             <a href="#trangchu" class="logo">
                 <h1>HINATFU<span>まっちゃ</span></h1>
@@ -35,10 +35,51 @@
         </nav>
 
         <nav class="nav-right">
-
-            <a href="history" class="icon-btn">History</a>
+            
+            
             <a href="cart" class="icon-btn"><i class="fas fa-shopping-basket"></i></a>
-            <a href="login.jsp" class="icon-btn"><i class="fa-solid fa-user-ninja"></i></a>
+            
+            <c:if test="${sessionScope.LOGGED_IN_USER == null}">
+                <a href="login.jsp" class="icon-btn">
+                    <i class="fa-solid fa-user-ninja"></i>
+                </a>
+            </c:if>
+
+            <c:if test="${sessionScope.LOGGED_IN_USER != null}">
+                <div class="header-user-actions" style="position: relative; display: inline-flex; align-items: center;">
+                    
+                    <div class="user-profile-icon icon-btn" onclick="toggleUserMenu()" style="cursor: pointer;">
+                        <i class="fa-solid fa-user-ninja"></i>
+                    </div>
+
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="sub-menu">
+                            <div class="user-info">
+                                <h3>Xin chào, ${sessionScope.CURRENT_USER.fullName}</h3>
+                            </div>
+                            <hr>
+
+                            <a href="profile" class="sub-menu-link">
+                                <i class="fas fa-user-shield"></i>
+                                <p>Thông tin & Bảo mật</p>
+                                
+                            </a>
+
+                            <a href="history" class="sub-menu-link">
+                                <i class="fas fa-history"></i>
+                                <p>Lịch sử mua hàng</p>
+                                
+                            </a>
+
+                            <a href="logout" class="sub-menu-link logout-btn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>Đăng xuất</p>
+                                
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
         </nav>
     </header>
 
@@ -83,9 +124,11 @@
 
                     <div class="product-info">
                         <h3>${p.productName}</h3>
-                        <p>Hương vị đậm đà, nguyên liệu tự nhiên (${p.size}).</p>
+<!--                        <p>Hương vị đậm đà, nguyên liệu tự nhiên (${p.size}).</p>-->
                         <div class="price-add">
-                            <span>${p.price}đ</span>
+                            <span>
+                                <fmt:formatNumber value="${p.price}" type="number" maxFractionDigits="0"/>đ
+                            </span>
                             <form action="${pageContext.request.contextPath}/addToCart" method="post">
                                 <input type="hidden" name="type" value="standard">
                                 <input type="hidden" name="productId" value="${p.productID}" />
@@ -97,7 +140,7 @@
                 </div>
 
             </c:forEach>
->
+
         </div>  
     </section>
             
@@ -167,11 +210,11 @@
                 <div class="size-list">
                     <div class="size-item" data-value="M">
                         <i class="fa-solid fa-mug-hot"></i>
-                        <span>Size M (180ml)</span>
+                        <span>Size S (180ml)</span>
                     </div>
                     <div class="size-item active" data-value="S">
                         <i class="fa-solid fa-mug-hot" style="font-size: 1.4em;"></i>
-                        <span>Size S (350ml)</span>
+                        <span>Size M (350ml)</span>
                     </div>
                     <div class="size-item" data-value="XL">
                         <i class="fa-solid fa-mug-hot"></i>
@@ -276,56 +319,78 @@
     </section>
 
     <section class="section-container ingredients">
+
     <div class="section-title">
         <span>Nguyên liệu</span>
         <h2>Sữa & Milk Base</h2>
     </div>
 
     <div class="matcha-two-columns">
+
         <c:forEach items="${listMilk}" var="milk">
-            <div class="ingredient-card">
+            
+            <div class="ingredient-card"
+                 data-product-id="${milk.productID}"
+                 data-price-per-gram="${milk.pricePerUnit}">
                 
                 <img src="${pageContext.request.contextPath}/${milk.image != null ? milk.image : 'milkImage/default.png'}" 
                      alt="${milk.productName}">
                 
                 <div class="ingredient-content">
                     <h4>${milk.productName}</h4>
-                    
                     <p>${milk.origin} | Đơn vị: ${milk.unit}</p>
-                    
+
                     <div class="price-info">
                         <span class="price-per-gram">
-                            <fmt:formatNumber value="${milk.pricePerUnit}" type="number"/>đ / ${milk.unit}
+                            <fmt:formatNumber value="${milk.pricePerUnit}" type="number" maxFractionDigits="0"/>đ / ${milk.unit}
                         </span>
-                        
                         <span class="total-price" id="total-price-${milk.productID}">
-                            Tổng: <fmt:formatNumber value="${milk.price100}" type="number"/>đ
+                            Tổng: <fmt:formatNumber value="${milk.pricePerUnit * 100}" type="number" maxFractionDigits="0"/>đ
                         </span>
                     </div>
-                    
+
                     <form action="${pageContext.request.contextPath}/addToCart" method="post">
                         <input type="hidden" name="type" value="ingredient_milk">
                         <input type="hidden" name="productId" value="${milk.productID}" />
-                        
+
                         <div class="quantity-box">
                             <label>Số lượng (${milk.unit})</label>
-                            
                             <input type="number" 
-                                   name="quantity" 
+                                   name="quantity"
                                    min="50" 
                                    step="50" 
                                    value="100"
-                                   oninput="updateIngredientPrice(this, '${milk.pricePerUnit}', '${milk.productID}')">
+                                   oninput="updateIngredientPrice(this, ${milk.pricePerUnit}, '${milk.productID}')">
                         </div>
-                        
-                        <button type="submit" class="add-btn">Thêm vào giỏ</button>
+
+                        <div class="stats">
+                            
+                            <div class="stat">
+                                <span>Độ béo</span>
+                                <div class="bar" style="--value:${milk.fatLevel}"></div>
+                            </div>
+                            
+                            <div class="stat">
+                                <span>Vị ngọt</span>
+                                <div class="bar" style="--value:${milk.sweetnessLevel}"></div>
+                            </div>
+                            
+                            <div class="stat">
+                                <span>Độ sánh</span>
+                                <div class="bar" style="--value:${milk.texture}"></div>
+                            </div>
+
+                        </div>
+
+                        <button class="add-btn">Thêm vào giỏ</button>
                     </form>
                 </div>
             </div>
+
         </c:forEach>
         </div>
 </section>
-
+        
     <footer id="lien-he" class="contact section-container">
         <div class="section-title">
             <span>Kết nối</span>

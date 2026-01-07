@@ -4,11 +4,22 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "milk")
-public class Milk extends Ingredient{
+@PrimaryKeyJoinColumn(name = "product_id") // Quan trọng: Để liên kết khóa chính với bảng cha Ingredient
+public class Milk extends Ingredient {
+
+    @Column(name = "fatlevel") // Ánh xạ chính xác vào cột fatlevel trong DB
     private int fatLevel;
+
+    @Column(name = "sweetness")
     private String sweetness;
+
+    @Column(name = "flavor")
     private String flavor;
+
+    @Column(name = "texture")
     private int texture;
+
+    // --- GETTER & SETTER GỐC (GIỮ NGUYÊN) ---
 
     public int getFatLevel() {
         return fatLevel;
@@ -31,7 +42,7 @@ public class Milk extends Ingredient{
     }
 
     public void setFlavor(String flavor) {
-        this.flavor = flavor; 
+        this.flavor = flavor;
     }
 
     public int getTexture() {
@@ -41,6 +52,24 @@ public class Milk extends Ingredient{
     public void setTexture(int texture) {
         this.texture = texture;
     }
-    
-    
+
+    // --- PHẦN MỚI THÊM: LOGIC CHO GIAO DIỆN (HELPER METHODS) ---
+
+    /**
+     * Hàm này được gọi trong JSP bằng cách dùng: ${milk.sweetnessLevel}
+     * Nhiệm vụ: Chuyển đổi chữ (String) sang số (int) để hiển thị thanh Bar.
+     */
+    public int getSweetnessLevel() {
+        if (sweetness == null) return 3; // Mặc định trung bình nếu dữ liệu null
+
+        String s = sweetness.toLowerCase().trim();
+
+        if (s.contains("không")) return 0;       // Không đường
+        if (s.contains("ít")) return 2;          // Ít ngọt
+        if (s.contains("vừa")) return 3;         // Vừa
+        if (s.contains("rất ngọt")) return 5;    // Rất ngọt
+        if (s.contains("ngọt")) return 4;        // Ngọt
+
+        return 3; // Giá trị mặc định nếu không khớp từ khóa nào
+    }
 }
