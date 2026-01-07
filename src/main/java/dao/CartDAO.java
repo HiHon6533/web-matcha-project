@@ -8,7 +8,7 @@ import model.*;
 import util.JPAUtil;
 
 public class CartDAO {    
-    // Lấy giỏ hàng của Customer (nếu chưa có thì trả về null hoặc tạo mới ở Service)
+    // Lấy giỏ hàng của Customer
     public Cart findCartByUserId(Long userId) {
         EntityManager em = JPAUtil.getEntityManager();
         try {

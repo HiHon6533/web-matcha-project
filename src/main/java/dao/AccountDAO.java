@@ -10,6 +10,7 @@ import model.Customer;
 import util.JPAUtil;
 
 public class AccountDAO {
+    //Lấy account bằng email
     public Account findByEmail(String email) {
         EntityManager em = JPAUtil.getEntityManager();
 
@@ -30,22 +31,22 @@ public class AccountDAO {
             em.close();
         }
     }   
-    
-public boolean checkEmail(String email) 
-{
-    EntityManager em = JPAUtil.getEntityManager();
-    try
+    //Kiểm tra email có tồn tại chưa
+    public boolean checkEmail(String email) 
     {
-        Long count = em.createQuery("SELECT COUNT(a) FROM Account a WHERE a.email = :email", Long.class)
-                       .setParameter("email", email)
-                       .getSingleResult();
-        return count > 0;
-    } 
-    finally 
-    {
-        em.close();
+        EntityManager em = JPAUtil.getEntityManager();
+        try
+        {
+            Long count = em.createQuery("SELECT COUNT(a) FROM Account a WHERE a.email = :email", Long.class)
+                           .setParameter("email", email)
+                           .getSingleResult();
+            return count > 0;
+        } 
+        finally 
+        {
+            em.close();
+        }
     }
-}
     public boolean register(Account account, Customer customer) 
     {
         EntityManager em = JPAUtil.getEntityManager();

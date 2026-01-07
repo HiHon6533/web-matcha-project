@@ -9,7 +9,7 @@ public class CartService {
     private CartDAO cartDAO = new CartDAO();
     
     // Hàm xử lý logic thêm vào List và cộng dồn số lượng
-    private void addProductToCartLogic(Long userId, Product product, int quantity) {
+    public void addProductToCartLogic(Long userId, Product product, int quantity) {
         if (product == null) return;
 
         // Lấy Cart, nếu chưa có thì tạo mới

@@ -50,12 +50,7 @@ public class AccountService {
         if (!match) {
             throw new RuntimeException("Mật khẩu không đúng");
         }
-
         return account;
-        
-    }
-    //CHANGE PASSWORD
-    public void changePassword(){
         
     }
 }
