@@ -52,21 +52,10 @@
 
                             <div class="item-card"> 
                                 <div class="item-image">
-                                    <c:choose>
-                                        <%-- Drink dùng ảnh Drink.png --%>
-                                        <c:when test="${line.product.productID >= 11}">
-                                            <img src="./productImage/Drink.png" 
-                                                 alt="${line.product.productName}" 
-                                                 onerror="this.src='./matchaImage/Dai.png'">
-                                        </c:when>
-
-                                        <%-- Nguyên liệu dùng ảnh tương ứng --%>
-                                        <c:otherwise>
-                                            <img src="./productImage/${line.product.productID}.png" 
-                                                 alt="${line.product.productName}" 
-                                                 onerror="this.src='./matchaImage/Dai.png'">
-                                        </c:otherwise>
-                                    </c:choose>
+                                    
+                                    <img src="${pageContext.request.contextPath}/${line.product.image}" 
+                                         alt="${line.product.productName}" 
+                                         onerror="this.src='./matchaImage/Dai.png'">
                                 </div>
 
                                 <div class="item-info">

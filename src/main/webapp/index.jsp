@@ -407,7 +407,7 @@
                 <!-- CHỌN GRAM -->
                 <div class="quantity-box">
                 <label>Số lượng (g)</label>
-                <input type="number" min="10" step="10" value="50">
+                <input type="number" name="quantity" min="10" step="10" value="50">
                 </div>
 
                 <div class="stats">

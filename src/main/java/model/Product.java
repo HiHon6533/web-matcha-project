@@ -14,6 +14,15 @@ public abstract class Product implements Serializable{
     @Column(name = "product_id")
     private Long productID;
     private String productName;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getProductID() {
         return productID;
