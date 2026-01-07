@@ -33,6 +33,8 @@ public class ConfirmActionServlet extends HttpServlet {
         // Sinh txnRef
         String vnp_TxnRef = String.valueOf(System.currentTimeMillis());
 
+        
+        
         // Tạo order + payment (payment.transactionId = vnp_TxnRef, status = "Chờ thanh toán")
         boolean created = orderService.createOrderWithTransaction(request, total, note, addressIdStr, vnp_TxnRef);
         if (!created) {
@@ -58,6 +60,15 @@ public class ConfirmActionServlet extends HttpServlet {
         vnp_Params.put("vnp_OrderType", "topup");
         vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_IpAddr", request.getRemoteAddr());
+        
+        String returnUrl = request.getScheme() + "://"
+                + request.getServerName() + ":"
+                + request.getServerPort()
+                + request.getContextPath()
+                + "/payment-return";
+
+        vnp_Params.put("vnp_ReturnUrl", returnUrl);
+
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");

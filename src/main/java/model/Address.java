@@ -87,4 +87,18 @@ public class Address implements Serializable{
         this.note = note;
     }
     
+    @Transient
+    public String getAddressDetail() {
+        return house_number + ", " + hamlet + ", " + ward + ", " + province;
+    }
+    
+    @Transient
+    public String getReceiverName() {
+        return customer != null ? customer.getFullName() : "";
+    }
+
+    @Transient
+    public String getPhoneNumber() {
+        return customer != null ? customer.getPhoneNumber() : "";
+    }
 }

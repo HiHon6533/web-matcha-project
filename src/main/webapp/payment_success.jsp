@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <a href="index.jsp" class="btn-home">Quay lại trang chủ</a>
+    <a href="home" class="btn-home">Quay lại trang chủ</a>
 </div>
 
 </body>

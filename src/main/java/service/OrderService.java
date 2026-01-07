@@ -33,8 +33,10 @@ public class OrderService {
         HttpSession session = request.getSession(false);
         Customer cus = (Customer) session.getAttribute("CURRENT_USER");
         Cart cart = cartDAO.findCartByUserId(cus.getUserID());
+        
         if (cart == null) return false;
         return orderDAO.checkoutWithTxn(cus, cart, total, note, addressIdStr, txnRef);
+        
     }
-
+    
 }

@@ -29,17 +29,21 @@
                     <c:when test="${not empty addresses}">
                         <select name="addressId" id="addressId">
                             <c:forEach items="${addresses}" var="addr">
-                                <option value="${addr.id}">
-                                    ${addr.fullAddress} - ${addr.receiverName} (${addr.phone})
+                                <option value="${addr.addressID}">
+                                    ${addr.addressDetail} - ${addr.receiverName} (${addr.phoneNumber})
                                 </option>
                             </c:forEach>
                         </select>
                         <a href="${pageContext.request.contextPath}/address-new">Thêm địa chỉ khác</a>
                     </c:when>
                     <c:otherwise>
-                        <p>Bạn chưa có địa chỉ giao hàng. <a href="${pageContext.request.contextPath}/address-new">Thêm địa chỉ ngay</a></p>
+                        <p>
+                            Bạn chưa có địa chỉ giao hàng.
+                            <a href="${pageContext.request.contextPath}/address-new">Thêm địa chỉ ngay</a>
+                        </p>
                     </c:otherwise>
                 </c:choose>
+
             </div>
 
             <div class="cart-items">
