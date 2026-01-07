@@ -104,7 +104,7 @@
             <!-- PRODUCT 2 -->
             <div class="product-card">
                 <div class="product-img">
-                    <img src="./SanPhamImage/MatchaHaruSuaOatside.png"
+                    <img src="./SanPhamImage/MatchaHaruSuaHatOatside.png"
                          alt="Matcha Haru sữa hạt Oatside" />
                 </div>
 
@@ -131,7 +131,7 @@
             <!-- PRODUCT 3 -->
             <div class="product-card">
                 <div class="product-img">
-                    <img src="./SanPhamImage/MatchaFujiMk4SuaOatSide.png"
+                    <img src="./SanPhamImage/MatchaFujiMk4SuaHatOatside.png"
                          alt="Matcha Fuji Mk4 sữa hạt Oatside" />
                 </div>
 
