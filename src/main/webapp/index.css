@@ -467,9 +467,16 @@ section {
 .bar::after {
   content: "";
   position: absolute;
-  inset: 0;
-  width: calc(var(--value) * 20%);
-  background: var(--matcha-dark);
+  
+  /* --- SỬA Ở ĐÂY --- */
+  /* Xóa dòng inset: 0; */
+  top: 0;
+  left: 0;      /* Chỉ neo bên trái để width hoạt động */
+  bottom: 0;    /* Neo bên dưới để full chiều cao */
+  /* ----------------- */
+  width: calc(var(--value) * 10%); /* Logic tính toán */
+  max-width: 100%;
+  background: var(--matcha-dark); 
   border-radius: 10px;
 }
 

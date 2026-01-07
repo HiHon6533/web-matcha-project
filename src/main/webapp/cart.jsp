@@ -23,7 +23,7 @@
                 <span class="subtitle">まっちゃ</span>
             </a>
         </div>
-        <a href="index.jsp" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
+        <a href="home" class="back-link"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
     </header>
 
     <div class="cart-wrapper">

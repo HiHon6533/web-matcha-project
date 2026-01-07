@@ -64,4 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+   // Hàm tính tổng tiền cho phần Nguyên liệu
+
 });
