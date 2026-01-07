@@ -1,0 +1,211 @@
+/* --- Copy các biến Root để đồng bộ màu sắc --- */
+:root {
+    --matcha-dark: #2D5A27;
+    --matcha-light: #8DA864;
+    --washi-paper: #F9F7F2;
+    --wood-brown: #4A3728;
+    --text-black: #2C2C2C;
+    --soft-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--washi-paper);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-black);
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+/* --- Container chính --- */
+.confirm-wrapper {
+    max-width: 900px;
+    margin: 100px auto 40px; /* Cách top để không bị đè bởi Navbar nếu có */
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--soft-shadow);
+    border: 1px solid rgba(74, 55, 40, 0.1);
+}
+
+h2 {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--matcha-dark);
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: var(--matcha-light);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h3 {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--wood-brown);
+    margin-bottom: 15px;
+    border-left: 4px solid var(--matcha-light);
+    padding-left: 15px;
+}
+
+/* --- Thông tin khách hàng & Địa chỉ --- */
+.customer-info, .address-section, .note-section {
+    background: var(--washi-paper);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.customer-info p {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.customer-info strong {
+    color: var(--matcha-dark);
+}
+
+.address-section label, .note-section label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--wood-brown);
+}
+
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--matcha-dark);
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+}
+
+.address-section a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--matcha-light);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/* --- Bảng sản phẩm --- */
+.cart-items {
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th {
+    background-color: var(--matcha-dark);
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 400;
+}
+
+thead th:first-child { border-radius: 10px 0 0 0; }
+thead th:last-child { border-radius: 0 10px 0 0; }
+
+tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
+
+tbody tr:hover {
+    background-color: rgba(141, 168, 100, 0.05);
+}
+
+/* --- Tổng kết & Nút bấm --- */
+.summary {
+    text-align: right;
+    padding: 20px 0;
+    border-top: 2px solid var(--washi-paper);
+}
+
+.summary p {
+    font-size: 20px;
+    color: var(--wood-brown);
+}
+
+.summary strong {
+    color: var(--matcha-dark);
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn-confirm {
+    background: var(--matcha-dark);
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(45, 90, 39, 0.2);
+}
+
+.btn-confirm:hover {
+    background: #1f3f1b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 90, 39, 0.3);
+}
+
+.btn-cancel {
+    color: #888;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.btn-cancel:hover {
+    color: var(--wood-brown);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .confirm-wrapper {
+        padding: 20px;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .btn-confirm {
+        width: 100%;
+        order: 1;
+    }
+    .btn-cancel {
+        order: 2;
+    }
+}

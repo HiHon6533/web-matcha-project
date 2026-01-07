@@ -5,6 +5,8 @@ import java.util.List;
 
 import dao.CartDAO;
 import dao.OrderDAO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import model.Cart;
 import model.Customer;
 import model.Order;
@@ -26,4 +28,13 @@ public class OrderService {
         }
         return false;
     }
+    
+    public boolean createOrderWithTransaction(HttpServletRequest request, BigDecimal total, String note, String addressIdStr, String txnRef) {
+        HttpSession session = request.getSession(false);
+        Customer cus = (Customer) session.getAttribute("CURRENT_USER");
+        Cart cart = cartDAO.findCartByUserId(cus.getUserID());
+        if (cart == null) return false;
+        return orderDAO.checkoutWithTxn(cus, cart, total, note, addressIdStr, txnRef);
+    }
+
 }

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import util.VNPayConfig;
 /**
  *
@@ -17,6 +19,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
+import model.Payment;
+import util.JPAUtil;
 
 @WebServlet("/payment-return")
 public class PaymentReturnServlet extends HttpServlet {
@@ -72,17 +76,51 @@ public class PaymentReturnServlet extends HttpServlet {
         );
 
         // SO SÁNH
-        if (calculatedHash.equalsIgnoreCase(vnp_SecureHash)) {
+        // tại phần "SO SÁNH" nếu hash hợp lệ:
+    if (calculatedHash.equalsIgnoreCase(vnp_SecureHash)) {
+        String txnRef = request.getParameter("vnp_TxnRef");
+        String vnpRespCode = request.getParameter("vnp_ResponseCode"); // 00 = success
+        String transactionStatus = request.getParameter("vnp_TransactionStatus"); // hoặc dùng vnp_ResponseCode
 
-            if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
-                response.sendRedirect("payment_success.jsp?" + request.getQueryString());
-            } else {
-                response.sendRedirect("payment_failure.jsp");
+        // Update payment/order in DB
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            // Tìm payment theo transactionId
+            List<Payment> payments = em.createQuery("SELECT p FROM Payment p WHERE p.transactionId = :txRef", Payment.class)
+                .setParameter("txRef", txnRef)
+                .getResultList();
+            if (!payments.isEmpty()) {
+                Payment p = payments.get(0);
+                if ("00".equals(vnpRespCode) || "00".equals(request.getParameter("vnp_TransactionStatus"))) {
+                    p.setStatus("Đã thanh toán");
+                    p.getOrder().setOrderStatus("Đã thanh toán!");
+                } else {
+                    p.setStatus("Thanh toán thất bại: " + vnpRespCode);
+                    p.getOrder().setOrderStatus("Thanh toán thất bại");
+                    // nếu muốn: hoàn tác tồn kho hoặc trả hàng lại vào cart -> implement thêm
+                }
+                em.merge(p);
+                em.merge(p.getOrder());
             }
-
-        } else {
-            response.getWriter().println("<h3>Lỗi: Chữ ký không hợp lệ!</h3>");
+            tx.commit();
+        } catch (Exception ex) {
+            if (tx.isActive()) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            em.close();
         }
+
+        if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
+            response.sendRedirect("payment_success.jsp?" + request.getQueryString());
+        } else {
+            response.sendRedirect("payment_failure.jsp");
+        }
+    } else {
+        response.getWriter().println("<h3>Lỗi: Chữ ký không hợp lệ!</h3>");
+    }
+
     }
 
 }

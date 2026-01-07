@@ -104,4 +104,9 @@ public class CartService {
     public void removeLine(Long lineId){
         cartDAO.deleteLine(lineId);
     }
+    
+    public Cart findCartByUserId(Long userId) {
+        return cartDAO.findCartByUserId(userId);
+    }
+    
 }

@@ -16,7 +16,8 @@ public class Payment implements Serializable{
     private String method;
     private String status;
     private LocalDateTime createdAt;
-
+    
+    private String transactionId;
     @OneToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
@@ -61,5 +62,12 @@ public class Payment implements Serializable{
         this.createdAt = createdAt;
     }
     
+    public String getTransactionId() { 
+        return transactionId; 
+    }
+    
+    public void setTransactionId(String transactionId) { 
+        this.transactionId = transactionId; 
+    }
     
 }

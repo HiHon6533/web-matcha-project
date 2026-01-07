@@ -3,6 +3,7 @@ package service;
 import dao.AddressDAO;
 import model.Address;
 import model.Customer;
+import java.util.List;
 
 public class AddressService {
     private AddressDAO addressDAO = new AddressDAO();
@@ -33,4 +34,7 @@ public class AddressService {
         return addressDAO.insertAddress(newAddress);
     }
     
+    public List<Address> getAddressesByUserId(Long userId) {
+        return addressDAO.findByUserId(userId);
+    }    
 }

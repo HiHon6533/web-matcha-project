@@ -4,6 +4,7 @@ import model.Address;
 import util.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import java.util.List;
 
 public class AddressDAO {
 
@@ -78,4 +79,18 @@ public class AddressDAO {
         em.close();
     }
 }
+    public List<Address> findByUserId(Long userId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery(
+                "SELECT a FROM Address a WHERE a.customer.userID = :uid",
+                Address.class
+            )
+            .setParameter("uid", userId)
+            .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 }
