@@ -33,8 +33,9 @@ signUpButton.addEventListener('click', () => {
 });
 
 // Khi bấm nút "Đăng nhập" (ở panel Overlay)
-
-
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
 // --- XỬ LÝ SUBMIT FORM (LOGIC GIẢ LẬP) ---
 
 // 1. Xử lý ĐĂNG KÝ
@@ -43,16 +44,11 @@ const btnSwitchToSignIn = document.getElementById('btnSwitchToSignIn');
 signUpForm.addEventListener('submit', (e) => {
 });
 
-// Nút "Đăng nhập ngay" trong thông báo thành công
+//Nút kiểm tra ngay
 if (btnSwitchToSignIn) {
     btnSwitchToSignIn.addEventListener('click', () => {
-        // Trượt sang màn hình đăng nhập
+        window.open('https://mail.google.com/', '_blank');
         container.classList.remove("right-panel-active");
-        
-        // Reset lại form đăng ký sau khi hiệu ứng trượt xong (600ms)
-        setTimeout(() => {
-            resetFormUI(signUpForm);
-        }, 600);
     });
 }
 

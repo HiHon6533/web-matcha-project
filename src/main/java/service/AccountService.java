@@ -4,12 +4,15 @@ import model.Account;
 import model.Customer;
 import dao.AccountDAO;
 import util.PasswordUtil;
+import util.TokenUtil;
 import java.time.LocalDateTime;
 import org.mindrot.jbcrypt.BCrypt;
+import service.EmailService;
 
 public class AccountService {
     
     private AccountDAO accountDAO = new AccountDAO();
+    private EmailService emailService = new EmailService();
     
     //REGISTER
     public String registerUser(String fullname, String phone, String email, String password) 
@@ -21,13 +24,15 @@ public class AccountService {
         
         //Mã hóa
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+        //Tạo token lúc tạo tk nè
+        String randomToken = TokenUtil.generateToken();
         
         //Tạo account mới
         Account newAccount = new Account();
         newAccount.setEmail(email);
         newAccount.setPassword(hashedPassword);
-        newAccount.setActived(true);
-        newAccount.setToken(null);
+        newAccount.setActived(false);
+        newAccount.setToken(randomToken);
         newAccount.setCreatedAt(LocalDateTime.now());
         
         //Tạo customer mới
@@ -36,7 +41,17 @@ public class AccountService {
         newCustomer.setPhoneNumber(phone);
         
         //Nạp vào database
-        return accountDAO.register(newAccount, newCustomer) ? "Success" : "EROR!";
+        boolean isSuccess = accountDAO.register(newAccount, newCustomer);
+
+        if (isSuccess) {
+            new Thread(() -> {
+                emailService.sendVerificationEmail(email, fullname, randomToken);
+            }).start();
+
+            return "Success";
+        } else {
+            return "ERROR!";
+        }
     }
     //LOGIN
     public Account login(String email, String password){
@@ -57,5 +72,12 @@ public class AccountService {
     //CHANGE PASSWORD
     public void changePassword(){
         
+    }
+    
+    public boolean verifyAccount(String token) {
+        Account account = accountDAO.findByToken(token);
+        account.setActived(true);
+        account.setToken(null);
+        return accountDAO.update(account);
     }
 }

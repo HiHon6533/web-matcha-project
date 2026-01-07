@@ -4,28 +4,22 @@ import dao.AddressDAO;
 import model.Address;
 import model.Customer;
 
-public class AddressService
-{
+public class AddressService {
     private AddressDAO addressDAO = new AddressDAO();
-    
-    //Đặt địa chỉ làm địa chỉ mặc định
-    public boolean changeDefaultAddress(Long userID, Long df_adddressID)
-    {
-        addressDAO.removeAllDefault(userID);
-        return addressDAO.setAsDefault(df_adddressID);
+
+    public boolean changeDefaultAddress(Long userID, Long df_adddressID) {
+        return addressDAO.changeDefaultAddress(userID, df_adddressID);
     }
     
-    //Dùng khi thêm địa chỉ mới
+    public boolean deleteUserAddress(Long userId, Long addressId) {
+    return addressDAO.deleteAddress(addressId, userId);
+    }
+
     public boolean addNewAddress(Customer customer, String province, String ward, 
-                                 String hamlet, String houseNumber, String note, boolean df_addressID) 
-    {
-
-        boolean isFirstAddress = (customer.getAddresses() == null || customer.getAddresses().isEmpty());
-        boolean finalIsDefault = df_addressID || isFirstAddress;
-
-        if (finalIsDefault) {
-            addressDAO.removeAllDefault(customer.getUserID());
-        }
+                                 String hamlet, String houseNumber, String note, boolean isUserChosenDefault) {
+        
+        boolean isFirstAddress = (customer.getAddresses() == null || customer.getAddresses().isEmpty());        
+        boolean finalIsDefault = isUserChosenDefault || isFirstAddress;
 
         Address newAddress = new Address();
         newAddress.setProvince(province);
@@ -33,9 +27,10 @@ public class AddressService
         newAddress.setHamlet(hamlet);
         newAddress.setHouse_number(houseNumber);
         newAddress.setNote(note);
-        newAddress.setIs_default(finalIsDefault); 
-        newAddress.setCustomer(customer); 
+        newAddress.setCustomer(customer);
+        newAddress.setIs_default(finalIsDefault);
 
         return addressDAO.insertAddress(newAddress);
-    }    
+    }
+    
 }

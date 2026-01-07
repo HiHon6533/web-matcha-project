@@ -18,8 +18,6 @@ public class RegisterServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        System.out.println("DOPOST CHẠY");
-
         request.setCharacterEncoding("UTF-8");
         
         // Lấy dữ liệu
