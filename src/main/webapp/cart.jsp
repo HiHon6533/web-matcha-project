@@ -122,7 +122,7 @@
                                 </span>
                             </div>
 
-                            <form action="payment" method="POST" id="checkoutForm">
+                            <form action="order" method="POST" id="checkoutForm">
                                 <input type="hidden" name="amount" id="vnpay-amount" value="${grandTotal}">
                                 <input type="hidden" name="orderInfo" value="Thanh toan don hang Matcha HINATFU">
                                 <button type="submit" class="btn-checkout">Thanh toán ngay</button>
