@@ -55,7 +55,6 @@ public class AccountDAO {
 
         try 
         {
-            System.out.println("Nap xun db");
             
             trans.begin();
             customer.setAccount(account);
@@ -66,7 +65,6 @@ public class AccountDAO {
         } 
         catch (Exception e) 
         {
-             System.out.println("Co loi");
 
             if (trans.isActive()) 
             {
@@ -78,8 +76,40 @@ public class AccountDAO {
         finally 
         {
             em.close();
-            System.out.println("dong entity");
                         
+        }
+    }
+
+    public Account findByToken(String token) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Account> query = em.createQuery(
+                "SELECT a FROM Account a WHERE a.token = :token", 
+                Account.class
+            );
+            query.setParameter("token", token);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public boolean update(Account account) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.merge(account);
+            trans.commit();
+            return true;
+        } catch (Exception e) {
+            if (trans.isActive()) trans.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
         }
     }
 }

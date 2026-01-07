@@ -14,9 +14,9 @@ public class Account implements Serializable {
     private String email;
     private String password;
     private String token;
-    private Boolean actived;
+    private Boolean actived = false;
     private LocalDateTime createdAt;
-    private String role;
+    private String role = "user";
 
     public String getRole() {
         return role;
