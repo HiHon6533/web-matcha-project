@@ -25,8 +25,11 @@ public class RegisterServlet extends HttpServlet
         String phone = request.getParameter("phonenumber");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        
+        String fullUrl = request.getRequestURL().toString();
+        String baseUrl = fullUrl.substring(0, fullUrl.length() - request.getServletPath().length());
 
-        String result = accountService.registerUser(fullname, phone, email, password);
+        String result = accountService.registerUser(fullname, phone, email, password, baseUrl);
 
         if ("Success".equals(result)) 
         {

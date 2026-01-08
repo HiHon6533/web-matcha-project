@@ -21,7 +21,7 @@ public class EmailService {
     private final String FROM_EMAIL = "phamleanhtu010705@gmail.com";
     private final String PASSWORD = "cssq snix ljxl wgyc";
 
-    public boolean sendVerificationEmail(String toEmail, String name, String token) {
+    public boolean sendVerificationEmail(String toEmail, String name, String token, String baseUrl) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
@@ -42,8 +42,7 @@ public class EmailService {
             message.setSubject("Xác thực tài khoản HINATFU của bạn");
 
             String htmlContent = loadEmailTemplate("verify.html");
-            String verifyLink = "http://localhost:8080/Matcha-Store/verify?token=" + token;
-
+            String verifyLink = baseUrl + "/verify?token=" + token;
             htmlContent = htmlContent.replace("[[NAME]]", name);
             htmlContent = htmlContent.replace("[[LINK]]", verifyLink);
 

@@ -15,7 +15,7 @@ public class AccountService {
     private EmailService emailService = new EmailService();
     
     //REGISTER
-    public String registerUser(String fullname, String phone, String email, String password) 
+    public String registerUser(String fullname, String phone, String email, String password, String baseUrl) 
     {       
         if (accountDAO.checkEmail(email))
         {
@@ -46,7 +46,7 @@ public class AccountService {
 
         if (isSuccess) {
             new Thread(() -> {
-                emailService.sendVerificationEmail(email, fullname, randomToken);
+                emailService.sendVerificationEmail(email, fullname, randomToken, baseUrl);
             }).start();
 
             return "Success";
