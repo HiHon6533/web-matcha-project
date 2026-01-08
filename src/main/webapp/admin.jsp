@@ -250,7 +250,6 @@
             <div class="table-container">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                     <h3>Danh sách đơn hàng chờ xử lý</h3>
-                    <input type="text" placeholder="Tìm kiếm mã đơn..." style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
                 </div>
                 
                 <table>
@@ -267,32 +266,34 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${orders}" var="order">
-                            <tr>
-                                <td>${order.orderID}</td>
-                                <td>${order.customer.fullName}<br><small>${order.customer.phoneNumber}</small></td>
-                                <td>
-                                    <c:forEach items="${order.products}" var="line">
-                                        ${line.quantity}x ${line.product.productName}<br>
-                                    </c:forEach>
-                                </td>
-                                <td><b><fmt:formatNumber value="${order.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/></b></td>
-                                <td>${order.orderStatus}</td>
-                                <td>
-                                    <select name="status" form="form-${order.orderID}" style="padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
-                                        <option value="Chờ xác nhận" selected>Chờ xác nhận</option>
-                                        <option value="Đang pha chế">Đang pha chế</option>
-                                        <option value="Đang giao">Đang giao</option>
-                                        <option value="Hoàn thành">Hoàn thành</option>
-                                        <option value="Hủy">Hủy</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <form action="updateStatus" method="POST" id="form-${order.orderID}">
-                                        <input type="hidden" name="orderId" value="${order.orderID}">
-                                        <button type="submit" class="btn btn-primary">Cập nhật</button>
-                                    </form>
-                                </td>
-                            </tr>
+                            <c:if test="${order.orderStatus == 'Đã thanh toán' || order.orderStatus == 'Đang pha chế' 
+                                          || order.orderStatus == 'Đang giao'}">
+                                <tr>
+                                    <td>${order.orderID}</td>
+                                    <td>${order.customer.fullName}<br><small>${order.customer.phoneNumber}</small></td>
+                                    <td>
+                                        <c:forEach items="${order.products}" var="line">
+                                            ${line.quantity}x ${line.product.productName}<br>
+                                        </c:forEach>
+                                    </td>
+                                    <td><b><fmt:formatNumber value="${order.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/></b></td>
+                                    <td>${order.orderStatus}</td>
+                                    <td>
+                                        <select name="status" form="form-${order.orderID}" style="padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                                            <option value="Đang pha chế" selected>Đang pha chế</option>
+                                            <option value="Đang giao">Đang giao</option>
+                                            <option value="Hoàn thành">Hoàn thành</option>
+                                            <option value="Hủy">Hủy</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <form action="updateStatus" method="POST" id="form-${order.orderID}">
+                                            <input type="hidden" name="orderId" value="${order.orderID}">
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -368,7 +369,7 @@
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
             }
-        }
+        };
     </script>
 </body>
 </html>
