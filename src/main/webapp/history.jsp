@@ -46,7 +46,7 @@
                             <c:if test="${order.orderStatus != 'Thanh toán thất bại'&& order.orderStatus != 'Chờ thanh toán'&& order.orderStatus != 'Hủy' && order.orderStatus != null}">
                                 <div class="item-card">
                                     <div class="item-info">
-                                        <h3 class="item-name">Đơn hàng số ${order.orderID}</h3>
+                                        <h3 class="item-name">Mã đơn hàng: ${order.orderID}</h3>
                                         <p class="item-desc">
                                             Ngày mua: <fmt:formatDate value="${order.createdAtAsDate}" pattern="dd/MM/yyyy HH:mm:ss" /> <br>
                                             Danh sách sản phẩm đã mua: <br>
