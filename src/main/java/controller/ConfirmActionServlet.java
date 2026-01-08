@@ -72,7 +72,7 @@ public class ConfirmActionServlet extends HttpServlet {
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_CurrCode", "VND");
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        // store raw orderInfo (no encode here) — we'll encode only when building query
+        // store raw orderInfo (no encode here) — we'll encode only when building hash/query
         vnp_Params.put("vnp_OrderInfo", orderInfo == null ? "" : orderInfo);
         vnp_Params.put("vnp_OrderType", "topup");
         vnp_Params.put("vnp_Locale", "vn");
@@ -93,7 +93,6 @@ public class ConfirmActionServlet extends HttpServlet {
         // CreateDate & ExpireDate with proper timezone
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        // optional: set formatter timezone explicitly to ensure consistency
         formatter.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
 
         String vnp_CreateDate = formatter.format(cld.getTime());
@@ -103,25 +102,44 @@ public class ConfirmActionServlet extends HttpServlet {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
-        // Build hashData (NOT URL-encoded) and query (URL-encoded)
+        // Helper: RFC3986 style encode (URLEncoder -> replace '+' with '%20')
+        // (we use UTF-8 and replace '+' to match RFC3986 expectations)
+        final java.util.function.Function<String, String> encode = (value) -> {
+            try {
+                if (value == null) return "";
+                String encoded = URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+                // URLEncoder encodes space to '+', replace with %20 for RFC3986
+                return encoded.replace("+", "%20");
+            } catch (Exception ex) {
+                return "";
+            }
+        };
+
+        // Build hashData (URL-encoded values) and query (URL-encoded names & values)
         List<String> fieldNames = new ArrayList<>(vnp_Params.keySet());
         Collections.sort(fieldNames);
+
         StringBuilder hashData = new StringBuilder();
         StringBuilder query = new StringBuilder();
+
         Iterator<String> itr = fieldNames.iterator();
         while (itr.hasNext()) {
             String fieldName = itr.next();
             String fieldValue = vnp_Params.get(fieldName);
             if (fieldValue != null && fieldValue.length() > 0) {
-                // For hash: use raw value (no URL encode)
-                hashData.append(fieldName).append('=').append(fieldValue);
-                // For query: URL-encode names and values using UTF-8
-                query.append(URLEncoder.encode(fieldName, StandardCharsets.UTF_8.toString()))
+                String encodedValue = encode.apply(fieldValue);
+
+                // HASH DATA: use encodedValue
+                hashData.append(fieldName).append('=').append(encodedValue);
+
+                // QUERY: encode name and use the same encodedValue
+                query.append(URLEncoder.encode(fieldName, StandardCharsets.UTF_8.toString()).replace("+", "%20"))
                      .append('=')
-                     .append(URLEncoder.encode(fieldValue, StandardCharsets.UTF_8.toString()));
+                     .append(encodedValue);
+
                 if (itr.hasNext()) {
-                    query.append('&');
                     hashData.append('&');
+                    query.append('&');
                 }
             }
         }
