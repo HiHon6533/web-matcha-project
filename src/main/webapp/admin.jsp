@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -120,7 +122,7 @@
             </a>
         </div>
         <div style="padding: 20px;">
-            <a href="#" class="btn btn-delete" style="width: 100%; justify-content: center;">
+            <a href="logout" class="btn btn-delete" style="width: 100%; justify-content: center;">
                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </a>
         </div>
@@ -254,36 +256,44 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Mã ĐH</th>
+                            <th>Mã đơn hàng</th>
                             <th>Khách hàng</th>
                             <th>Chi tiết món</th>
                             <th>Tổng tiền</th>
-                            <th>Cập nhật trạng thái</th>
-                            <th>Hành động</th>
+                            <th>Trạng thái hiện tại</th>
+                            <th>Trạng thái mới</th>
+                            <th>Cập nhật</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#ORD999</td>
-                            <td>Trần Thị B<br><small>0905xxx</small></td>
-                            <td>
-                                1x Matcha Latte (Sữa hạt)<br>
-                                2x Bánh quy trà xanh
-                            </td>
-                            <td><b>185.000đ</b></td>
-                            <td>
-                                <select style="padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
-                                    <option value="pending" selected>Chờ xác nhận</option>
-                                    <option value="preparing">Đang pha chế</option>
-                                    <option value="shipping">Đang giao</option>
-                                    <option value="completed">Hoàn thành</option>
-                                    <option value="cancelled">Hủy</option>
-                                </select>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" title="Xem chi tiết & In"><i class="fas fa-eye"></i></button>
-                            </td>
-                        </tr>
+                        <c:forEach items="${orders}" var="order">
+                            <tr>
+                                <td>${order.orderID}</td>
+                                <td>${order.customer.fullName}<br><small>${order.customer.phoneNumber}</small></td>
+                                <td>
+                                    <c:forEach items="${order.products}" var="line">
+                                        ${line.quantity}x ${line.product.productName}<br>
+                                    </c:forEach>
+                                </td>
+                                <td><b><fmt:formatNumber value="${order.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/></b></td>
+                                <td>${order.orderStatus}</td>
+                                <td>
+                                    <select name="status" form="form-${order.orderID}" style="padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                                        <option value="Chờ xác nhận" selected>Chờ xác nhận</option>
+                                        <option value="Đang pha chế">Đang pha chế</option>
+                                        <option value="Đang giao">Đang giao</option>
+                                        <option value="Hoàn thành">Hoàn thành</option>
+                                        <option value="Hủy">Hủy</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <form action="updateStatus" method="POST" id="form-${order.orderID}">
+                                        <input type="hidden" name="orderId" value="${order.orderID}">
+                                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

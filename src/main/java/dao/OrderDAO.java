@@ -141,6 +141,7 @@ public class OrderDAO {
         }
     }
 
+
     public boolean finalizeOrderPayment(String txnRef) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -246,10 +247,22 @@ public class OrderDAO {
             if (tx.isActive()) tx.rollback();
             ex.printStackTrace();
             return false;
+        }
+    }
+    //Lấy tất cả các Order
+    public List<Order> getAllOrders(){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery("SELECT o FROM Order o ORDER BY o.createdAt DESC", Order.class)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+
         } finally {
             em.close();
         }
     }
+
  
     public boolean markPaymentFailed(String txnRef, String reason) {
         EntityManager em = JPAUtil.getEntityManager();
@@ -277,6 +290,32 @@ public class OrderDAO {
             return true;
         } catch (Exception e) {
             if (tx.isActive()) tx.rollback();
+        }
+        return false;
+    }
+    
+    
+    
+    //Cập nhật trạng thái đơn hàng
+    public boolean updateStatus(Long orderId, String newStatus){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            Order order = (Order) em.find(Order.class, orderId);
+            if (order != null) {
+                order.setOrderStatus(newStatus);
+                // Lưu thay đổi xuống DB
+                em.getTransaction().commit();
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+
             e.printStackTrace();
             return false;
         } finally {

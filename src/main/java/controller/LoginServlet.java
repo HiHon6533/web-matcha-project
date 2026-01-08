@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet{
 
         try {
             Account account = accountService.login(email, password);
-            Customer user = customerService.findCustomerByEmail(email);
             
             //Xóa session cũ nếu có
             HttpSession oldSession = request.getSession(false);
@@ -33,20 +32,20 @@ public class LoginServlet extends HttpServlet{
             //Tạo session mới
             HttpSession session = request.getSession(true);
             session.setAttribute("LOGGED_IN_USER", account);
-            session.setAttribute("CURRENT_USER", user);
             
             if (account.getRole().equals("admin"))
             {
                 response.sendRedirect(request.getContextPath() + "/admin");
             }
             else {
+                Customer user = customerService.findCustomerByEmail(email);
+                session.setAttribute("CURRENT_USER", user);
                 response.sendRedirect(request.getContextPath() + "/home");
             }
 
-            } catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             request.setAttribute("loginError", e.getMessage());
-            request.getRequestDispatcher("/login.jsp")
-                   .forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 

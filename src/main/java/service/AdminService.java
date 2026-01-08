@@ -1,25 +1,18 @@
 package service;
 
+import dao.OrderDAO;
+import java.util.List;
+import model.Order;
+
 
 public class AdminService {
+    private OrderDAO orderDAO = new OrderDAO();
     
-    //ADD PRODUCT
-    public void addProduct() {
-        
+    public List<Order> getAllOrders(){
+        return orderDAO.getAllOrders();
     }
-    
-    //UPDATE PRODUCT
-    public void updateProduct(Long productID) {
-        
-    }
-
-    //GET REVENUE (FILTER)
-    public void getRevenue() {
-        
-    }
-
-    //GET REVENUE BY PRODUCT (FILTER)
-    public void getRevenueByProduct() {
-        
+   
+    public boolean updateStatus(Long orderId, String newStatus){
+        return orderDAO.updateStatus(orderId, newStatus);
     }
 }
