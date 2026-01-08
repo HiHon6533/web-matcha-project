@@ -116,31 +116,66 @@
         </div>
 
         <div class="product-grid">
-            <c:forEach items="${featuredProducts}" var="p">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="${p.image}" alt="${p.productName}" />
-                    </div>
-
-                    <div class="product-info">
-                        <h3>${p.productName}</h3>
-<!--                        <p>Hương vị đậm đà, nguyên liệu tự nhiên (${p.size}).</p>-->
-                        <div class="price-add">
-                            <span>
-                                <fmt:formatNumber value="${p.price}" type="number" maxFractionDigits="0"/>đ
-                            </span>
-                            <form action="${pageContext.request.contextPath}/addToCart" method="post">
-                                <input type="hidden" name="type" value="standard">
-                                <input type="hidden" name="productId" value="${p.productID}" />
-                                <input type="hidden" name="quantity" value="1" />
-                                <button type="submit" class="add-btn">Thêm +</button>
-                            </form>
-                        </div>
-                    </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="SanPhamImage/MatchaFuji03SuaMeiji.png" alt="Matcha Fuji 03 Sữa Meiji" />
                 </div>
 
-            </c:forEach>
+                <div class="product-info">
+                    <h3>Matcha Fuji 03 Sữa Meiji</h3>
+                    <div class="price-add">
+                        <span>
+                            <fmt:formatNumber value="43000" type="number" maxFractionDigits="0"/>đ
+                        </span>
+                        <form action="${pageContext.request.contextPath}/addToCart" method="post">
+                            <input type="hidden" name="type" value="standard">
+                            <input type="hidden" name="productId" value="26" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-btn">Thêm +</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="SanPhamImage/MatchaFujiMk4SuaTuoi.png" alt="Matcha Fuji Mk4 Sữa Tươi" />
+                </div>
 
+                <div class="product-info">
+                    <h3>Matcha Fuji Mk4 Sữa Tươi</h3>
+                    <div class="price-add">
+                        <span>
+                            <fmt:formatNumber value="33000" type="number" maxFractionDigits="0"/>đ
+                        </span>
+                        <form action="${pageContext.request.contextPath}/addToCart" method="post">
+                            <input type="hidden" name="type" value="standard">
+                            <input type="hidden" name="productId" value="27" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-btn">Thêm +</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="SanPhamImage/HoujichaSuaTuoi.png" alt="Houjicha Sữa Tươi" />
+                </div>
+
+                <div class="product-info">
+                    <h3>Houjicha Sữa Tươi</h3>
+                    <div class="price-add">
+                        <span>
+                            <fmt:formatNumber value="38000" type="number" maxFractionDigits="0"/>đ
+                        </span>
+                        <form action="${pageContext.request.contextPath}/addToCart" method="post">
+                            <input type="hidden" name="type" value="standard">
+                            <input type="hidden" name="productId" value="31" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-btn">Thêm +</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>  
     </section>
             
