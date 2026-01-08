@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession; // Thêm import này
 
 @WebServlet(name = "VerifyServlet", urlPatterns = {"/verify"})
 public class VerifyServlet extends HttpServlet {
@@ -25,13 +26,17 @@ public class VerifyServlet extends HttpServlet {
         }
 
         if (verified) {
-            request.setAttribute("message", "Xác thực thành công! Bạn có thể đăng nhập ngay.");
-            request.setAttribute("messageType", "success");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            // SỬA: Dùng Session để gửi thông báo "thành công" sang trang login.jsp
+            // Tên biến "successMsg" phải khớp với code trong login.jsp
+            HttpSession session = request.getSession();
+            session.setAttribute("successMsg", "Xác thực thành công! Bạn có thể đăng nhập ngay.");
+            
+            // SỬA: Dùng sendRedirect để URL chuyển về login.jsp (xóa token khỏi thanh địa chỉ)
+            response.sendRedirect("login.jsp");
         }
         else {
-            request.setAttribute("message", "Liên kết xác thực không hợp lệ hoặc đã hết hạn!");
-            request.setAttribute("messageType", "error");
+            // SỬA: Đổi tên biến thành "loginError" để khớp với phần hiển thị lỗi trong login.jsp
+            request.setAttribute("loginError", "Liên kết xác thực không hợp lệ hoặc đã hết hạn!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

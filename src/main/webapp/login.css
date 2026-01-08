@@ -313,6 +313,24 @@ button.ghost:hover {
     align-items: center;    /* Căn giữa */
     width: 100%;            /* Chiếm trọn chiều rộng */
 }
+.alert-success {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            animation: fadeIn 0.5s;
+        }
+
 
 /* Hiệu ứng hiện dần */
 @keyframes fadeIn {
