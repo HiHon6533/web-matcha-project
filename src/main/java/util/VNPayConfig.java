@@ -17,7 +17,7 @@ import java.util.*;
 
 public class VNPayConfig {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/Matcha_Store-0/payment-return";
+    public static String vnp_ReturnUrl = "https://hinatfu-k23.onrender.com/payment-return";
     public static String vnp_TmnCode = "IZYBCMSZ"; // Mã website tại VNPay 
     public static String vnp_HashSecret = "RH6J86S0T3Q526K4ZVOWCUEZ64V5J1ZV"; // Chuỗi bí mật
 
