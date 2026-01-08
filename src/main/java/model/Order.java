@@ -94,6 +94,9 @@ public class Order implements Serializable{
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
-    
-    
+    //format ngày
+    public java.util.Date getCreatedAtAsDate() {
+        if (this.createdAt == null) return null;
+        return java.sql.Timestamp.valueOf(this.createdAt);
+    }
 }
