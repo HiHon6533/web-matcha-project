@@ -5,6 +5,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.LockModeType;
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
+import jakarta.persistence.NoResultException;
 
 import model.*;
 import java.util.List;
@@ -323,4 +324,26 @@ public class OrderDAO {
         }
     }
 
+    public Order getOrderByTxnRef(String txnRef) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            // Fetch order + its product lines + product to ensure data for email template
+            return em.createQuery(
+                "SELECT DISTINCT o FROM Order o " +
+                "JOIN o.payment p " +
+                "LEFT JOIN FETCH o.products pl " +
+                "LEFT JOIN FETCH pl.product prod " +
+                "WHERE p.transactionid = :txRef", Order.class)
+                .setParameter("txRef", txnRef)
+                .getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
 }

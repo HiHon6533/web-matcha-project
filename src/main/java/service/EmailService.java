@@ -18,8 +18,8 @@ import model.ProductLine;
 
 public class EmailService {
 
-    private final String FROM_EMAIL = "phamleanhtu010705@gmail.com";
-    private final String PASSWORD = "cssq snix ljxl wgyc";
+    private final String FROM_EMAIL = "hinatfu@gmail.com";
+    private final String PASSWORD = "bbfg gjls wybz pzso";
 
     public boolean sendVerificationEmail(String toEmail, String name, String token) {
         Properties props = new Properties();

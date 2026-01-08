@@ -75,4 +75,9 @@ public class OrderService {
         return orderDAO.markPaymentFailed(txnRef, reason);
     }
     
+    public Order getOrderByTxnRef(String txnRef) {
+        return orderDAO.getOrderByTxnRef(txnRef);
+    }
+
+    
 }
