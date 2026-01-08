@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/confirm.css">
 </head>
 <body>
+    
     <div class="confirm-wrapper">
         <h2>Xác nhận đơn hàng</h2>
 

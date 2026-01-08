@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 import model.Payment;
+import service.OrderService;
 import util.JPAUtil;
 
 @WebServlet("/payment-return")
@@ -75,47 +76,25 @@ public class PaymentReturnServlet extends HttpServlet {
                 hashData.toString()
         );
 
-        // SO SÁNH
-        // tại phần "SO SÁNH" nếu hash hợp lệ:
+    // SO SÁNH
     if (calculatedHash.equalsIgnoreCase(vnp_SecureHash)) {
         String txnRef = request.getParameter("vnp_TxnRef");
-        String vnpRespCode = request.getParameter("vnp_ResponseCode"); // 00 = success
-        String transactionStatus = request.getParameter("vnp_TransactionStatus"); // hoặc dùng vnp_ResponseCode
+        String vnpRespCode = request.getParameter("vnp_ResponseCode"); // "00" success
 
-        // Update payment/order in DB
-        EntityManager em = JPAUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            // Tìm payment theo transactionId
-            List<Payment> payments = em.createQuery("SELECT p FROM Payment p WHERE p.transactionId = :txRef", Payment.class)
-                .setParameter("txRef", txnRef)
-                .getResultList();
-            if (!payments.isEmpty()) {
-                Payment p = payments.get(0);
-                if ("00".equals(vnpRespCode) || "00".equals(request.getParameter("vnp_TransactionStatus"))) {
-                    p.setStatus("Đã thanh toán");
-                    p.getOrder().setOrderStatus("Đã thanh toán!");
-                } else {
-                    p.setStatus("Thanh toán thất bại: " + vnpRespCode);
-                    p.getOrder().setOrderStatus("Thanh toán thất bại");
-                    // nếu muốn: hoàn tác tồn kho hoặc trả hàng lại vào cart -> implement thêm
-                }
-                em.merge(p);
-                em.merge(p.getOrder());
+        if ("00".equals(vnpRespCode)) {
+            boolean finalizeOk = new OrderService().finalizePaymentAfterVNPay(txnRef);
+            // finalizeOk == true => đã trừ kho và cập nhật order/payment
+            if (finalizeOk) {
+                response.sendRedirect("payment_success.jsp?" + request.getQueryString());
+            } else {
+                // finalize failed (ví dụ: hết hàng khi finalizing)
+                // cập nhật Payment/Order đã được DAO xử lý (đã set status thất bại) hoặc bạn có thể thêm log
+                response.sendRedirect("confirm.jsp?reason=out_of_stock");
             }
-            tx.commit();
-        } catch (Exception ex) {
-            if (tx.isActive()) tx.rollback();
-            ex.printStackTrace();
-        } finally {
-            em.close();
-        }
-
-        if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
-            response.sendRedirect("payment_success.jsp?" + request.getQueryString());
         } else {
-            response.sendRedirect("payment_failure.jsp");
+            // nếu trả về code khác -> mark payment thất bại
+            // cập nhật Payment tương ứng (nếu cần) - hiện bạn đã làm merge trong PaymentReturnServlet
+            response.sendRedirect("confirm.jsp");
         }
     } else {
         response.getWriter().println("<h3>Lỗi: Chữ ký không hợp lệ!</h3>");
