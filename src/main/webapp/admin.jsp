@@ -122,7 +122,7 @@
             </a>
         </div>
         <div style="padding: 20px;">
-            <a href="#" class="btn btn-delete" style="width: 100%; justify-content: center;">
+            <a href="logout" class="btn btn-delete" style="width: 100%; justify-content: center;">
                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </a>
         </div>

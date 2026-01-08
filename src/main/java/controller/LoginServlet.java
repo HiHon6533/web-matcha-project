@@ -43,10 +43,9 @@ public class LoginServlet extends HttpServlet{
                 response.sendRedirect(request.getContextPath() + "/home");
             }
 
-            } catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             request.setAttribute("loginError", e.getMessage());
-            request.getRequestDispatcher("/login.jsp")
-                   .forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 
