@@ -15,7 +15,13 @@
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
-
+    
+    <c:if test="${not empty sessionScope.ERROR_MSG}">
+      <div class="alert alert-danger">${sessionScope.ERROR_MSG}</div>
+      <c:remove var="ERROR_MSG" scope="session"/>
+    </c:if>
+    
+    
     <header class="cart-header">
         <div class="brand-header">
             <a href="home" class="logo-link">

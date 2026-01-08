@@ -9,6 +9,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import model.Cart;
+import model.Customer;
+import service.CartService;
 import service.OrderService;
 import util.VNPayConfig;
 
@@ -30,9 +33,18 @@ public class ConfirmActionServlet extends HttpServlet {
         String orderInfo = request.getParameter("orderInfo");
         String note = request.getParameter("note");
         String addressIdStr = request.getParameter("addressId"); // nếu bạn dùng địa chỉ
-        // Sinh txnRef
+        
+// Sinh txnRef
         String vnp_TxnRef = String.valueOf(System.currentTimeMillis());
 
+        // CHECK tồn kho
+        Customer cus = (Customer) session.getAttribute("CURRENT_USER");
+        Cart cart = new CartService().findCartByUserId(cus.getUserID());
+        if (cart == null || !new OrderService().isStockAvailableForCart(cart)) {
+            session.setAttribute("ERROR_MSG", "Không đủ hàng trong kho. Vui lòng chỉnh sửa giỏ hàng.");
+            response.sendRedirect(request.getContextPath() + "/cart");
+            return;
+        }
         
         
         // Tạo order + payment (payment.transactionId = vnp_TxnRef, status = "Chờ thanh toán")
