@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -47,58 +48,106 @@
             </div>
         </div>
 
-        <div id="dashboard" class="section-tab active">
-            <div class="filter-group">
-                <button class="filter-btn active">Hôm nay</button>
-                <button class="filter-btn">Tuần này</button>
-                <button class="filter-btn">Tháng này</button>
-                <button class="filter-btn">Tùy chọn...</button>
-            </div>
+    <!-- Thay thế toàn bộ <div id="dashboard" ...> hiện tại bằng nội dung sau -->
+    <div id="dashboard" class="section-tab active">
+        <div class="filter-group">
+            <a href="${pageContext.request.contextPath}/admin-dashboard?filter=today" class="filter-btn ${selectedFilter == 'today' ? 'active' : ''}">Hôm nay</a>
+            <a href="${pageContext.request.contextPath}/admin-dashboard?filter=week" class="filter-btn ${selectedFilter == 'week' ? 'active' : ''}">Tuần này</a>
+            <a href="${pageContext.request.contextPath}/admin-dashboard?filter=month" class="filter-btn ${selectedFilter == 'month' ? 'active' : ''}">Tháng này</a>
+            <a href="${pageContext.request.contextPath}/admin-dashboard?filter=all" class="filter-btn ${selectedFilter == 'all' ? 'active' : ''}">Tất cả</a>
+        </div>
 
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Tổng Doanh Thu</h3>
-                    <div class="value">5.200.000đ</div>
-                    <small style="color: green;">+12% so với hôm qua</small>
+        <!-- Stats + chart layout -->
+        <div class="stats-chart-grid">
+            <div class="stats-left">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Tổng Doanh Thu</h3>
+                        <div class="value">
+                            <fmt:formatNumber value="${totalRevenue}" type="number" maxFractionDigits="0"/>đ
+                        </div>
+                        <small style="${revenueChangeSign == 'up' ? 'color: green;' : (revenueChangeSign == 'down' ? 'color: red;' : '')}">
+                            <c:choose>
+                                <c:when test="${revenueChangeSign == 'up'}">▲</c:when>
+                                <c:when test="${revenueChangeSign == 'down'}">▼</c:when>
+                                <c:otherwise>•</c:otherwise>
+                            </c:choose>
+                            ${revenueChangePercent}% so với kỳ trước
+                        </small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Đơn hàng hoàn thành</h3>
+                        <div class="value">${totalOrders}</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Sản phẩm bán chạy nhất</h3>
+                        <div class="value" style="font-size: 16px;">
+                            <c:if test="${not empty topProducts}">
+                                ${topProducts[0][0]}
+                            </c:if>
+                            <c:if test="${empty topProducts}">Chưa có dữ liệu</c:if>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Khách hàng mới (tạm)</h3>
+                        <div class="value">8</div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <h3>Đơn hàng mới</h3>
-                    <div class="value">24</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Sản phẩm bán chạy nhất</h3>
-                    <div class="value" style="font-size: 18px;">Matcha Uji Latte</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Khách hàng mới</h3>
-                    <div class="value">8</div>
-                </div>
-            </div>
 
-            <div class="table-container">
-                <h3 style="margin-bottom: 20px; color: var(--primary-color);">Giao dịch gần nhất</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Mã ĐH</th>
-                            <th>Thời gian</th>
-                            <th>Khách hàng</th>
-                            <th>Tổng tiền</th>
-                            <th>Trạng thái</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#ORD001</td>
-                            <td>10:30 08/01</td>
-                            <td>Nguyễn Văn A</td>
-                            <td>150.000đ</td>
-                            <td><span class="status-badge status-completed">Hoàn thành</span></td>
-                        </tr>
+                <!-- Recent orders -->
+                <div class="table-container" style="margin-top: 10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <h3>Đơn hàng gần đây</h3>
+                        <a href="${pageContext.request.contextPath}/orders" class="btn btn-primary" style="padding:6px 10px; font-size:13px;">Xem tất cả</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã</th><th>Khách</th><th>Ngày</th><th>Tổng</th><th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${recentOrders}" var="o">
+                                <tr>
+                                    <td>${o.orderID}</td>
+                                    <td>${o.customer.fullName}<br><small>${o.customer.phoneNumber}</small></td>
+                                    <td><fmt:formatDate value="${o.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
+                                    <td><fmt:formatNumber value="${o.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/></td>
+                                    <td>
+                                        <span class="status-badge
+                                            ${o.orderStatus == 'Chờ' ? 'status-pending' : (o.orderStatus == 'Đang giao' ? 'status-shipping' : (o.orderStatus == 'Hoàn thành' ? 'status-completed' : ''))}">
+                                            ${o.orderStatus}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            <c:if test="${empty recentOrders}">
+                                <tr><td colspan="5">Chưa có đơn hàng</td></tr>
+                            </c:if>
                         </tbody>
-                </table>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chart-right">
+                <div class="card chart-card">
+                    <h3>Doanh thu 7 ngày gần nhất</h3>
+                    <canvas id="revenueChart" width="400" height="220"></canvas>
+                    <div style="margin-top:12px;">
+                        <h4 style="margin:0 0 8px 0;">Top sản phẩm</h4>
+                        <ul style="list-style:none; padding-left:0;">
+                            <c:forEach items="${topProducts}" var="tp">
+                                <li style="padding:6px 0; border-bottom:1px solid #f0f0f0;">
+                                    <strong>${tp[0]}</strong> — <small>${tp[1]} cái</small>
+                                </li>
+                            </c:forEach>
+                            <c:if test="${empty topProducts}"><li>Chưa có sản phẩm bán</li></c:if>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
         <div id="products" class="section-tab">
             
@@ -359,5 +408,57 @@
             }
         };
     </script>
+<script>
+    // Lấy labels & values từ server (JSP list -> JS array)
+    const chartLabels = [
+        <c:forEach items="${chartLabels}" var="lbl" varStatus="vs">
+            "${lbl}"<c:if test="${!vs.last}">,</c:if>
+        </c:forEach>
+    ];
+    const chartValues = [
+        <c:forEach items="${chartValues}" var="val" varStatus="vs">
+            ${val} <c:if test="${!vs.last}">,</c:if>
+        </c:forEach>
+    ];
+
+    // Convert possible BigDecimal string values to numbers
+    const dataValues = chartValues.map(v => Number(v));
+
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Doanh thu (VNĐ)',
+                data: dataValues,
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 3
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const v = context.parsed.y || 0;
+                            return v.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback: function(value) { return value.toLocaleString('vi-VN'); }
+                    }
+                }
+            }
+        }
+    });
+</script>    
 </body>
 </html>
