@@ -51,6 +51,44 @@ public class EmailService {
             return false;
         }
     }
+    
+    public boolean sendChangePasswordEmail(String toEmail, String name, String token) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(FROM_EMAIL, PASSWORD);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(FROM_EMAIL, "HINATFU Support"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            
+            message.setSubject("Mã xác thực đổi mật khẩu - HINATFU");
+
+            String htmlContent = loadEmailTemplate("forgetpass.html");
+
+            htmlContent = htmlContent.replace("[[NAME]]", name);
+            htmlContent = htmlContent.replace("[[TOKEN]]", token);
+            
+
+            message.setContent(htmlContent, "text/html; charset=UTF-8");
+            Transport.send(message);
+            
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // Hàm đọc file HTML
     private String loadEmailTemplate(String fileName) {

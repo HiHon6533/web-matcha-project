@@ -295,7 +295,7 @@
                             </form>
                         </c:if>
                     </div>
-                </c:forEach>
+                </c:forEach>    
             </div>
 
             <div class="card">
@@ -312,7 +312,7 @@
                 <form action="add-address" method="post">
                     <div class="form-group">
                         <label>Tỉnh / Thành phố <span style="color:red">*</span></label>
-                        <input type="text" list="provinceList" name="province" class="form-control" placeholder="Chọn hoặc nhập Tỉnh/Thành" required autocomplete="off">
+                        <input type="text" list="provinceList" name="province" class="form-control" placeholder="Nhập Tỉnh/Thành" required autocomplete="off">
                         <datalist id="provinceList"></datalist>
                     </div>
 

@@ -14,6 +14,7 @@ public class Account implements Serializable {
     private String email;
     private String password;
     private String token;
+    private LocalDateTime tokenExpiry;
     private Boolean actived = false;
     private LocalDateTime createdAt;
     private String role = "user";
@@ -53,6 +54,14 @@ public class Account implements Serializable {
         this.token = token;
     }
 
+    public LocalDateTime getTokenExpiry() {
+        return tokenExpiry;
+    }
+
+    public void setTokenExpiry(LocalDateTime tokenExpiry) {
+        this.tokenExpiry = tokenExpiry;
+    }
+    
     public Boolean getActived() {
         return actived;
     }

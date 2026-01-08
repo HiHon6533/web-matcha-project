@@ -29,5 +29,10 @@ public class VerifyServlet extends HttpServlet {
             request.setAttribute("messageType", "success");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+        else {
+            request.setAttribute("message", "Liên kết xác thực không hợp lệ hoặc đã hết hạn!");
+            request.setAttribute("messageType", "error");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 }
