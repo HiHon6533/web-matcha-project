@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Xác nhận đơn hàng - HINATFU</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/confirm.css">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
 

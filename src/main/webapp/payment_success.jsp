@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Thanh toán thành công</title>
     <link rel="stylesheet" href="payment-result.css">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
 

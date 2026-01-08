@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HINATFU Matcha - Tinh hoa trà Nhật</title>
     <script src="https://kit.fontawesome.com/41b883a0ca.js" crossorigin="anonymous"></script>
-    
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&amp;family=Montserrat:wght@300;500&amp;display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/index.css">

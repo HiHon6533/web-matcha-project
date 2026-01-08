@@ -23,9 +23,14 @@ public class ResetPasswordServlet extends HttpServlet {
             
             HttpSession session = req.getSession();
             String email = (String) session.getAttribute("resetEmail");
-            Boolean isVerified = (Boolean) session.getAttribute("isVerified");
+            
+            // (Tuỳ chọn) Kiểm tra email null để tránh lỗi nếu session hết hạn
+            if (email == null) {
+                resp.sendRedirect("login.jsp");
+                return;
+            }
 
-
+            // 1. Kiểm tra mật khẩu xác nhận
             if (!newPass.equals(confirmPass)) {
                 req.setAttribute("error", "Mật khẩu xác nhận không khớp!");
                 req.getRequestDispatcher("forgot-password-3.jsp").forward(req, resp);
@@ -36,6 +41,7 @@ public class ResetPasswordServlet extends HttpServlet {
             Account account = dao.findByEmail(email);
 
             if (account != null) {
+                // 2. Hash mật khẩu và cập nhật thông tin
                 String hashedPass = BCrypt.hashpw(newPass, BCrypt.gensalt(12));
                 account.setPassword(hashedPass);
                 
@@ -45,12 +51,21 @@ public class ResetPasswordServlet extends HttpServlet {
                 boolean isUpdated = dao.update(account);
 
                 if (isUpdated) {
+                    // 3. XỬ LÝ KHI THÀNH CÔNG (Đoạn này đã được sửa)
+                    
+                    // Xóa các attribute tạm của quy trình quên mật khẩu
                     session.removeAttribute("resetEmail");
                     session.removeAttribute("isVerified");
                     
-                    req.setAttribute("message", "Cập nhật mật khẩu thành công! Vui lòng đăng nhập.");
-                    req.getRequestDispatcher("login.jsp").forward(req, resp);
+                    // Lưu thông báo vào Session (để login.jsp hiển thị được)
+                    // Lưu ý: Tên biến là "successMsg" để khớp với code trong login.jsp
+                    session.setAttribute("successMsg", "Cập nhật mật khẩu thành công! Vui lòng đăng nhập.");
+                    
+                    // Chuyển hướng về trang Login (URL sẽ đổi thành login.jsp)
+                    resp.sendRedirect("login.jsp");
+                    
                 } else {
+                    // Xử lý khi lỗi update DB
                     req.setAttribute("error", "Lỗi cập nhật mật khẩu.");
                     req.getRequestDispatcher("forgot-password-3.jsp").forward(req, resp);
                 }

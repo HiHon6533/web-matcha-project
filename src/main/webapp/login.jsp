@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="login.css">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
 
@@ -70,14 +71,23 @@
                 </div>
 
                 <h2 class="form-title">Đăng nhập</h2>
+
+                <c:if test="${not empty sessionScope.successMsg}">
+                    <div class="alert-success">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>${sessionScope.successMsg}</span>
+                    </div>
+                    <c:remove var="successMsg" scope="session"/>
+                </c:if>
                 <c:if test="${not empty loginError}">
                     <p class="error-msg">${loginError}</p>
+                    
                 </c:if>
 
                 <span class="instruction">Chào mừng bạn quay trở lại</span>
                 <input type="email" name="email" placeholder="Email" required />
                 <input type="password" name="password" placeholder="Mật khẩu" required />
-
+                <a href="forgot-password-1.jsp" class="forgot-pass">Quên mật khẩu?</a>
                 <button type="submit" class="btn-primary">Đăng nhập</button>
             </div>
 
