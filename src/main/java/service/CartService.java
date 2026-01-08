@@ -73,8 +73,10 @@ public class CartService {
     //Tìm cart bằng userId 
     public Cart getCartByUserID(Long userId){
         Cart cart = cartDAO.findCartByUserId(userId);
+        
         if (cart == null){
-            throw new RuntimeException("Không tìm thấy cart tương ứng");
+            Customer cus = cartDAO.findCustomerById(userId);
+            cart = cartDAO.createCart(cus);
         }
         return cart;
     }
