@@ -9,99 +9,8 @@
     <title>Hinatfu Admin - Quản lý cửa hàng</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="logo.png">
-    <style>
-        /* --- 1. GLOBAL STYLES --- */
-        :root {
-            --primary-color: #3e6540; /* Xanh Matcha */
-            --light-bg: #f4f7f4;
-            --white: #ffffff;
-            --text-color: #333;
-            --danger: #d32f2f;
-            --warning: #fbc02d;
-            --success: #388e3c;
-        }
+    <link rel="stylesheet" href="admin.css">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-color); display: flex; min-height: 100vh; }
-
-        /* --- 2. SIDEBAR (THANH BÊN) --- */
-        .sidebar {
-            width: 260px;
-            background-color: var(--primary-color);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100%;
-            transition: all 0.3s;
-        }
-        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .sidebar-header h2 { font-size: 24px; letter-spacing: 2px; }
-        .sidebar-menu { padding: 20px 0; flex: 1; }
-        .menu-item {
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.2s;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-        }
-        .menu-item:hover, .menu-item.active { background-color: rgba(255,255,255,0.15); color: #fff; border-left: 4px solid #fff; }
-        .menu-item i { margin-right: 15px; width: 20px; text-align: center; }
-
-        /* --- 3. MAIN CONTENT (NỘI DUNG CHÍNH) --- */
-        .main-content { margin-left: 260px; flex: 1; padding: 30px; }
-        
-        /* Header của trang */
-        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .page-title { color: var(--primary-color); font-size: 28px; font-weight: bold; }
-        .user-info { display: flex; align-items: center; gap: 10px; }
-        .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: #ccc; }
-
-        /* Các Section (Tab nội dung) */
-        .section-tab { display: none; animation: fadeIn 0.4s ease; }
-        .section-tab.active { display: block; }
-
-        /* Card thống kê */
-        .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: var(--white); padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .stat-card h3 { font-size: 14px; color: #888; margin-bottom: 10px; }
-        .stat-card .value { font-size: 24px; font-weight: bold; color: var(--primary-color); }
-        
-        /* Bộ lọc thời gian */
-        .filter-group { display: flex; gap: 10px; margin-bottom: 20px; background: white; padding: 10px; border-radius: 8px; width: fit-content; }
-        .filter-btn { padding: 8px 16px; border: none; background: transparent; cursor: pointer; border-radius: 5px; font-weight: 600; color: #666; }
-        .filter-btn.active { background-color: var(--primary-color); color: white; }
-
-        /* Bảng dữ liệu (Table) */
-        .table-container { background: var(--white); padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { font-weight: 600; color: #555; background-color: #f9f9f9; }
-        td img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
-        
-        /* Nút hành động (Action Buttons) */
-        .btn { padding: 8px 15px; border-radius: 5px; border: none; cursor: pointer; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
-        .btn-primary { background: var(--primary-color); color: white; }
-        .btn-edit { background: var(--warning); color: #333; }
-        .btn-delete { background: var(--danger); color: white; }
-        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-        
-        .status-pending { background: #fff3cd; color: #856404; }
-        .status-shipping { background: #d1ecf1; color: #0c5460; }
-        .status-completed { background: #d4edda; color: #155724; }
-        
-        /* Modal (Popup thêm sửa xóa) */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: white; width: 500px; padding: 30px; border-radius: 10px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
 </head>
 <body>
 
@@ -192,16 +101,7 @@
         </div>
 
         <div id="products" class="section-tab">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <div class="filter-group" style="margin-bottom: 0;">
-                    <button class="filter-btn active">Tất cả</button>
-                    <button class="filter-btn">Nguyên liệu Matcha</button>
-                    <button class="filter-btn">Sữa & Base</button>
-                </div>
-                <button class="btn btn-primary" onclick="openModal('addProductModal')">
-                    <i class="fas fa-plus"></i> Thêm sản phẩm mới
-                </button>
-            </div>
+            
 
             <div class="table-container">
                 <table>
@@ -210,37 +110,51 @@
                             <th>ID</th>
                             <th>Hình ảnh</th>
                             <th>Tên sản phẩm</th>
-                            <th>Loại (Category)</th>
-                            <th>Giá vốn/bán</th>
+                            
+                            <th>Giá </th>
                             <th>Kho</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <c:forEach items="${listMatcha}" var="m">
                         <tr>
-                            <td>#M01</td>
-                            <td><img src="placeholder-matcha.png" alt="Matcha"></td>
-                            <td><b>Bột Matcha Uji Haru</b></td>
-                            <td>Matcha</td>
-                            <td>250.000đ</td>
-                            <td style="color: green;">Còn hàng (5kg)</td>
+                            <td>${m.productID}</td>
                             <td>
-                                <button class="btn btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-delete"><i class="fas fa-trash"></i></button>
+                                <img src="${pageContext.request.contextPath}/${m.image != null ? m.image : 'matchaImage/default.png'}" 
+                                     alt="${m.productName}" style="width: 50px; height: 50px;">
+                            </td>
+                            <td><b>${m.productName}</b></td>
+
+                            <td><fmt:formatNumber value="${m.pricePerUnit}" type="number" maxFractionDigits="0"/>đ / ${m.unit}</td>
+                            <td style="color: green;"><fmt:formatNumber value="${m.quantity}" type="number" maxFractionDigits="0"/></td>
+                            <td>
+                                <button class="btn btn-edit" 
+                                    onclick="openEditModal('${m.productID}', '${m.productName}', ${m.pricePerUnit}, ${m.quantity}, '${m.unit}', '${m.image}', 'matcha')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
                             </td>
                         </tr>
+                        </c:forEach>
+                        <c:forEach items="${listMilk}" var="milk">
                         <tr>
-                            <td>#S02</td>
-                            <td><img src="placeholder-milk.png" alt="Milk"></td>
-                            <td><b>Sữa Yến Mạch Oatside</b></td>
-                            <td>Sữa</td>
-                            <td>55.000đ</td>
-                            <td style="color: red;">Sắp hết (2 hộp)</td>
+                            <td>${milk.productID}</td>
                             <td>
-                                <button class="btn btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-delete"><i class="fas fa-trash"></i></button>
+                                <img src="${pageContext.request.contextPath}/${milk.image != null ? milk.image : 'milkImage/default.png'}" 
+                                     alt="${milk.productName}" style="width: 50px; height: 50px;">
+                            </td>
+                            <td><b>${milk.productName}</b></td>
+
+                            <td><fmt:formatNumber value="${milk.pricePerUnit}" type="number" maxFractionDigits="0"/>đ / ${milk.unit}</td>
+                            <td style="color: green;"><fmt:formatNumber value="${milk.quantity}" type="number" maxFractionDigits="0"/></td>
+                            <td>
+                                <button class="btn btn-edit" 
+                                    onclick="openEditModal('${milk.productID}', '${milk.productName}', ${milk.pricePerUnit}, ${milk.quantity}, '${milk.unit}', '${milk.image}', 'milk')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
                             </td>
                         </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -334,8 +248,82 @@
             </form>
         </div>
     </div>
+<div id="editProductModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);">
+    <div style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 40%; border-radius: 10px;">
+        <span onclick="closeModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <h2 style="text-align: center; color: #3A5A40;">Cập nhật sản phẩm</h2>
 
-    <script>
+        <form action="updateProduct" method="post">
+            <input type="hidden" id="editType" name="type">
+            
+            <div class="form-group">
+                <label>Mã sản phẩm (ID):</label>
+                <input type="text" id="editID" name="id" readonly style="background: #eee;">
+            </div>
+
+            <div class="form-group">
+                <label>Tên sản phẩm:</label>
+                <input type="text" id="editName" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Giá (VNĐ):</label>
+                <input type="number" id="editPrice" name="price" required>
+            </div>
+
+            <div class="form-group">
+                <label>Số lượng tồn kho:</label>
+                <input type="number" id="editQuantity" name="quantity" required step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label>Đơn vị (Unit):</label>
+                <input type="text" id="editUnit" name="unit" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Đường dẫn ảnh:</label>
+                <input type="text" id="editImage" name="image">
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #3A5A40;">Lưu thay đổi</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+    .form-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+</style>
+<script>
+    // Hàm mở modal và điền dữ liệu
+    function openEditModal(id, name, price, quantity, unit, image, type) {
+        document.getElementById('editID').value = id;
+        document.getElementById('editName').value = name;
+        document.getElementById('editPrice').value = price;
+        document.getElementById('editQuantity').value = quantity;
+        document.getElementById('editUnit').value = unit;
+        document.getElementById('editImage').value = image;
+        document.getElementById('editType').value = type; // matcha hoặc milk
+        
+        document.getElementById('editProductModal').style.display = "block";
+    }
+
+    // Hàm đóng modal
+    function closeModal() {
+        document.getElementById('editProductModal').style.display = "none";
+    }
+    
+    // Đóng khi click ra ngoài modal
+    window.onclick = function(event) {
+        var modal = document.getElementById('editProductModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
         // Hàm chuyển Tab
         function switchTab(tabId, element) {
             // Ẩn tất cả tab
