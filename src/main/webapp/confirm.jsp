@@ -59,9 +59,10 @@
                 <c:choose>
                     <c:when test="${not empty effectiveAddresses}">
                         <select name="addressId" id="addressId">
-                            <c:forEach items="${effectiveAddresses}" var="addr">
-                                <option value="${addr.addressID}">
+                            <c:forEach items="${addresses}" var="addr">
+                                <option value="${addr.addressID}" <c:if test="${addr.is_default}">selected</c:if>>
                                     ${addr.addressDetail} - ${addr.receiverName} (${addr.phoneNumber})
+                                    <c:if test="${addr.is_default}"></c:if>
                                 </option>
                             </c:forEach>
                         </select>

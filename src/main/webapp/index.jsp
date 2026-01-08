@@ -243,11 +243,11 @@
             <div class="selection-frame" data-category="size">
                 <h3><i class="fas fa-expand-alt"></i> 3. Chọn Size</h3>
                 <div class="size-list">
-                    <div class="size-item" data-value="S">
+                    <div class="size-item active" data-value="S">
                         <i class="fa-solid fa-mug-hot"></i>
                         <span>Size S (180ml)</span>
                     </div>
-                    <div class="size-item active" data-value="M">
+                    <div class="size-item" data-value="M">
                         <i class="fa-solid fa-mug-hot" style="font-size: 1.4em;"></i>
                         <span>Size M (350ml)</span>
                     </div>

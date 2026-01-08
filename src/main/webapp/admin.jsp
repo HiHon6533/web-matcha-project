@@ -138,7 +138,7 @@
                         <ul style="list-style:none; padding-left:0;">
                             <c:forEach items="${topProducts}" var="tp">
                                 <li style="padding:6px 0; border-bottom:1px solid #f0f0f0;">
-                                    <strong>${tp[0]}</strong> — <small>${tp[1]} cái</small>
+                                    <strong>${tp[0]}</strong> — <small>${tp[1]} </small>
                                 </li>
                             </c:forEach>
                             <c:if test="${empty topProducts}"><li>Chưa có sản phẩm bán</li></c:if>
