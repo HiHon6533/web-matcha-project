@@ -89,12 +89,12 @@
                             <form action="set-default-address" method="post" style="margin-top: 10px;">
                                 <input type="hidden" name="addressId" value="${addr.addressID}">
                                 <button type="submit" class="btn-set-default">
-                                    <i class="fas fa-check-circle"></i> Đặt làm địa chỉ giao hàng
+                                    <i class="fas fa-check-circle"></i> Đặt làm địa chỉ mặc định
                                 </button>
                             </form>
                         </c:if>
                     </div>
-                </c:forEach>
+                </c:forEach>    
             </div>
 
             <div class="card">
@@ -110,19 +110,19 @@
 
                 <form action="add-address" method="post">
                     <div class="form-group">
-                        <label>Tỉnh / Thành phố <span style="color:red">*</span></label>
-                        <input type="text" list="provinceList" name="province" class="form-control" placeholder="Chọn hoặc nhập Tỉnh/Thành" required autocomplete="off">
+                        <label>Thành phố / Tỉnh <span style="color:red">*</span></label>
+                        <input type="text" list="provinceList" name="province" class="form-control" placeholder="Nhập Thành phố/Tỉnh" required autocomplete="off">
                         <datalist id="provinceList"></datalist>
                     </div>
 
                     <div class="form-group">
-                        <label>Quận / Huyện <span style="color:red">*</span></label>
-                        <input type="text" name="ward" class="form-control" placeholder="Nhập Quận/Huyện" required>
+                        <label>Phường / Xã <span style="color:red">*</span></label>
+                        <input type="text" name="ward" class="form-control" placeholder="Nhập Phường/Xã" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Phường / Xã <span style="color:red">*</span></label>
-                        <input type="text" name="hamlet" class="form-control" placeholder="Nhập Phường/Xã" required>
+                        <label>Khu phố / Ấp <span style="color:red">*</span></label>
+                        <input type="text" name="hamlet" class="form-control" placeholder="Nhập Khu phố/Ấp" required>
                     </div>
 
                     <div class="form-group">

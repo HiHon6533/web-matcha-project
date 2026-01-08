@@ -33,6 +33,7 @@ public class AccountService {
         newAccount.setPassword(hashedPassword);
         newAccount.setActived(false);
         newAccount.setToken(randomToken);
+        newAccount.setTokenExpiry(LocalDateTime.now().plusHours(1));
         newAccount.setCreatedAt(LocalDateTime.now());
         
         //Tạo customer mới
@@ -80,8 +81,19 @@ public class AccountService {
     
     public boolean verifyAccount(String token) {
         Account account = accountDAO.findByToken(token);
+        if (account == null) {
+        return false;
+    }
+        if (account.getTokenExpiry() != null && LocalDateTime.now().isAfter(account.getTokenExpiry())) {
+            account.setToken(null);
+            account.setTokenExpiry(null);
+            accountDAO.update(account);
+            return false; 
+        }
         account.setActived(true);
         account.setToken(null);
+        account.setTokenExpiry(null);
+        
         return accountDAO.update(account);
     }
 }
