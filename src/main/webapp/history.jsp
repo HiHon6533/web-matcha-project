@@ -43,7 +43,7 @@
                 <c:otherwise>
                     <div class="history-items">
                         <c:forEach items="${historyOrders}" var="order">
-                            <c:if test="${order.orderStatus != 'Thanh toán thất bại' && order.orderStatus != null}">
+                            <c:if test="${order.orderStatus != 'Thanh toán thất bại'&& order.orderStatus != 'Chờ thanh toán'&& order.orderStatus != 'Hủy' && order.orderStatus != null}">
                                 <div class="item-card">
                                     <div class="item-info">
                                         <h3 class="item-name">Đơn hàng số ${order.orderID}</h3>
