@@ -80,7 +80,6 @@ public class ConfirmActionServlet extends HttpServlet {
         // Lấy IP đúng (ưu tiên X-Forwarded-For)
         String ipAddr = request.getHeader("X-Forwarded-For");
         if (ipAddr != null && !ipAddr.isEmpty()) {
-            // X-Forwarded-For có thể chứa list "client, proxy1, proxy2" -> lấy phần đầu
             ipAddr = ipAddr.split(",")[0].trim();
         } else {
             ipAddr = request.getRemoteAddr();
@@ -102,20 +101,8 @@ public class ConfirmActionServlet extends HttpServlet {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
-        // Helper: RFC3986 style encode (URLEncoder -> replace '+' with '%20')
-        // (we use UTF-8 and replace '+' to match RFC3986 expectations)
-        final java.util.function.Function<String, String> encode = (value) -> {
-            try {
-                if (value == null) return "";
-                String encoded = URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
-                // URLEncoder encodes space to '+', replace with %20 for RFC3986
-                return encoded.replace("+", "%20");
-            } catch (Exception ex) {
-                return "";
-            }
-        };
-
-        // Build hashData (URL-encoded values) and query (URL-encoded names & values)
+        // Build hashData and query using URLEncoder.encode(value, "UTF-8")
+        // IMPORTANT: do NOT modify '+' to '%20' — use URLEncoder's default behavior.
         List<String> fieldNames = new ArrayList<>(vnp_Params.keySet());
         Collections.sort(fieldNames);
 
@@ -127,28 +114,24 @@ public class ConfirmActionServlet extends HttpServlet {
             String fieldName = itr.next();
             String fieldValue = vnp_Params.get(fieldName);
             if (fieldValue != null && fieldValue.length() > 0) {
-                String encodedValue = encode.apply(fieldValue);
+                // Encode value using URLEncoder (UTF-8). VNPAY sample uses this encoding (spaces -> '+').
+                String encodedValue = URLEncoder.encode(fieldValue, StandardCharsets.UTF_8.toString());
 
-                // HASH DATA: use encodedValue
-                hashData.append(fieldName).append('=').append(encodedValue);
-
-                // QUERY: encode name and use the same encodedValue
-                query.append(URLEncoder.encode(fieldName, StandardCharsets.UTF_8.toString()).replace("+", "%20"))
-                     .append('=')
-                     .append(encodedValue);
+                // Use the encoded value for both hashData and query (keys left as plain field names)
+                hashData.append(fieldName).append("=").append(encodedValue);
+                query.append(fieldName).append("=").append(encodedValue);
 
                 if (itr.hasNext()) {
-                    hashData.append('&');
-                    query.append('&');
+                    hashData.append("&");
+                    query.append("&");
                 }
             }
         }
 
         // Compute secure hash (HMAC SHA512)
         String vnp_SecureHash = VNPayConfig.hmacSHA512(VNPayConfig.vnp_HashSecret, hashData.toString());
-        String queryUrl = query.toString();
-        queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
-        String paymentUrl = VNPayConfig.vnp_PayUrl + "?" + queryUrl;
+
+        String paymentUrl = VNPayConfig.vnp_PayUrl + "?" + query.toString() + "&vnp_SecureHash=" + vnp_SecureHash;
 
         // Logs for debugging (you can remove later)
         getServletContext().log("VNPay createDate=" + vnp_CreateDate + ", expireDate=" + vnp_ExpireDate);
