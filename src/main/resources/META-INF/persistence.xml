@@ -20,7 +20,6 @@
         <class>model.ProductLine</class>
         <class>model.Order</class>
         <class>model.Payment</class>
-        <class>model.Review</class>
         <class>model.Address</class>
 
         <properties>
