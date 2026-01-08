@@ -56,10 +56,6 @@ public class AccountService {
     //LOGIN
     public Account login(String email, String password){
         Account account = accountDAO.findByEmail(email);
-
-        if (!account.getActived()) {
-            throw new RuntimeException("Tài khoản chưa được kích hoạt");
-        }
         
         if (account == null) {
             throw new RuntimeException("Email chưa đăng ký");
@@ -68,6 +64,9 @@ public class AccountService {
         boolean match = PasswordUtil.verify(password, account.getPassword());
         if (!match) {
             throw new RuntimeException("Mật khẩu không đúng");
+        }
+        if (!account.getActived()) {
+            throw new RuntimeException("Tài khoản chưa được kích hoạt");
         }
         return account;
         

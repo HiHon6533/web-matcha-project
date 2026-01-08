@@ -126,6 +126,11 @@ body {
     margin-bottom: 10px;
 }
 
+.item-status p{
+    font-weight: 600;
+    color: var(--primary-green); 
+}
+
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {

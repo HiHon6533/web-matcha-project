@@ -269,7 +269,7 @@
                         </div>
 
                         <form action="${pageContext.request.contextPath}/addToCart" method="post">
-                            <input type="hidden" name="type" value="ingredient_matcha">
+                            <input type="hidden" name="type" value="standard">
                             <input type="hidden" name="productId" value="${m.productID}" />
 
                             <div class="quantity-box">
@@ -350,7 +350,7 @@
                     </div>
 
                     <form action="${pageContext.request.contextPath}/addToCart" method="post">
-                        <input type="hidden" name="type" value="ingredient_milk">
+                        <input type="hidden" name="type" value="standard">
                         <input type="hidden" name="productId" value="${milk.productID}" />
 
                         <div class="quantity-box">

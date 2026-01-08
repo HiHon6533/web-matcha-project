@@ -55,9 +55,8 @@ public class AddToCartServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/cart");
         } else {
             // Thất bại
-            // Lưu thông báo lỗi vào session hoặc request để hiển thị
-            session.setAttribute("ERROR_MSG", "Sản phẩm hoặc công thức đồ uống không tồn tại!");
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            request.setAttribute("ERROR_MSG", "Sản phẩm hoặc công thức đồ uống không tồn tại!");
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 }
