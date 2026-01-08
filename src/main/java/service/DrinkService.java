@@ -19,7 +19,7 @@ public class DrinkService {
     // 1. Lấy sản phẩm nổi bật (Dùng ProductDAO)
     public List<Drink> getFeaturedDrinks() {
         // Danh sách ID bạn muốn hiển thị ở trang chủ
-        List<Long> ids = Arrays.asList(59L, 60L, 62L); 
+        List<Long> ids = Arrays.asList(26L, 27L, 31L); 
         return productDAO.getDrinksByIds(ids);
     }
 
