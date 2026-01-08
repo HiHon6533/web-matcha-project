@@ -35,11 +35,21 @@ public class ConfirmServlet extends HttpServlet {
         // Lấy địa chỉ của khách (nếu bạn chưa có AddressService -> dùng session/DB để lấy)
         List<Address> addresses = addressService.getAddressesByUserId(curCustomer.getUserID()); // nếu ko có thì trả về empty list
 
+        // after computing cart, addresses, amount, orderInfo
+        session = request.getSession(false);
+
+        session.setAttribute("PENDING_CART", cart);
+        session.setAttribute("PENDING_CUSTOMER", curCustomer);
+        session.setAttribute("PENDING_ADDRESSES", addresses);
+        session.setAttribute("PENDING_AMOUNT", request.getParameter("amount"));
+        session.setAttribute("PENDING_ORDERINFO", request.getParameter("orderInfo"));
         request.setAttribute("cart", cart);
         request.setAttribute("customer", curCustomer);
         request.setAttribute("addresses", addresses);
         request.setAttribute("amount", request.getParameter("amount"));
         request.setAttribute("orderInfo", request.getParameter("orderInfo"));
+        request.getRequestDispatcher("/confirm.jsp").forward(request, response);
+
         request.getRequestDispatcher("/confirm.jsp").forward(request, response);
     }
 

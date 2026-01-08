@@ -251,5 +251,37 @@ public class OrderDAO {
         }
     }
  
-    
+    public boolean markPaymentFailed(String txnRef, String reason) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            List<Payment> payments = em.createQuery(
+                "SELECT p FROM Payment p WHERE p.transactionId = :txRef", Payment.class)
+                .setParameter("txRef", txnRef)
+                .getResultList();
+            if (payments.isEmpty()) {
+                tx.commit();
+                return false;
+            }
+            Payment p = payments.get(0);
+            p.setStatus("Thanh toán thất bại");
+            // Optionally set a failure reason field if you have one
+            em.merge(p);
+            Order o = em.find(Order.class, p.getOrder().getOrderID());
+            if (o != null) {
+                o.setOrderStatus("Thanh toán thất bại");
+                em.merge(o);
+            }
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
 }

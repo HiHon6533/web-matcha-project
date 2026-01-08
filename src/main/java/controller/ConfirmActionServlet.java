@@ -49,12 +49,16 @@ public class ConfirmActionServlet extends HttpServlet {
         
         // Tạo order + payment (payment.transactionId = vnp_TxnRef, status = "Chờ thanh toán")
         boolean created = orderService.createOrderWithTransaction(request, total, note, addressIdStr, vnp_TxnRef);
+        
         if (!created) {
             session.setAttribute("ERROR_MSG", "Tạo đơn hàng thất bại. Vui lòng thử lại.");
             response.sendRedirect(request.getContextPath() + "/cart");
             return;
         }
-
+        
+        if (created) {
+            session.setAttribute("PENDING_TXN", vnp_TxnRef);
+        } 
         // Tạo URL VNPAY (sao chép logic từ PaymentServlet nhưng dùng vnp_TxnRef đã sinh)
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";

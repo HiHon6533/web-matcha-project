@@ -8,7 +8,7 @@ import util.VNPayConfig;
  *
  * @author ADMIN
  */
-
+/*
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -110,3 +110,4 @@ public class PaymentServlet extends HttpServlet {
         response.sendRedirect(paymentUrl);
     }
 }
+*/

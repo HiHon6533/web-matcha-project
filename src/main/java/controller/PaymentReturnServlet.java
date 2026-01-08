@@ -79,27 +79,26 @@ public class PaymentReturnServlet extends HttpServlet {
     // SO SÁNH
     if (calculatedHash.equalsIgnoreCase(vnp_SecureHash)) {
         String txnRef = request.getParameter("vnp_TxnRef");
-        String vnpRespCode = request.getParameter("vnp_ResponseCode"); // "00" success
+        String vnpRespCode = request.getParameter("vnp_ResponseCode");
+        OrderService orderService = new OrderService();
 
         if ("00".equals(vnpRespCode)) {
-            boolean finalizeOk = new OrderService().finalizePaymentAfterVNPay(txnRef);
-            // finalizeOk == true => đã trừ kho và cập nhật order/payment
+            boolean finalizeOk = orderService.finalizePaymentAfterVNPay(txnRef);
             if (finalizeOk) {
                 response.sendRedirect("payment_success.jsp?" + request.getQueryString());
             } else {
-                // finalize failed (ví dụ: hết hàng khi finalizing)
-                // cập nhật Payment/Order đã được DAO xử lý (đã set status thất bại) hoặc bạn có thể thêm log
+                // finalize failed -> mark payment failed
+                orderService.markPaymentFailed(txnRef, "Finalize failed or out of stock");
                 response.sendRedirect("confirm.jsp?reason=out_of_stock");
             }
         } else {
-            // nếu trả về code khác -> mark payment thất bại
-            // cập nhật Payment tương ứng (nếu cần) - hiện bạn đã làm merge trong PaymentReturnServlet
-            response.sendRedirect("confirm.jsp");
+            // Payment not successful -> mark failed
+            orderService.markPaymentFailed(txnRef, "vnpRespCode=" + vnpRespCode);
+            response.sendRedirect("confirm.jsp?" + request.getQueryString());
         }
     } else {
         response.getWriter().println("<h3>Lỗi: Chữ ký không hợp lệ!</h3>");
     }
-
     }
 
 }

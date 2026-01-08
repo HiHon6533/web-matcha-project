@@ -71,5 +71,8 @@ public class OrderService {
         return orderDAO.finalizeOrderPayment(txnRef);
     }
  
+    public boolean markPaymentFailed(String txnRef, String reason) {
+        return orderDAO.markPaymentFailed(txnRef, reason);
+    }
     
 }
